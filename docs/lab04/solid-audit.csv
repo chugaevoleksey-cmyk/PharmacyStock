@@ -1,0 +1,6 @@
+﻿Принцип,Доказ,Порушення,Наслідок,Виправлення
+SRP,PrescriptionManager.Place та BuildCsvReport,"Сума, JSON, пошта, CSV й архівування зібрані разом",Зміна формату листа зачіпає клас із розрахунком,"PrescriptionService, репозиторій, INotifier, PrescriptionCsvReport"
+OCP,Place: if patientType == regular / vip / staff,Новий тип пацієнта потребує нової гілки,Доведеться змінити наявний Place,Окремі IPricingPolicy і таблиця в Program.cs
+LSP,Archive: LegacyPrescription archived = new ArchivedPrescription(...); archived.AddLine(...),Підтип забороняє дозволений базовим методом виклик,Архівування непорожнього документа падає з NotSupportedException,Композиція ArchivedPrescription без AddLine
+ISP,IPrescriptionStore: сім різнорідних методів,Менеджер викликає лише SaveToFile з цього інтерфейсу,Зміна листів або друку зачіпає сховище,IPrescriptionRepository та INotifier
+DIP,Поля _store = new FilePrescriptionStore(); _mailer = new SmtpMailer();,Сервіс сам обирає файловий і поштовий механізм,Тест потребує конкретної інфраструктури,Залежності-інтерфейси в конструкторі
