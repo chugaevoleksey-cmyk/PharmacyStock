@@ -1,31 +1,17 @@
 using System.Globalization;
-using PharmacyStock.Core.Domain;
+using System.Text;
+using PharmacyStock.Core.Legacy;
 
-Prescription prescription = new()
-{
-    Id = 1,
-    PatientId = 19,
-    CreatedAt = DateTimeOffset.Now,
-};
+// Однакова локаль для відтворюваного порівняння до і після.
+CultureInfo.CurrentCulture = CultureInfo.GetCultureInfo("uk-UA");
+Console.OutputEncoding = new UTF8Encoding(false);
 
-prescription.AddLine(new PrescriptionLine
-{
-    MedicineCode = "MED-001",
-    Quantity = 2,
-    UnitPrice = 149.50m,
-});
+var z = new zakaz("A-1001", "Іваненко");
+z.Add("SKU-1", 3, 250m);
+z.Add("SKU-2", 12, 90m);
 
-prescription.AddLine(new PrescriptionLine
-{
-    MedicineCode = "MED-002",
-    Quantity = 1,
-    UnitPrice = 89.90m,
-});
-
-string total = prescription.Total()
-    .ToString("F2", CultureInfo.InvariantCulture);
-
-Console.WriteLine($"Рецепт #{prescription.Id}");
-Console.WriteLine($"Стан: {prescription.Status}");
-Console.WriteLine($"Позицій: {prescription.Lines.Count}");
-Console.WriteLine($"Сума: {total}");
+Console.WriteLine(z.ProcessData(false));
+Console.WriteLine(z.ProcessData(true));
+Console.WriteLine(z.Ck());
+Console.WriteLine(z.Chg(1));
+Console.Write(z.Rep());
