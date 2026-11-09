@@ -14,4 +14,7 @@
     </PackageReference>
   </ItemGroup>
 
+  <ItemGroup>
+    <Compile Remove="Legacy/**/*.cs" />
+  </ItemGroup>
 </Project>
