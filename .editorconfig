@@ -35,3 +35,33 @@ dotnet_naming_symbols.priv_field.applicable_accessibilities = private
 
 dotnet_naming_style.underscore_camel.capitalization = camel_case
 dotnet_naming_style.underscore_camel.required_prefix = _
+
+# StyleCop: свідомо вимкнені правила
+
+# Заголовок з ліцензією в навчальному проєкті не потрібен
+dotnet_diagnostic.SA1633.severity = none
+
+# Префікс this. не використовуємо
+dotnet_diagnostic.SA1101.severity = none
+
+# Директиви using розташовуємо перед namespace
+dotnet_diagnostic.SA1200.severity = none
+
+# Приватні поля називаємо з _
+dotnet_diagnostic.SA1309.severity = none
+
+# XML-документацію будемо вимагати з лабораторної №4
+dotnet_diagnostic.SA0001.severity = none
+dotnet_diagnostic.SA1600.severity = none
+dotnet_diagnostic.SA1601.severity = none
+dotnet_diagnostic.SA1602.severity = none
+
+# Кінцева кома в багаторядковому ініціалізаторі необов'язкова
+dotnet_diagnostic.SA1413.severity = none
+
+# Правила, які залишаємо суворими
+dotnet_diagnostic.SA1028.severity = warning
+dotnet_diagnostic.SA1201.severity = warning
+dotnet_diagnostic.SA1503.severity = warning
+dotnet_diagnostic.SA1516.severity = warning
+dotnet_diagnostic.IDE0055.severity = warning
