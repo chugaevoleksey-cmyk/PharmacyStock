@@ -46,7 +46,9 @@ public class Prescription
 
     private readonly List<string[]> _lines = new();
 
-    /// <summary>Represents a pharmacy prescription.</summary>
+    /// <summary>
+    /// Initializes a new instance of the <see cref="Prescription"/> class.
+    /// </summary>
     /// <param name="id">Document identifier.</param>
     /// <param name="patientName">Patient display name.</param>
     public Prescription(string id, string patientName)
@@ -55,8 +57,6 @@ public class Prescription
         PatientName = patientName;
         CreatedAt = DateTime.Now;
     }
-
-
 
     /// <summary>Gets the document or patient identifier.</summary>
     public string Id { get; private set; }
@@ -170,8 +170,13 @@ public class Prescription
     /// <returns>True if the inherited validity conditions hold; otherwise false.</returns>
     public bool IsValid()
     {
-        if (Id != null && Id != string.Empty && PatientName != null && PatientName.Length >= MinPatientNameLength
-            && _lines.Count > 0 && _lines.Count < MaxLineCount && Status >= StatusNew && Status <= StatusCancelled)
+        if (Id != null && Id != string.Empty
+            && PatientName != null
+            && PatientName.Length >= MinPatientNameLength
+            && _lines.Count > 0
+            && _lines.Count < MaxLineCount
+            && Status >= StatusNew
+            && Status <= StatusCancelled)
         {
             return true;
         }
@@ -197,6 +202,4 @@ public class Prescription
         report = report + "Разом: " + CalculateTotal(false) + "\n";
         return report;
     }
-
-
 }

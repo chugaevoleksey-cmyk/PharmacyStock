@@ -1,0 +1,3 @@
+$ dotnet format whitespace --no-restore
+
+Exit code: 0

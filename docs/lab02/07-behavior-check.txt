@@ -1,0 +1,5 @@
+$ dotnet run --project C:\Users\chaha\Documents\Codex\2026-11-09\referenced-chatgpt-conversation-this-is-an\work\BehaviorCheck
+C:\Users\chaha\Documents\Codex\2026-11-09\referenced-chatgpt-conversation-this-is-an\work\BehaviorCheck\Baseline.cs(8,14): warning CS8981: Имя типа "zakaz" содержит только строчные символы ASCII. Такие имена могут резервироваться для языка. [C:\Users\chaha\Documents\Codex\2026-11-09\referenced-chatgpt-conversation-this-is-an\work\BehaviorCheck\BehaviorCheck.csproj]
+PASS: 24652 comparisons, four cultures, thresholds, line counts, null names, statuses and search.
+
+Exit code: 0

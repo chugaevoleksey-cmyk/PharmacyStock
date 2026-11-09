@@ -20,7 +20,7 @@ public sealed class Prescription
     /// <summary>Gets the document creation time.</summary>
     public DateTimeOffset CreatedAt { get; init; }
 
-    /// <summary>Represents the _lines type.</summary>
+    /// <summary>Gets the prescription lines.</summary>
     public IReadOnlyList<PrescriptionLine> Lines => _lines;
 
     /// <summary>

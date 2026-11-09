@@ -1,0 +1,22 @@
+{
+  "buildExitCode": 0,
+  "formatExitCode": 0,
+  "diffExitCode": 0,
+  "beforeSha256": "9563d49f700c5f850ee945f360168709a1c4af96b4522104359324b6ce3ca71e",
+  "afterSha256": "9563d49f700c5f850ee945f360168709a1c4af96b4522104359324b6ce3ca71e",
+  "behaviorComparisons": 24652,
+  "cultures": [
+    "uk-UA",
+    "en-US",
+    "fr-FR",
+    "Invariant"
+  ],
+  "longLinesOver100": 0,
+  "CS1591": {
+    "before": 33,
+    "after": 0
+  },
+  "identity": "Чугаєв Олексій Михайлович",
+  "group": "471",
+  "variant": 19
+}
