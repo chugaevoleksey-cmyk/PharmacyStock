@@ -1,4 +1,4 @@
-﻿using System.Globalization;
+using System.Globalization;
 using PharmacyStock.Core.Domain;
 
 Prescription prescription = new()
