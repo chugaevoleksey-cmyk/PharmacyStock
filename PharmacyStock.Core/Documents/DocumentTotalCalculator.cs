@@ -1,7 +1,11 @@
 namespace PharmacyStock.Core.Documents;
 
+/// <summary>Calculates prescription totals without external output.</summary>
 public static class DocumentTotalCalculator
 {
+    /// <summary>Calculates a total after validating the complete request.</summary>
+    /// <param name="request">Calculation request.</param>
+    /// <returns>The calculated total and next state.</returns>
     public static TotalResult Calculate(TotalRequest request)
     {
         DocumentGuards.EnsureRequestValid(request);
@@ -11,10 +15,15 @@ public static class DocumentTotalCalculator
         total -= CouponDiscountOf(total, request.CouponCode);
         total -= WeekendDiscountOf(total, request.CreatedAt);
         total += DeliveryFeeOf(total, request.DeliveryPrice);
-        total = request.Status == DocumentStatus.Cancelled ? 0m : Math.Round(Math.Max(total, 0m), 2);
+        total = request.Status == DocumentStatus.Cancelled
+            ? 0m
+            : Math.Round(Math.Max(total, 0m), PricingRules.CurrencyDecimals);
         return new TotalResult { Total = total, Status = NextStatusOf(request.Status, total) };
     }
 
+    /// <summary>Calculates the subtotal with the quantity discount.</summary>
+    /// <param name="lines">Medicine lines.</param>
+    /// <returns>The calculated amount.</returns>
     public static decimal SubtotalOf(IReadOnlyList<PrescriptionLine> lines)
     {
         DocumentGuards.EnsureLinesValid(lines);
@@ -33,15 +42,22 @@ public static class DocumentTotalCalculator
         return subtotal;
     }
 
+    /// <summary>Calculates the regular-patient discount.</summary>
+    /// <param name="amount">Nonnegative amount.</param>
+    /// <param name="isRegularPatient">Whether the regular-patient discount applies.</param>
+    /// <returns>The calculated amount.</returns>
     public static decimal ClientDiscountOf(decimal amount, bool isRegularPatient)
     {
-        ArgumentOutOfRangeException.ThrowIfNegative(amount);
+        DocumentGuards.EnsureAmountValid(amount, nameof(amount));
         return isRegularPatient ? amount * PricingRules.RegularPatientRate : 0m;
     }
 
+    /// <summary>Calculates the volume discount.</summary>
+    /// <param name="amount">Nonnegative amount.</param>
+    /// <returns>The calculated amount.</returns>
     public static decimal VolumeDiscountOf(decimal amount)
     {
-        ArgumentOutOfRangeException.ThrowIfNegative(amount);
+        DocumentGuards.EnsureAmountValid(amount, nameof(amount));
         if (amount > PricingRules.LargePrescriptionFrom)
         {
             return amount * PricingRules.LargePrescriptionRate;
@@ -55,9 +71,13 @@ public static class DocumentTotalCalculator
         return 0m;
     }
 
+    /// <summary>Calculates the coupon discount.</summary>
+    /// <param name="amount">Nonnegative amount.</param>
+    /// <param name="couponCode">Coupon code, or null when no coupon is supplied.</param>
+    /// <returns>The calculated amount.</returns>
     public static decimal CouponDiscountOf(decimal amount, string? couponCode)
     {
-        ArgumentOutOfRangeException.ThrowIfNegative(amount);
+        DocumentGuards.EnsureAmountValid(amount, nameof(amount));
         return couponCode switch
         {
             PricingRules.SaleCoupon => amount * PricingRules.CouponSaleRate,
@@ -67,23 +87,35 @@ public static class DocumentTotalCalculator
         };
     }
 
+    /// <summary>Calculates the Sunday discount.</summary>
+    /// <param name="amount">Nonnegative amount.</param>
+    /// <param name="createdAt">Document creation date.</param>
+    /// <returns>The calculated amount.</returns>
     public static decimal WeekendDiscountOf(decimal amount, DateOnly createdAt)
     {
-        ArgumentOutOfRangeException.ThrowIfNegative(amount);
+        DocumentGuards.EnsureAmountValid(amount, nameof(amount));
         return createdAt.DayOfWeek == DayOfWeek.Sunday ? amount * PricingRules.WeekendRate : 0m;
     }
 
+    /// <summary>Calculates the delivery fee.</summary>
+    /// <param name="amount">Nonnegative amount.</param>
+    /// <param name="deliveryPrice">Nonnegative delivery price.</param>
+    /// <returns>The calculated amount.</returns>
     public static decimal DeliveryFeeOf(decimal amount, decimal deliveryPrice)
     {
-        ArgumentOutOfRangeException.ThrowIfNegative(amount);
-        ArgumentOutOfRangeException.ThrowIfNegative(deliveryPrice);
+        DocumentGuards.EnsureAmountValid(amount, nameof(amount));
+        DocumentGuards.EnsureAmountValid(deliveryPrice, nameof(deliveryPrice));
         return amount < PricingRules.FreeDeliveryFrom ? deliveryPrice : 0m;
     }
 
+    /// <summary>Returns the next state without modifying the input.</summary>
+    /// <param name="current">Current supported document state.</param>
+    /// <param name="total">Nonnegative calculated total.</param>
+    /// <returns>The next state according to the inherited rules.</returns>
     public static DocumentStatus NextStatusOf(DocumentStatus current, decimal total)
     {
         DocumentGuards.EnsureStatusValid(current);
-        ArgumentOutOfRangeException.ThrowIfNegative(total);
+        DocumentGuards.EnsureAmountValid(total, nameof(total));
         return current switch
         {
             DocumentStatus.New when total > 0m => DocumentStatus.Paid,

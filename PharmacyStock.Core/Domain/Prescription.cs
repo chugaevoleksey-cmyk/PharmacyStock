@@ -62,14 +62,12 @@ public sealed class Prescription
     /// </param>
     public void ChangeStatus(PrescriptionStatus newStatus)
     {
-        bool isAllowed = (Status, newStatus) switch
+        bool isAllowed = Status switch
         {
-            (PrescriptionStatus.New, PrescriptionStatus.Approved) => true,
-            (PrescriptionStatus.New, PrescriptionStatus.Cancelled) => true,
-            (PrescriptionStatus.New, PrescriptionStatus.Expired) => true,
-            (PrescriptionStatus.Approved, PrescriptionStatus.Dispensed) => true,
-            (PrescriptionStatus.Approved, PrescriptionStatus.Cancelled) => true,
-            (PrescriptionStatus.Approved, PrescriptionStatus.Expired) => true,
+            PrescriptionStatus.New => newStatus is PrescriptionStatus.Approved
+                or PrescriptionStatus.Cancelled or PrescriptionStatus.Expired,
+            PrescriptionStatus.Approved => newStatus is PrescriptionStatus.Dispensed
+                or PrescriptionStatus.Cancelled or PrescriptionStatus.Expired,
             _ => false,
         };
 

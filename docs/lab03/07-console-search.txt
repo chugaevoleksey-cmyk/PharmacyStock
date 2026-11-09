@@ -1,0 +1,2 @@
+$ rg "Console\." PharmacyStock.Core -g "*.cs"
+(немає збігів у вихідних файлах)

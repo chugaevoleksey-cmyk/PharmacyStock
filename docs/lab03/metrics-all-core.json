@@ -1,0 +1,369 @@
+[
+  {
+    "File": "C:\\Users\\chaha\\Documents\\Codex\\2026-11-09\\referenced-chatgpt-conversation-this-is-an\\work\\PharmacyStock_LR3\\PharmacyStock.Core\\Documents\\DocumentGuards.cs",
+    "Name": "EnsureHeaderValid",
+    "Parameters": 3,
+    "Complexity": 2,
+    "BodyLines": 9,
+    "MethodLines": 10,
+    "Depth": 1,
+    "Returns": 0,
+    "ConsoleCalls": 0,
+    "Branches": [
+      {
+        "Kind": "if",
+        "Line": 15
+      }
+    ]
+  },
+  {
+    "File": "C:\\Users\\chaha\\Documents\\Codex\\2026-11-09\\referenced-chatgpt-conversation-this-is-an\\work\\PharmacyStock_LR3\\PharmacyStock.Core\\Documents\\DocumentGuards.cs",
+    "Name": "EnsureLineValid",
+    "Parameters": 1,
+    "Complexity": 1,
+    "BodyLines": 6,
+    "MethodLines": 7,
+    "Depth": 0,
+    "Returns": 0,
+    "ConsoleCalls": 0,
+    "Branches": []
+  },
+  {
+    "File": "C:\\Users\\chaha\\Documents\\Codex\\2026-11-09\\referenced-chatgpt-conversation-this-is-an\\work\\PharmacyStock_LR3\\PharmacyStock.Core\\Documents\\DocumentGuards.cs",
+    "Name": "EnsureLinesValid",
+    "Parameters": 1,
+    "Complexity": 3,
+    "BodyLines": 11,
+    "MethodLines": 12,
+    "Depth": 1,
+    "Returns": 0,
+    "ConsoleCalls": 0,
+    "Branches": [
+      {
+        "Kind": "if",
+        "Line": 36
+      },
+      {
+        "Kind": "foreach",
+        "Line": 41
+      }
+    ]
+  },
+  {
+    "File": "C:\\Users\\chaha\\Documents\\Codex\\2026-11-09\\referenced-chatgpt-conversation-this-is-an\\work\\PharmacyStock_LR3\\PharmacyStock.Core\\Documents\\DocumentGuards.cs",
+    "Name": "EnsureStatusValid",
+    "Parameters": 1,
+    "Complexity": 2,
+    "BodyLines": 6,
+    "MethodLines": 7,
+    "Depth": 1,
+    "Returns": 0,
+    "ConsoleCalls": 0,
+    "Branches": [
+      {
+        "Kind": "if",
+        "Line": 51
+      }
+    ]
+  },
+  {
+    "File": "C:\\Users\\chaha\\Documents\\Codex\\2026-11-09\\referenced-chatgpt-conversation-this-is-an\\work\\PharmacyStock_LR3\\PharmacyStock.Core\\Documents\\DocumentGuards.cs",
+    "Name": "EnsureRequestValid",
+    "Parameters": 1,
+    "Complexity": 1,
+    "BodyLines": 8,
+    "MethodLines": 9,
+    "Depth": 0,
+    "Returns": 0,
+    "ConsoleCalls": 0,
+    "Branches": []
+  },
+  {
+    "File": "C:\\Users\\chaha\\Documents\\Codex\\2026-11-09\\referenced-chatgpt-conversation-this-is-an\\work\\PharmacyStock_LR3\\PharmacyStock.Core\\Documents\\DocumentGuards.cs",
+    "Name": "EnsureAmountValid",
+    "Parameters": 2,
+    "Complexity": 2,
+    "BodyLines": 4,
+    "MethodLines": 5,
+    "Depth": 0,
+    "Returns": 0,
+    "ConsoleCalls": 0,
+    "Branches": [
+      {
+        "Kind": "?:",
+        "Line": 75
+      }
+    ]
+  },
+  {
+    "File": "C:\\Users\\chaha\\Documents\\Codex\\2026-11-09\\referenced-chatgpt-conversation-this-is-an\\work\\PharmacyStock_LR3\\PharmacyStock.Core\\Documents\\DocumentTotalCalculator.cs",
+    "Name": "Calculate",
+    "Parameters": 1,
+    "Complexity": 2,
+    "BodyLines": 13,
+    "MethodLines": 14,
+    "Depth": 0,
+    "Returns": 1,
+    "ConsoleCalls": 0,
+    "Branches": [
+      {
+        "Kind": "?:",
+        "Line": 18
+      }
+    ]
+  },
+  {
+    "File": "C:\\Users\\chaha\\Documents\\Codex\\2026-11-09\\referenced-chatgpt-conversation-this-is-an\\work\\PharmacyStock_LR3\\PharmacyStock.Core\\Documents\\DocumentTotalCalculator.cs",
+    "Name": "SubtotalOf",
+    "Parameters": 1,
+    "Complexity": 3,
+    "BodyLines": 14,
+    "MethodLines": 15,
+    "Depth": 2,
+    "Returns": 1,
+    "ConsoleCalls": 0,
+    "Branches": [
+      {
+        "Kind": "foreach",
+        "Line": 31
+      },
+      {
+        "Kind": "if",
+        "Line": 34
+      }
+    ]
+  },
+  {
+    "File": "C:\\Users\\chaha\\Documents\\Codex\\2026-11-09\\referenced-chatgpt-conversation-this-is-an\\work\\PharmacyStock_LR3\\PharmacyStock.Core\\Documents\\DocumentTotalCalculator.cs",
+    "Name": "ClientDiscountOf",
+    "Parameters": 2,
+    "Complexity": 2,
+    "BodyLines": 4,
+    "MethodLines": 5,
+    "Depth": 0,
+    "Returns": 1,
+    "ConsoleCalls": 0,
+    "Branches": [
+      {
+        "Kind": "?:",
+        "Line": 52
+      }
+    ]
+  },
+  {
+    "File": "C:\\Users\\chaha\\Documents\\Codex\\2026-11-09\\referenced-chatgpt-conversation-this-is-an\\work\\PharmacyStock_LR3\\PharmacyStock.Core\\Documents\\DocumentTotalCalculator.cs",
+    "Name": "VolumeDiscountOf",
+    "Parameters": 1,
+    "Complexity": 3,
+    "BodyLines": 12,
+    "MethodLines": 13,
+    "Depth": 1,
+    "Returns": 3,
+    "ConsoleCalls": 0,
+    "Branches": [
+      {
+        "Kind": "if",
+        "Line": 61
+      },
+      {
+        "Kind": "if",
+        "Line": 66
+      }
+    ]
+  },
+  {
+    "File": "C:\\Users\\chaha\\Documents\\Codex\\2026-11-09\\referenced-chatgpt-conversation-this-is-an\\work\\PharmacyStock_LR3\\PharmacyStock.Core\\Documents\\DocumentTotalCalculator.cs",
+    "Name": "CouponDiscountOf",
+    "Parameters": 2,
+    "Complexity": 4,
+    "BodyLines": 10,
+    "MethodLines": 11,
+    "Depth": 1,
+    "Returns": 1,
+    "ConsoleCalls": 0,
+    "Branches": [
+      {
+        "Kind": "switch arm",
+        "Line": 83
+      },
+      {
+        "Kind": "switch arm",
+        "Line": 84
+      },
+      {
+        "Kind": "switch arm",
+        "Line": 86
+      }
+    ]
+  },
+  {
+    "File": "C:\\Users\\chaha\\Documents\\Codex\\2026-11-09\\referenced-chatgpt-conversation-this-is-an\\work\\PharmacyStock_LR3\\PharmacyStock.Core\\Documents\\DocumentTotalCalculator.cs",
+    "Name": "WeekendDiscountOf",
+    "Parameters": 2,
+    "Complexity": 2,
+    "BodyLines": 4,
+    "MethodLines": 5,
+    "Depth": 0,
+    "Returns": 1,
+    "ConsoleCalls": 0,
+    "Branches": [
+      {
+        "Kind": "?:",
+        "Line": 97
+      }
+    ]
+  },
+  {
+    "File": "C:\\Users\\chaha\\Documents\\Codex\\2026-11-09\\referenced-chatgpt-conversation-this-is-an\\work\\PharmacyStock_LR3\\PharmacyStock.Core\\Documents\\DocumentTotalCalculator.cs",
+    "Name": "DeliveryFeeOf",
+    "Parameters": 2,
+    "Complexity": 2,
+    "BodyLines": 5,
+    "MethodLines": 6,
+    "Depth": 0,
+    "Returns": 1,
+    "ConsoleCalls": 0,
+    "Branches": [
+      {
+        "Kind": "?:",
+        "Line": 108
+      }
+    ]
+  },
+  {
+    "File": "C:\\Users\\chaha\\Documents\\Codex\\2026-11-09\\referenced-chatgpt-conversation-this-is-an\\work\\PharmacyStock_LR3\\PharmacyStock.Core\\Documents\\DocumentTotalCalculator.cs",
+    "Name": "NextStatusOf",
+    "Parameters": 2,
+    "Complexity": 4,
+    "BodyLines": 10,
+    "MethodLines": 11,
+    "Depth": 1,
+    "Returns": 1,
+    "ConsoleCalls": 0,
+    "Branches": [
+      {
+        "Kind": "switch arm",
+        "Line": 121
+      },
+      {
+        "Kind": "switch arm",
+        "Line": 122
+      },
+      {
+        "Kind": "switch arm",
+        "Line": 123
+      }
+    ]
+  },
+  {
+    "File": "C:\\Users\\chaha\\Documents\\Codex\\2026-11-09\\referenced-chatgpt-conversation-this-is-an\\work\\PharmacyStock_LR3\\PharmacyStock.Core\\Domain\\Prescription.cs",
+    "Name": "AddLine",
+    "Parameters": 1,
+    "Complexity": 1,
+    "BodyLines": 4,
+    "MethodLines": 5,
+    "Depth": 0,
+    "Returns": 0,
+    "ConsoleCalls": 0,
+    "Branches": []
+  },
+  {
+    "File": "C:\\Users\\chaha\\Documents\\Codex\\2026-11-09\\referenced-chatgpt-conversation-this-is-an\\work\\PharmacyStock_LR3\\PharmacyStock.Core\\Domain\\Prescription.cs",
+    "Name": "Total",
+    "Parameters": 0,
+    "Complexity": 2,
+    "BodyLines": 8,
+    "MethodLines": 9,
+    "Depth": 1,
+    "Returns": 1,
+    "ConsoleCalls": 0,
+    "Branches": [
+      {
+        "Kind": "foreach",
+        "Line": 49
+      }
+    ]
+  },
+  {
+    "File": "C:\\Users\\chaha\\Documents\\Codex\\2026-11-09\\referenced-chatgpt-conversation-this-is-an\\work\\PharmacyStock_LR3\\PharmacyStock.Core\\Domain\\Prescription.cs",
+    "Name": "ChangeStatus",
+    "Parameters": 1,
+    "Complexity": 5,
+    "BodyLines": 16,
+    "MethodLines": 17,
+    "Depth": 1,
+    "Returns": 0,
+    "ConsoleCalls": 0,
+    "Branches": [
+      {
+        "Kind": "switch arm",
+        "Line": 67
+      },
+      {
+        "Kind": "switch arm",
+        "Line": 69
+      },
+      {
+        "Kind": "switch arm",
+        "Line": 71
+      },
+      {
+        "Kind": "if",
+        "Line": 74
+      }
+    ]
+  },
+  {
+    "File": "C:\\Users\\chaha\\Documents\\Codex\\2026-11-09\\referenced-chatgpt-conversation-this-is-an\\work\\PharmacyStock_LR3\\PharmacyStock.Core\\Reporting\\DocumentReport.cs",
+    "Name": "TextOf",
+    "Parameters": 2,
+    "Complexity": 1,
+    "BodyLines": 14,
+    "MethodLines": 15,
+    "Depth": 0,
+    "Returns": 1,
+    "ConsoleCalls": 0,
+    "Branches": []
+  },
+  {
+    "File": "C:\\Users\\chaha\\Documents\\Codex\\2026-11-09\\referenced-chatgpt-conversation-this-is-an\\work\\PharmacyStock_LR3\\PharmacyStock.Core\\Reporting\\DocumentReport.cs",
+    "Name": "AppendLines",
+    "Parameters": 2,
+    "Complexity": 2,
+    "BodyLines": 6,
+    "MethodLines": 7,
+    "Depth": 1,
+    "Returns": 0,
+    "ConsoleCalls": 0,
+    "Branches": [
+      {
+        "Kind": "foreach",
+        "Line": 32
+      }
+    ]
+  },
+  {
+    "File": "C:\\Users\\chaha\\Documents\\Codex\\2026-11-09\\referenced-chatgpt-conversation-this-is-an\\work\\PharmacyStock_LR3\\PharmacyStock.Core\\Reporting\\DocumentReportPrinter.cs",
+    "Name": "DocumentReportPrinter",
+    "Parameters": 1,
+    "Complexity": 1,
+    "BodyLines": 4,
+    "MethodLines": 5,
+    "Depth": 0,
+    "Returns": 0,
+    "ConsoleCalls": 0,
+    "Branches": []
+  },
+  {
+    "File": "C:\\Users\\chaha\\Documents\\Codex\\2026-11-09\\referenced-chatgpt-conversation-this-is-an\\work\\PharmacyStock_LR3\\PharmacyStock.Core\\Reporting\\DocumentReportPrinter.cs",
+    "Name": "Print",
+    "Parameters": 1,
+    "Complexity": 1,
+    "BodyLines": 4,
+    "MethodLines": 5,
+    "Depth": 0,
+    "Returns": 0,
+    "ConsoleCalls": 0,
+    "Branches": []
+  }
+]

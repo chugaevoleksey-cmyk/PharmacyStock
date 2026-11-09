@@ -1,0 +1,23 @@
+{
+  "before": {
+    "Complexity": 31,
+    "BodyLines": 86,
+    "MethodLines": 92,
+    "Parameters": 11,
+    "Depth": 3,
+    "Returns": 8,
+    "ConsoleCalls": 13
+  },
+  "after": {
+    "MethodCount": 18,
+    "MaxComplexity": 4,
+    "SumComplexity": 38,
+    "AverageComplexity": 2.11,
+    "MaxBodyLines": 14,
+    "MaxMethodLines": 15,
+    "MaxParameters": 3,
+    "EntryParameters": 1,
+    "MaxDepth": 2,
+    "ConsoleCalls": 0
+  }
+}

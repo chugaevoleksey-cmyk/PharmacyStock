@@ -184,6 +184,100 @@ public sealed class ContractAndReportTests
             new DateOnly(2026, 3, 8)));
     }
 
+    [Fact]
+    public void CalculatePreservesLargeSundayDiscountOrder()
+    {
+        TotalRequest request = SampleRequest() with
+        {
+            Patient = new PatientInfo { Name = "Коваль", Email = "k@ex.com" },
+            Lines = new PrescriptionLine[]
+            {
+                new() { MedicineCode = "A1", Quantity = 1, UnitPrice = 6000m },
+            },
+            CouponCode = "SALE10",
+            CreatedAt = new DateOnly(2026, 3, 8),
+        };
+        Assert.Equal(4762.80m, DocumentTotalCalculator.Calculate(request).Total);
+    }
+
+    [Fact]
+    public void CalculatePreservesRegularThenVolumeThenFixedDiscount()
+    {
+        TotalRequest request = SampleRequest() with
+        {
+            Lines = new PrescriptionLine[]
+            {
+                new() { MedicineCode = "A1", Quantity = 1, UnitPrice = 3000m },
+            },
+            CouponCode = "MINUS200",
+        };
+        Assert.Equal(2450.50m, DocumentTotalCalculator.Calculate(request).Total);
+    }
+
+    [Fact]
+    public void BulkDiscountIsAppliedBeforeDeliveryThreshold()
+    {
+        TotalRequest request = SampleRequest() with
+        {
+            Patient = new PatientInfo { Name = "Коваль", Email = "k@ex.com" },
+            Lines = new PrescriptionLine[]
+            {
+                new() { MedicineCode = "A1", Quantity = 10, UnitPrice = 100m },
+            },
+            CouponCode = "MINUS200",
+        };
+        Assert.Equal(1010m, DocumentTotalCalculator.Calculate(request).Total);
+    }
+
+    [Fact]
+    public void UnknownCouponDoesNotChangeAmount()
+    {
+        Assert.Equal(0m, DocumentTotalCalculator.CouponDiscountOf(3000m, "UNKNOWN"));
+    }
+
+    [Fact]
+    public void PaidStateBecomesDispensed()
+    {
+        Assert.Equal(DocumentStatus.Dispensed,
+            DocumentTotalCalculator.NextStatusOf(DocumentStatus.Paid, 100m));
+    }
+
+    [Fact]
+    public void NewZeroTotalRemainsNew()
+    {
+        TotalRequest request = SampleRequest() with
+        {
+            Lines = new PrescriptionLine[]
+            {
+                new() { MedicineCode = "A1", Quantity = 1, UnitPrice = 0m },
+            },
+            DeliveryPrice = 0m,
+        };
+        TotalResult result = DocumentTotalCalculator.Calculate(request);
+        Assert.Equal(0m, result.Total);
+        Assert.Equal(DocumentStatus.New, result.Status);
+    }
+
+    [Fact]
+    public void CalculateDoesNotMutateRequest()
+    {
+        TotalRequest request = SampleRequest();
+        TotalResult first = DocumentTotalCalculator.Calculate(request);
+        TotalResult second = DocumentTotalCalculator.Calculate(request);
+        Assert.Equal(first, second);
+        Assert.Equal(DocumentStatus.New, request.Status);
+        Assert.Equal(12, request.Lines[0].Quantity);
+        Assert.Equal(100m, request.Lines[0].UnitPrice);
+    }
+
+    [Fact]
+    public void DecimalNegativeZeroIsAValidZeroAmount()
+    {
+        decimal zero = new(0, 0, 0, true, 2);
+        Assert.Equal(0m, DocumentTotalCalculator.VolumeDiscountOf(zero));
+        Assert.Equal(0m, DocumentTotalCalculator.ClientDiscountOf(zero, true));
+    }
+
     private static TotalRequest SampleRequest()
     {
         return new TotalRequest

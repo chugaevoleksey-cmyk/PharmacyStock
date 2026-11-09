@@ -1,5 +1,5 @@
-using PharmacyStock.Core.Reporting;
 using PharmacyStock.Core.Documents;
+using PharmacyStock.Core.Reporting;
 
 TotalRequest request = new()
 {

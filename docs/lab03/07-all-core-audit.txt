@@ -1,0 +1,3 @@
+Manually written Core methods: 21
+Maximum complexity: 5
+Maximum parameter count: 3

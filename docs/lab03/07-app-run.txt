@@ -1,0 +1,10 @@
+$ dotnet run --no-build -c Release --project PharmacyStock.App
+Рецепт № 19
+Пацієнт: Іваненко
+Пошта: i@ex.com
+A1 x 12
+B2 x 1
+Разом: 1292.70
+Стан: Paid
+
+Exit code: 0

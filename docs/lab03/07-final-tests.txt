@@ -1,0 +1,11 @@
+$ dotnet test --no-restore -c Release --logger trx;LogFileName=lab03.trx --results-directory C:\Users\chaha\Documents\Codex\2026-11-09\referenced-chatgpt-conversation-this-is-an\work\PharmacyStock_LR3\docs\lab03\test-results
+  PharmacyStock.Core -> C:\Users\chaha\Documents\Codex\2026-11-09\referenced-chatgpt-conversation-this-is-an\work\PharmacyStock_LR3\PharmacyStock.Core\bin\Release\net8.0\PharmacyStock.Core.dll
+  PharmacyStock.Tests -> C:\Users\chaha\Documents\Codex\2026-11-09\referenced-chatgpt-conversation-this-is-an\work\PharmacyStock_LR3\tests\PharmacyStock.Tests\bin\Release\net8.0\PharmacyStock.Tests.dll
+Тестовый запуск для C:\Users\chaha\Documents\Codex\2026-11-09\referenced-chatgpt-conversation-this-is-an\work\PharmacyStock_LR3\tests\PharmacyStock.Tests\bin\Release\net8.0\PharmacyStock.Tests.dll (.NETCoreApp,Version=v8.0)
+Общее количество тестовых файлов (1), соответствующих указанному шаблону.
+Внимание! Перезапись файла с результатами: C:\Users\chaha\Documents\Codex\2026-11-09\referenced-chatgpt-conversation-this-is-an\work\PharmacyStock_LR3\docs\lab03\test-results\lab03.trx
+Файл результатов: C:\Users\chaha\Documents\Codex\2026-11-09\referenced-chatgpt-conversation-this-is-an\work\PharmacyStock_LR3\docs\lab03\test-results\lab03.trx
+
+Пройден!   : не пройдено     0, пройдено    35, пропущено     0, всего    35, длительность 84 ms. - PharmacyStock.Tests.dll (net8.0)
+
+Exit code: 0
