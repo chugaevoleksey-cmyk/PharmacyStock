@@ -1,0 +1,9 @@
+$ dotnet clean --no-restore
+MSBUILD : error MSB1001: неизвестный ключ.
+    Полная командная строка: 'C:\Program Files\dotnet\sdk\10.0.401\MSBuild.exe -maxcpucount --verbosity:m -tlp:default=auto --property:NuGetInteractive=false --target:Clean --verbosity:normal --nologo --no-restore'
+  Параметры, добавленные файлами откликов:
+Ключ: --no-restore
+
+Для переключения синтаксиса введите "MSBuild -help"
+
+Exit code: 1
