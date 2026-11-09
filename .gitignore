@@ -484,3 +484,7 @@ $RECYCLE.BIN/
 # власні винятки проєкту
 *.user
 data/*.local.json
+
+# Runtime audit files and exports are local to the running application.
+runtime/
+*.audit
