@@ -1,0 +1,14 @@
+﻿Тип,Назва,Значення
+decimal,VatRate,0.2m
+decimal,RegularDiscountThreshold,1000m
+decimal,RegularDiscountRate,0.1m
+decimal,LargePrescriptionThreshold,5000m
+decimal,LargePrescriptionDiscountRate,0.15m
+int,BulkLineCount,10
+decimal,BulkDiscountAmount,100m
+int,MaxLineCount,100
+int,MinPatientNameLength,3
+int,StatusNew,0
+int,StatusApproved,1
+int,StatusDispensed,2
+int,StatusCancelled,3

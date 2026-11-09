@@ -1,8 +1,49 @@
+using System.Globalization;
+
 namespace PharmacyStock.Core.Legacy;
 
 /// <summary>Represents the Prescription type.</summary>
 public class Prescription
 {
+    /// <summary>Inherited VAT rate.</summary>
+    private const decimal VatRate = 0.2m;
+
+    /// <summary>Regular discount threshold.</summary>
+    private const decimal RegularDiscountThreshold = 1000m;
+
+    /// <summary>Regular discount fraction.</summary>
+    private const decimal RegularDiscountRate = 0.1m;
+
+    /// <summary>Large prescription threshold.</summary>
+    private const decimal LargePrescriptionThreshold = 5000m;
+
+    /// <summary>Large prescription discount fraction.</summary>
+    private const decimal LargePrescriptionDiscountRate = 0.15m;
+
+    /// <summary>Line count required for bulk discount.</summary>
+    private const int BulkLineCount = 10;
+
+    /// <summary>Bulk discount amount.</summary>
+    private const decimal BulkDiscountAmount = 100m;
+
+    /// <summary>Exclusive upper limit of the line count.</summary>
+    private const int MaxLineCount = 100;
+
+    /// <summary>Minimum patient name length.</summary>
+    private const int MinPatientNameLength = 3;
+
+    /// <summary>New document status.</summary>
+    private const int StatusNew = 0;
+
+    /// <summary>Approved document status.</summary>
+    private const int StatusApproved = 1;
+
+    /// <summary>Dispensed document status.</summary>
+    private const int StatusDispensed = 2;
+
+    /// <summary>Cancelled document status.</summary>
+    private const int StatusCancelled = 3;
+
     private readonly List<string[]> _lines = new();
 
     /// <summary>Represents a pharmacy prescription.</summary>
@@ -24,10 +65,27 @@ public class Prescription
     public string PatientName { get; private set; }
 
     /// <summary>Gets the current document status.</summary>
-    public int Status { get; private set; }
+    public int Status { get; private set; } = StatusNew;
 
     /// <summary>Gets the document creation time.</summary>
     public DateTime CreatedAt { get; private set; }
+
+    /// <summary>Finds the first prescription with the specified identifier.</summary>
+    /// <param name="prescriptions">Prescriptions to search.</param>
+    /// <param name="prescriptionId">Identifier to find.</param>
+    /// <returns>The first matching prescription, or null if none was found.</returns>
+    public static Prescription? FindById(List<Prescription> prescriptions, string prescriptionId)
+    {
+        for (int i = 0; i < prescriptions.Count; i++)
+        {
+            if (prescriptions[i].Id == prescriptionId)
+            {
+                return prescriptions[i];
+            }
+        }
+
+        return null;
+    }
 
     /// <summary>Adds a medicine line to the prescription.</summary>
     /// <param name="medicineCode">Medicine identifier.</param>
@@ -37,8 +95,8 @@ public class Prescription
     {
         string[] line = new string[3];
         line[0] = medicineCode;
-        line[1] = quantity.ToString();
-        line[2] = unitPrice.ToString();
+        line[1] = quantity.ToString(CultureInfo.CurrentCulture);
+        line[2] = unitPrice.ToString(CultureInfo.CurrentCulture);
         _lines.Add(line);
     }
 
@@ -51,29 +109,25 @@ public class Prescription
         int lineCount = 0;
         for (int i = 0; i < _lines.Count; i++)
         {
-            int quantity = int.Parse(_lines[i][1]);
-            decimal unitPrice = decimal.Parse(_lines[i][2]);
-            total = total + quantity * unitPrice;
+            int quantity = int.Parse(_lines[i][1], CultureInfo.CurrentCulture);
+            decimal unitPrice = decimal.Parse(_lines[i][2], CultureInfo.CurrentCulture);
+            total = total + (quantity * unitPrice);
             lineCount = lineCount + 1;
         }
 
         // Порядок знижок успадковано; регулярна знижка має пріоритет.
-        if (isRegularPatient == true && total > 1000)
+        if (isRegularPatient == true && total > RegularDiscountThreshold)
         {
-            total = total * 0.9m;
+            total = total * (1m - RegularDiscountRate);
         }
-        else if (total > 5000)
+        else if (total > LargePrescriptionThreshold)
         {
-            total = total * 0.85m;
-        }
-        else
-        {
-            total = total;
+            total = total * (1m - LargePrescriptionDiscountRate);
         }
 
-        if (lineCount > 10)
+        if (lineCount > BulkLineCount)
         {
-            total = total - 100;
+            total = total - BulkDiscountAmount;
         }
 
         if (total < 0)
@@ -82,7 +136,7 @@ public class Prescription
         }
 
         // ПДВ нараховується після всіх знижок, як у початковому коді.
-        total = total + total * 0.2m;
+        total = total + (total * VatRate);
         return Math.Round(total, 2);
     }
 
@@ -91,21 +145,21 @@ public class Prescription
     /// <returns>True if status changed; false if the transition was rejected.</returns>
     public bool TryChangeStatus(int newStatus)
     {
-        if (Status == 0 && newStatus == 1)
+        if (Status == StatusNew && newStatus == StatusApproved)
         {
-            Status = 1;
+            Status = StatusApproved;
             return true;
         }
 
-        if (Status == 1 && newStatus == 2)
+        if (Status == StatusApproved && newStatus == StatusDispensed)
         {
-            Status = 2;
+            Status = StatusDispensed;
             return true;
         }
 
-        if (Status == 0 && newStatus == 3)
+        if (Status == StatusNew && newStatus == StatusCancelled)
         {
-            Status = 3;
+            Status = StatusCancelled;
             return true;
         }
 
@@ -116,8 +170,8 @@ public class Prescription
     /// <returns>True if the inherited validity conditions hold; otherwise false.</returns>
     public bool IsValid()
     {
-        if (Id != null && Id != "" && PatientName != null && PatientName.Length > 2
-            && _lines.Count > 0 && _lines.Count < 100 && Status >= 0 && Status <= 3)
+        if (Id != null && Id != string.Empty && PatientName != null && PatientName.Length >= MinPatientNameLength
+            && _lines.Count > 0 && _lines.Count < MaxLineCount && Status >= StatusNew && Status <= StatusCancelled)
         {
             return true;
         }
@@ -131,32 +185,18 @@ public class Prescription
     /// <returns>The report with the original labels and line endings.</returns>
     public string BuildReport()
     {
-        string report = "";
+        string report = string.Empty;
         for (int i = 0; i < _lines.Count; i++)
         {
             report = report + "Товар: " + _lines[i][0] + "; кількість: " + _lines[i][1]
                 + "; ціна: " + _lines[i][2] + "; сума: "
-                + (int.Parse(_lines[i][1]) * decimal.Parse(_lines[i][2])) + "\n";
+                + (int.Parse(_lines[i][1], CultureInfo.CurrentCulture)
+                    * decimal.Parse(_lines[i][2], CultureInfo.CurrentCulture)) + "\n";
         }
 
         report = report + "Разом: " + CalculateTotal(false) + "\n";
         return report;
     }
 
-    /// <summary>Finds the first prescription with the specified identifier.</summary>
-    /// <param name="prescriptions">Prescriptions to search.</param>
-    /// <param name="prescriptionId">Identifier to find.</param>
-    /// <returns>The first matching prescription, or null if none was found.</returns>
-    public static Prescription FindById(List<Prescription> prescriptions, string prescriptionId)
-    {
-        for (int i = 0; i < prescriptions.Count; i++)
-        {
-            if (prescriptions[i].Id == prescriptionId)
-            {
-                return prescriptions[i];
-            }
-        }
 
-        return null;
-    }
 }
