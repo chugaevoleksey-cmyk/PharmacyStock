@@ -1,4 +1,4 @@
-using System.Globalization;
+using PharmacyStock.Core.Reporting;
 using PharmacyStock.Core.Documents;
 
 TotalRequest request = new()
@@ -15,4 +15,5 @@ TotalRequest request = new()
     DeliveryPrice = 60m,
 };
 TotalResult result = DocumentTotalCalculator.Calculate(request);
-Console.WriteLine(result.Total.ToString("F2", CultureInfo.InvariantCulture));
+string report = DocumentReport.TextOf(request, result);
+new DocumentReportPrinter(Console.Out).Print(report);
