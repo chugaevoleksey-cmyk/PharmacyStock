@@ -1,0 +1,9 @@
+$ dotnet test --no-restore --filter FullyQualifiedName~DomainInvariantTests
+  PharmacyStock.Core -> C:\Users\chaha\Documents\Codex\2026-11-09\referenced-chatgpt-conversation-this-is-an\work\PharmacyStock_LR4\PharmacyStock.Core\bin\Debug\net8.0\PharmacyStock.Core.dll
+  PharmacyStock.Tests -> C:\Users\chaha\Documents\Codex\2026-11-09\referenced-chatgpt-conversation-this-is-an\work\PharmacyStock_LR4\tests\PharmacyStock.Tests\bin\Debug\net8.0\PharmacyStock.Tests.dll
+Тестовый запуск для C:\Users\chaha\Documents\Codex\2026-11-09\referenced-chatgpt-conversation-this-is-an\work\PharmacyStock_LR4\tests\PharmacyStock.Tests\bin\Debug\net8.0\PharmacyStock.Tests.dll (.NETCoreApp,Version=v8.0)
+Общее количество тестовых файлов (1), соответствующих указанному шаблону.
+
+Пройден!   : не пройдено     0, пройдено     3, пропущено     0, всего     3, длительность 120 ms. - PharmacyStock.Tests.dll (net8.0)
+
+Exit code: 0
