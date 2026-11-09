@@ -1,17 +1,55 @@
 namespace PharmacyStock.Core.Domain;
 
-/// <summary>Лікарський засіб, який обліковується в аптеці.</summary>
+/// <summary>Represents the Medicine type.</summary>
 public sealed class Medicine
 {
-    /// <summary>Gets the medicine code.</summary>
-    public string Code { get; init; } = string.Empty;
+    /// <summary>Initializes a new instance of the <see cref="Medicine"/> class.</summary>
+    /// <param name="code">The code argument.</param>
+    /// <param name="name">The name argument.</param>
+    /// <param name="price">The price argument.</param>
+    /// <param name="stock">The stock argument.</param>
+    public Medicine(string code, string name, decimal price, int stock)
+    {
+        ArgumentException.ThrowIfNullOrWhiteSpace(code);
+        ArgumentException.ThrowIfNullOrWhiteSpace(name);
+        ArgumentOutOfRangeException.ThrowIfNegativeOrZero(price);
+        ArgumentOutOfRangeException.ThrowIfNegative(stock);
+        Code = code;
+        Name = name;
+        Price = price;
+        Stock = stock;
+    }
 
-    /// <summary>Gets the display name.</summary>
-    public string Name { get; init; } = string.Empty;
+    /// <summary>Gets the Code value.</summary>
+    public string Code { get; }
 
-    /// <summary>Gets the price per unit.</summary>
-    public decimal Price { get; init; }
+    /// <summary>Gets the Name value.</summary>
+    public string Name { get; }
 
-    /// <summary>Gets the available stock.</summary>
-    public int Stock { get; init; }
+    /// <summary>Gets the Price value.</summary>
+    public decimal Price { get; }
+
+    /// <summary>Gets the Stock value.</summary>
+    public int Stock { get; private set; }
+
+    /// <summary>Performs the Restock operation.</summary>
+    /// <param name="quantity">The quantity argument.</param>
+    public void Restock(int quantity)
+    {
+        ArgumentOutOfRangeException.ThrowIfNegativeOrZero(quantity);
+        Stock = checked(Stock + quantity);
+    }
+
+    /// <summary>Performs the DecreaseStock operation.</summary>
+    /// <param name="quantity">The quantity argument.</param>
+    public void DecreaseStock(int quantity)
+    {
+        ArgumentOutOfRangeException.ThrowIfNegativeOrZero(quantity);
+        if (quantity > Stock)
+        {
+            throw new InvalidOperationException("Недостатньо препарату на складі.");
+        }
+
+        Stock -= quantity;
+    }
 }

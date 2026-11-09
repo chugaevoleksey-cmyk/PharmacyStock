@@ -1,17 +1,32 @@
 namespace PharmacyStock.Core.Domain;
 
-/// <summary>Одна позиція рецепта з ліками та кількістю.</summary>
-public sealed class PrescriptionLine
+/// <summary>Represents the PrescriptionLine type.</summary>
+public sealed record PrescriptionLine
 {
-    /// <summary>Gets the medicine code for the line.</summary>
-    public string MedicineCode { get; init; } = string.Empty;
+    /// <summary>Initializes a new instance of the <see cref="PrescriptionLine"/> class.</summary>
+    /// <param name="medicineCode">The medicineCode argument.</param>
+    /// <param name="quantity">The quantity argument.</param>
+    /// <param name="unitPrice">The unitPrice argument.</param>
+    public PrescriptionLine(string medicineCode, int quantity, decimal unitPrice)
+    {
+        ArgumentException.ThrowIfNullOrWhiteSpace(medicineCode);
+        ArgumentOutOfRangeException.ThrowIfNegativeOrZero(quantity);
+        ArgumentOutOfRangeException.ThrowIfLessThan(unitPrice, 0m);
 
-    /// <summary>Gets the number of units.</summary>
-    public int Quantity { get; init; }
+        MedicineCode = medicineCode;
+        Quantity = quantity;
+        UnitPrice = unitPrice;
+    }
 
-    /// <summary>Gets the unit price.</summary>
-    public decimal UnitPrice { get; init; }
+    /// <summary>Gets the MedicineCode value.</summary>
+    public string MedicineCode { get; }
 
-    /// <summary>Gets the unit price.</summary>
+    /// <summary>Gets the Quantity value.</summary>
+    public int Quantity { get; }
+
+    /// <summary>Gets the UnitPrice value.</summary>
+    public decimal UnitPrice { get; }
+
+    /// <summary>Gets the Amount value.</summary>
     public decimal Amount => Quantity * UnitPrice;
 }

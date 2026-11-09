@@ -1,0 +1,7 @@
+$ dotnet restore --configfile NuGet.Config
+  Определение проектов для восстановления...
+  Восстановлен C:\Users\chaha\Documents\Codex\2026-11-09\referenced-chatgpt-conversation-this-is-an\work\PharmacyStock_LR4\PharmacyStock.Core\PharmacyStock.Core.csproj (за 110 мс).
+  Восстановлен C:\Users\chaha\Documents\Codex\2026-11-09\referenced-chatgpt-conversation-this-is-an\work\PharmacyStock_LR4\PharmacyStock.App\PharmacyStock.App.csproj (за 110 мс).
+  Восстановлен C:\Users\chaha\Documents\Codex\2026-11-09\referenced-chatgpt-conversation-this-is-an\work\PharmacyStock_LR4\tests\PharmacyStock.Tests\PharmacyStock.Tests.csproj (за 297 мс).
+
+Exit code: 0
