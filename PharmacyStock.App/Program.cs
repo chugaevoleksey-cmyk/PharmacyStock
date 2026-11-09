@@ -1,19 +1,15 @@
-using PharmacyStock.Core.Documents;
-using PharmacyStock.Core.Reporting;
+using System.Globalization;
+using PharmacyStock.Core.Abstractions;
+using PharmacyStock.Core.Domain;
+using PharmacyStock.Core.Pricing;
+using PharmacyStock.Core.Services;
+using PharmacyStock.Core.Storage;
 
-TotalRequest request = new()
-{
-    DocumentId = 19,
-    Patient = new PatientInfo { Name = "Іваненко", Email = "i@ex.com", IsRegular = true },
-    Lines = new PrescriptionLine[]
-    {
-        new() { MedicineCode = "A1", Quantity = 12, UnitPrice = 100m },
-        new() { MedicineCode = "B2", Quantity = 1, UnitPrice = 250m },
-    },
-    CreatedAt = new DateOnly(2026, 3, 10),
-    Status = DocumentStatus.New,
-    DeliveryPrice = 60m,
-};
-TotalResult result = DocumentTotalCalculator.Calculate(request);
-string report = DocumentReport.TextOf(request, result);
-new DocumentReportPrinter(Console.Out).Print(report);
+IPrescriptionRepository repository = new InMemoryPrescriptionRepository();
+IPricingPolicy pricing = new DiscountPricingPolicy(0.05m);
+PrescriptionService service = new(repository, pricing);
+Prescription prescription = new(1, 19, new DateOnly(2026, 3, 10));
+prescription.AddLine(new PrescriptionLine("MED-001", 2, 250m));
+service.Place(prescription);
+Console.WriteLine("Сума: " + service.TotalOf(prescription)
+    .ToString("F2", CultureInfo.InvariantCulture));

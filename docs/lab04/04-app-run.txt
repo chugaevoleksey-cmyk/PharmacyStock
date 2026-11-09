@@ -1,0 +1,4 @@
+$ dotnet run --no-build --project PharmacyStock.App
+Сума: 475.00
+
+Exit code: 0
