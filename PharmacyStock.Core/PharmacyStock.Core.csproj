@@ -14,8 +14,4 @@
     </PackageReference>
   </ItemGroup>
 
-  <ItemGroup>
-    <!-- Audit specimen only; never used as the production implementation. -->
-    <Compile Remove="Legacy/**/*.cs" />
-  </ItemGroup>
 </Project>
