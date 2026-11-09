@@ -1,0 +1,12 @@
+$ dotnet build --no-restore -warnaserror
+  PharmacyStock.Core -> C:\Users\chaha\Documents\Codex\2026-11-09\referenced-chatgpt-conversation-this-is-an\work\PharmacyStock_LR5\PharmacyStock.Core\bin\Debug\net8.0\PharmacyStock.Core.dll
+  PharmacyStock.Tests -> C:\Users\chaha\Documents\Codex\2026-11-09\referenced-chatgpt-conversation-this-is-an\work\PharmacyStock_LR5\tests\PharmacyStock.Tests\bin\Debug\net8.0\PharmacyStock.Tests.dll
+  PharmacyStock.App -> C:\Users\chaha\Documents\Codex\2026-11-09\referenced-chatgpt-conversation-this-is-an\work\PharmacyStock_LR5\PharmacyStock.App\bin\Debug\net8.0\PharmacyStock.App.dll
+
+Сборка успешно завершена.
+    Предупреждений: 0
+    Ошибок: 0
+
+Прошло времени 00:00:00.86
+
+Exit code: 0
