@@ -1,0 +1,3 @@
+$ dotnet format style --no-restore
+
+Exit code: 0

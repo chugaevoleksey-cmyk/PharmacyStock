@@ -7,15 +7,20 @@ public sealed class Prescription
 {
     private readonly List<PrescriptionLine> _lines = new();
 
+    /// <summary>Gets the document or patient identifier.</summary>
     public int Id { get; init; }
 
+    /// <summary>Gets the patient identifier.</summary>
     public int PatientId { get; init; }
 
+    /// <summary>Gets the current document status.</summary>
     public PrescriptionStatus Status { get; private set; } =
         PrescriptionStatus.New;
 
+    /// <summary>Gets the document creation time.</summary>
     public DateTimeOffset CreatedAt { get; init; }
 
+    /// <summary>Gets the prescription lines.</summary>
     public IReadOnlyList<PrescriptionLine> Lines => _lines;
 
     /// <summary>

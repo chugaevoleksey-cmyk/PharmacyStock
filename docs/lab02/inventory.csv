@@ -1,0 +1,29 @@
+﻿№,Рядок,Категорія,Фрагмент,Порушення,Виправлення
+1,8,ІМ,public class zakaz,Назва класу транслітом і не PascalCase,Prescription
+2,10,СТ,public string id;,Публічне поле дозволяє змінювати ідентифікатор,Id з private set
+3,11,ІМ,public string cl;,Скорочення не пояснює роль,PatientName
+4,12,СТ,public List<string[]> ln,Змінюваний публічний список,private readonly _lines
+5,13,МЧ,public int st = 0,Числа станів без імен,StatusNew та інші константи
+6,14,ІМ,public DateTime dt,Незрозуміле скорочення дати,CreatedAt
+7,15,МК,// public string prim,Закоментоване невикористане поле,Видалити
+8,18,ДО,public zakaz(string a,Конструктор без XML-документації,summary і param
+9,20,КО,id = a;,Коментар повторює присвоєння,Видалити шум
+10,26,ІМ,public void Add,Нечітка назва методу і параметрів,"AddLine(medicineCode, quantity, unitPrice)"
+11,29,ФО,t[0] = s;,Три присвоєння в одному рядку,Окремі рядки
+12,30,КО,ln.Add(t);,Коментар повторює очевидне додавання,Видалити
+13,34,ІМ,public decimal ProcessData,Невиразне дієслово ProcessData,CalculateTotal
+14,36,ФО,decimal sum1 = 0; int kolvo,Два оголошення в рядку,Розділити
+15,39,ІМ,int k = int.Parse,Локальні змінні k та c не пояснюють дані,quantity і unitPrice
+16,42,ІМ,kolvo = kolvo + 1,"Назва натякає на кількість одиниць, рахує рядки",lineCount; логіку зберегти
+17,44,МК,// if (sum1 > 500),Стара закоментована знижка,Видалити
+18,46,ФО,if (f == true,Довга склеєна конструкція if/else,Багаторядкова структура Allman
+19,46,МЧ,if (f == true,"1000, 0.9, 5000, 0.85 без пояснення",Іменовані пороги і частки знижок
+20,47,ФО,if (kolvo > 10),У if немає фігурних дужок,Додати блок
+21,49,МЧ,sum1 = sum1 + sum1 * 0.2m,Неіменована ставка податку,VatRate
+22,54,ІМ,public bool Chg,Метод-спроба без префікса Try,TryChangeStatus
+23,63,ДО,public bool Ck,Булевий метод не документовано,IsValid із summary та returns
+24,65,ФО,if (id != null,Надто довга умова,Перенести частини умови
+25,77,ФО,"s = s + ""Товар:",Довгий рядок формування звіту,Розбити конкатенацію
+26,84,ІМ,public static zakaz F,"F, L та x не пояснюють пошук","FindById(prescriptions, prescriptionId)"
+27,90,ДО,return null;,Контракт повернення null не описано,Nullable результат і XML returns
+28,3,МК,using System.Linq;,Невикористаний using,Видалити

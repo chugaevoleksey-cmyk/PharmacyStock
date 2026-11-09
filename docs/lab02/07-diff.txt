@@ -1,0 +1,5 @@
+$ git diff --no-index -- docs/lab02/before.txt docs/lab02/after.txt
+warning: in the working copy of 'docs/lab02/before.txt', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'docs/lab02/after.txt', LF will be replaced by CRLF the next time Git touches it
+
+Exit code: 0

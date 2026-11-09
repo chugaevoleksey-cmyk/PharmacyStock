@@ -1,0 +1,7 @@
+$ dotnet restore --configfile NuGet.Config
+Не удалось добавить "C:\Users\chaha\Documents\Codex\2026-11-09\referenced-chatgpt-conversation-this-is-an\work\dotnet-home\.dotnet\tools" в переменную среды PATH. Добавьте этот каталог в PATH, чтобы использовать средства, установленные с помощью команды dotnet tool install.
+  Определение проектов для восстановления...
+  Восстановлен C:\Users\chaha\Documents\Codex\2026-11-09\referenced-chatgpt-conversation-this-is-an\work\PharmacyStock_LR2\PharmacyStock.Core\PharmacyStock.Core.csproj (за 117 мс).
+  Восстановлен C:\Users\chaha\Documents\Codex\2026-11-09\referenced-chatgpt-conversation-this-is-an\work\PharmacyStock_LR2\PharmacyStock.App\PharmacyStock.App.csproj (за 117 мс).
+
+Exit code: 0

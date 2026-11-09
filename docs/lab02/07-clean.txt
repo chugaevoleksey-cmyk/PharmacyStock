@@ -1,0 +1,52 @@
+$ dotnet clean
+Сборка начата 09.11.2026 20:53:20.
+     1>Проект "C:\Users\chaha\Documents\Codex\2026-11-09\referenced-chatgpt-conversation-this-is-an\work\PharmacyStock_LR2\PharmacyStock.sln" в узле 1 (целевые объекты Clean).
+     1>ValidateSolutionConfiguration:
+         Создание конфигурации решения "Debug|Any CPU".
+     1>Проект "C:\Users\chaha\Documents\Codex\2026-11-09\referenced-chatgpt-conversation-this-is-an\work\PharmacyStock_LR2\PharmacyStock.sln" (1) выполняет сборку "C:\Users\chaha\Documents\Codex\2026-11-09\referenced-chatgpt-conversation-this-is-an\work\PharmacyStock_LR2\PharmacyStock.Core\PharmacyStock.Core.csproj" (2) в узле 2 (целевые объекты Clean).
+     2>CoreClean:
+         Файл "C:\Users\chaha\Documents\Codex\2026-11-09\referenced-chatgpt-conversation-this-is-an\work\PharmacyStock_LR2\PharmacyStock.Core\bin\Debug\net8.0\PharmacyStock.Core.deps.json" удаляется.
+         Файл "C:\Users\chaha\Documents\Codex\2026-11-09\referenced-chatgpt-conversation-this-is-an\work\PharmacyStock_LR2\PharmacyStock.Core\bin\Debug\net8.0\PharmacyStock.Core.dll" удаляется.
+         Файл "C:\Users\chaha\Documents\Codex\2026-11-09\referenced-chatgpt-conversation-this-is-an\work\PharmacyStock_LR2\PharmacyStock.Core\bin\Debug\net8.0\PharmacyStock.Core.pdb" удаляется.
+         Файл "C:\Users\chaha\Documents\Codex\2026-11-09\referenced-chatgpt-conversation-this-is-an\work\PharmacyStock_LR2\PharmacyStock.Core\bin\Debug\net8.0\PharmacyStock.Core.xml" удаляется.
+         Файл "C:\Users\chaha\Documents\Codex\2026-11-09\referenced-chatgpt-conversation-this-is-an\work\PharmacyStock_LR2\PharmacyStock.Core\obj\Debug\net8.0\PharmacyStock.Core.GeneratedMSBuildEditorConfig.editorconfig" удаляется.
+         Файл "C:\Users\chaha\Documents\Codex\2026-11-09\referenced-chatgpt-conversation-this-is-an\work\PharmacyStock_LR2\PharmacyStock.Core\obj\Debug\net8.0\PharmacyStock.Core.AssemblyInfoInputs.cache" удаляется.
+         Файл "C:\Users\chaha\Documents\Codex\2026-11-09\referenced-chatgpt-conversation-this-is-an\work\PharmacyStock_LR2\PharmacyStock.Core\obj\Debug\net8.0\PharmacyStock.Core.AssemblyInfo.cs" удаляется.
+         Файл "C:\Users\chaha\Documents\Codex\2026-11-09\referenced-chatgpt-conversation-this-is-an\work\PharmacyStock_LR2\PharmacyStock.Core\obj\Debug\net8.0\PharmacyStock.Core.csproj.CoreCompileInputs.cache" удаляется.
+         Файл "C:\Users\chaha\Documents\Codex\2026-11-09\referenced-chatgpt-conversation-this-is-an\work\PharmacyStock_LR2\PharmacyStock.Core\obj\Debug\net8.0\PharmacyStock.Core.dll" удаляется.
+         Файл "C:\Users\chaha\Documents\Codex\2026-11-09\referenced-chatgpt-conversation-this-is-an\work\PharmacyStock_LR2\PharmacyStock.Core\obj\Debug\net8.0\refint\PharmacyStock.Core.dll" удаляется.
+         Файл "C:\Users\chaha\Documents\Codex\2026-11-09\referenced-chatgpt-conversation-this-is-an\work\PharmacyStock_LR2\PharmacyStock.Core\obj\Debug\net8.0\PharmacyStock.Core.xml" удаляется.
+         Файл "C:\Users\chaha\Documents\Codex\2026-11-09\referenced-chatgpt-conversation-this-is-an\work\PharmacyStock_LR2\PharmacyStock.Core\obj\Debug\net8.0\PharmacyStock.Core.pdb" удаляется.
+         Файл "C:\Users\chaha\Documents\Codex\2026-11-09\referenced-chatgpt-conversation-this-is-an\work\PharmacyStock_LR2\PharmacyStock.Core\obj\Debug\net8.0\ref\PharmacyStock.Core.dll" удаляется.
+     2>Сборка проекта "C:\Users\chaha\Documents\Codex\2026-11-09\referenced-chatgpt-conversation-this-is-an\work\PharmacyStock_LR2\PharmacyStock.Core\PharmacyStock.Core.csproj" завершена (целевые объекты Clean).
+     1>Проект "C:\Users\chaha\Documents\Codex\2026-11-09\referenced-chatgpt-conversation-this-is-an\work\PharmacyStock_LR2\PharmacyStock.sln" (1) выполняет сборку "C:\Users\chaha\Documents\Codex\2026-11-09\referenced-chatgpt-conversation-this-is-an\work\PharmacyStock_LR2\PharmacyStock.App\PharmacyStock.App.csproj" (3) в узле 1 (целевые объекты Clean).
+     3>CoreClean:
+         Файл "C:\Users\chaha\Documents\Codex\2026-11-09\referenced-chatgpt-conversation-this-is-an\work\PharmacyStock_LR2\PharmacyStock.App\bin\Debug\net8.0\PharmacyStock.App.exe" удаляется.
+         Файл "C:\Users\chaha\Documents\Codex\2026-11-09\referenced-chatgpt-conversation-this-is-an\work\PharmacyStock_LR2\PharmacyStock.App\bin\Debug\net8.0\PharmacyStock.App.deps.json" удаляется.
+         Файл "C:\Users\chaha\Documents\Codex\2026-11-09\referenced-chatgpt-conversation-this-is-an\work\PharmacyStock_LR2\PharmacyStock.App\bin\Debug\net8.0\PharmacyStock.App.runtimeconfig.json" удаляется.
+         Файл "C:\Users\chaha\Documents\Codex\2026-11-09\referenced-chatgpt-conversation-this-is-an\work\PharmacyStock_LR2\PharmacyStock.App\bin\Debug\net8.0\PharmacyStock.App.dll" удаляется.
+         Файл "C:\Users\chaha\Documents\Codex\2026-11-09\referenced-chatgpt-conversation-this-is-an\work\PharmacyStock_LR2\PharmacyStock.App\bin\Debug\net8.0\PharmacyStock.App.pdb" удаляется.
+         Файл "C:\Users\chaha\Documents\Codex\2026-11-09\referenced-chatgpt-conversation-this-is-an\work\PharmacyStock_LR2\PharmacyStock.App\bin\Debug\net8.0\PharmacyStock.Core.dll" удаляется.
+         Файл "C:\Users\chaha\Documents\Codex\2026-11-09\referenced-chatgpt-conversation-this-is-an\work\PharmacyStock_LR2\PharmacyStock.App\bin\Debug\net8.0\PharmacyStock.Core.pdb" удаляется.
+         Файл "C:\Users\chaha\Documents\Codex\2026-11-09\referenced-chatgpt-conversation-this-is-an\work\PharmacyStock_LR2\PharmacyStock.App\bin\Debug\net8.0\PharmacyStock.Core.xml" удаляется.
+         Файл "C:\Users\chaha\Documents\Codex\2026-11-09\referenced-chatgpt-conversation-this-is-an\work\PharmacyStock_LR2\PharmacyStock.App\obj\Debug\net8.0\PharmacyStock.App.csproj.AssemblyReference.cache" удаляется.
+         Файл "C:\Users\chaha\Documents\Codex\2026-11-09\referenced-chatgpt-conversation-this-is-an\work\PharmacyStock_LR2\PharmacyStock.App\obj\Debug\net8.0\PharmacyStock.App.GeneratedMSBuildEditorConfig.editorconfig" удаляется.
+         Файл "C:\Users\chaha\Documents\Codex\2026-11-09\referenced-chatgpt-conversation-this-is-an\work\PharmacyStock_LR2\PharmacyStock.App\obj\Debug\net8.0\PharmacyStock.App.AssemblyInfoInputs.cache" удаляется.
+         Файл "C:\Users\chaha\Documents\Codex\2026-11-09\referenced-chatgpt-conversation-this-is-an\work\PharmacyStock_LR2\PharmacyStock.App\obj\Debug\net8.0\PharmacyStock.App.AssemblyInfo.cs" удаляется.
+         Файл "C:\Users\chaha\Documents\Codex\2026-11-09\referenced-chatgpt-conversation-this-is-an\work\PharmacyStock_LR2\PharmacyStock.App\obj\Debug\net8.0\PharmacyStock.App.csproj.CoreCompileInputs.cache" удаляется.
+         Файл "C:\Users\chaha\Documents\Codex\2026-11-09\referenced-chatgpt-conversation-this-is-an\work\PharmacyStock_LR2\PharmacyStock.App\obj\Debug\net8.0\Pharmacy.20A22540.Up2Date" удаляется.
+         Файл "C:\Users\chaha\Documents\Codex\2026-11-09\referenced-chatgpt-conversation-this-is-an\work\PharmacyStock_LR2\PharmacyStock.App\obj\Debug\net8.0\PharmacyStock.App.dll" удаляется.
+         Файл "C:\Users\chaha\Documents\Codex\2026-11-09\referenced-chatgpt-conversation-this-is-an\work\PharmacyStock_LR2\PharmacyStock.App\obj\Debug\net8.0\refint\PharmacyStock.App.dll" удаляется.
+         Файл "C:\Users\chaha\Documents\Codex\2026-11-09\referenced-chatgpt-conversation-this-is-an\work\PharmacyStock_LR2\PharmacyStock.App\obj\Debug\net8.0\PharmacyStock.App.pdb" удаляется.
+         Файл "C:\Users\chaha\Documents\Codex\2026-11-09\referenced-chatgpt-conversation-this-is-an\work\PharmacyStock_LR2\PharmacyStock.App\obj\Debug\net8.0\PharmacyStock.App.genruntimeconfig.cache" удаляется.
+         Файл "C:\Users\chaha\Documents\Codex\2026-11-09\referenced-chatgpt-conversation-this-is-an\work\PharmacyStock_LR2\PharmacyStock.App\obj\Debug\net8.0\ref\PharmacyStock.App.dll" удаляется.
+     3>Сборка проекта "C:\Users\chaha\Documents\Codex\2026-11-09\referenced-chatgpt-conversation-this-is-an\work\PharmacyStock_LR2\PharmacyStock.App\PharmacyStock.App.csproj" завершена (целевые объекты Clean).
+     1>Сборка проекта "C:\Users\chaha\Documents\Codex\2026-11-09\referenced-chatgpt-conversation-this-is-an\work\PharmacyStock_LR2\PharmacyStock.sln" завершена (целевые объекты Clean).
+
+Сборка успешно завершена.
+    Предупреждений: 0
+    Ошибок: 0
+
+Прошло времени 00:00:00.47
+
+Exit code: 0
