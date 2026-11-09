@@ -1,5 +1,6 @@
 using PharmacyStock.Core.Abstractions;
 using PharmacyStock.Core.Domain;
+using PharmacyStock.Core.Errors;
 
 namespace PharmacyStock.Core.Storage;
 
@@ -33,5 +34,21 @@ public sealed class InMemoryPrescriptionRepository : IPrescriptionRepository
     public IReadOnlyList<Prescription> GetAll()
     {
         return Array.AsReadOnly(_items.Values.ToArray());
+    }
+
+    /// <summary>Saves an existing prescription without silently creating a missing record.</summary>
+    /// <param name="prescription">Prescription to save.</param>
+    public void Save(Prescription prescription)
+    {
+        ArgumentNullException.ThrowIfNull(prescription);
+        if (!_items.ContainsKey(prescription.Id))
+        {
+            throw new DomainRuleException(
+                "prescription.exists",
+                "Рецепт не знайдено.",
+                prescription.Id);
+        }
+
+        _items[prescription.Id] = prescription;
     }
 }

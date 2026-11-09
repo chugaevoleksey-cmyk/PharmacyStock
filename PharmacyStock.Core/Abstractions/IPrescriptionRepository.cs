@@ -17,4 +17,8 @@ public interface IPrescriptionRepository
     /// <summary>Returns a read-only snapshot of the stored references.</summary>
     /// <returns>The result of the operation.</returns>
     IReadOnlyList<Prescription> GetAll();
+
+    /// <summary>Saves an existing prescription; it never creates a missing record.</summary>
+    /// <param name="prescription">Prescription to save.</param>
+    void Save(Prescription prescription);
 }

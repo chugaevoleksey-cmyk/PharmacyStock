@@ -1,5 +1,6 @@
 using PharmacyStock.Core.Abstractions;
 using PharmacyStock.Core.Domain;
+using PharmacyStock.Core.Errors;
 using PharmacyStock.Core.Pricing;
 
 namespace PharmacyStock.Core.Services;
@@ -45,5 +46,34 @@ public sealed class PrescriptionService
     {
         ArgumentNullException.ThrowIfNull(prescription);
         return PricingTotals.TotalOf(prescription.Lines, _pricing);
+    }
+
+    /// <summary>Adds typed, validated input only to a new prescription.</summary>
+    /// <param name="prescriptionId">Positive prescription identifier.</param>
+    /// <param name="line">Validated line supplied by the input barricade.</param>
+    public void AddLine(int prescriptionId, PrescriptionLine line)
+    {
+        ArgumentNullException.ThrowIfNull(line);
+        Prescription prescription = RequirePrescription(prescriptionId);
+        if (prescription.Status != PrescriptionStatus.New)
+        {
+            throw new DomainRuleException(
+                "prescription.editable",
+                "Редагувати можна лише новий рецепт.",
+                prescriptionId);
+        }
+
+        prescription.AddLine(line);
+        _repository.Save(prescription);
+    }
+
+    private Prescription RequirePrescription(int prescriptionId)
+    {
+        ArgumentOutOfRangeException.ThrowIfNegativeOrZero(prescriptionId);
+        return _repository.GetById(prescriptionId)
+            ?? throw new DomainRuleException(
+                "prescription.exists",
+                "Рецепт не знайдено.",
+                prescriptionId);
     }
 }
