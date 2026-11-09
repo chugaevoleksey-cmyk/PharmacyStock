@@ -1,82 +1,98 @@
+using System.Collections.ObjectModel;
+
 namespace PharmacyStock.Core.Domain;
 
-/// <summary>
-/// Рецепт пацієнта з переліком лікарських засобів.
-/// </summary>
+/// <summary>Represents the Prescription type.</summary>
 public sealed class Prescription
 {
     private readonly List<PrescriptionLine> _lines = new();
+    private readonly ReadOnlyCollection<PrescriptionLine> _readOnlyLines;
 
-    /// <summary>Gets the document or patient identifier.</summary>
-    public int Id { get; init; }
+    /// <summary>Initializes a new instance of the <see cref="Prescription"/> class.</summary>
+    /// <param name="id">The id argument.</param>
+    /// <param name="patientId">The patientId argument.</param>
+    /// <param name="createdAt">The createdAt argument.</param>
+    public Prescription(int id, int patientId, DateOnly createdAt)
+    {
+        ArgumentOutOfRangeException.ThrowIfNegativeOrZero(id);
+        ArgumentOutOfRangeException.ThrowIfNegativeOrZero(patientId);
+        Id = id;
+        PatientId = patientId;
+        CreatedAt = createdAt;
+        Status = PrescriptionStatus.New;
+        _readOnlyLines = _lines.AsReadOnly();
+    }
 
-    /// <summary>Gets the patient identifier.</summary>
-    public int PatientId { get; init; }
+    /// <summary>Gets the Id value.</summary>
+    public int Id { get; }
 
-    /// <summary>Gets the current document status.</summary>
-    public PrescriptionStatus Status { get; private set; } =
-        PrescriptionStatus.New;
+    /// <summary>Gets the PatientId value.</summary>
+    public int PatientId { get; }
 
-    /// <summary>Gets the document creation time.</summary>
-    public DateTimeOffset CreatedAt { get; init; }
+    /// <summary>Gets the CreatedAt value.</summary>
+    public DateOnly CreatedAt { get; }
 
-    /// <summary>Gets the prescription lines.</summary>
-    public IReadOnlyList<PrescriptionLine> Lines => _lines;
+    /// <summary>Gets the Status value.</summary>
+    public PrescriptionStatus Status { get; private set; }
 
-    /// <summary>
-    /// Додає лікарський засіб до рецепта.
-    /// </summary>
-    /// <param name="line">
-    /// Позиція рецепта, яку потрібно додати.
-    /// </param>
+    /// <summary>Gets the Lines value.</summary>
+    public IReadOnlyList<PrescriptionLine> Lines => _readOnlyLines;
+
+    /// <summary>Performs the AddLine operation.</summary>
+    /// <param name="line">The line argument.</param>
     public void AddLine(PrescriptionLine line)
     {
         ArgumentNullException.ThrowIfNull(line);
-
+        EnsureStatus(PrescriptionStatus.New);
         _lines.Add(line);
     }
 
-    /// <summary>
-    /// Обчислює загальну вартість ліків у рецепті.
-    /// </summary>
-    /// <returns>
-    /// Загальна вартість усіх позицій рецепта у гривнях.
-    /// </returns>
-    public decimal Total()
+    /// <summary>Performs the Approve operation.</summary>
+    public void Approve()
     {
-        decimal total = 0m;
-
-        foreach (PrescriptionLine line in _lines)
+        EnsureStatus(PrescriptionStatus.New);
+        if (_lines.Count == 0)
         {
-            total += line.Amount;
+            throw new InvalidOperationException("Не можна підтвердити порожній рецепт.");
         }
 
-        return total;
+        Status = PrescriptionStatus.Approved;
     }
 
-    /// <summary>
-    /// Змінює стан рецепта за дозволеними переходами.
-    /// </summary>
-    /// <param name="newStatus">
-    /// Новий стан рецепта.
-    /// </param>
-    public void ChangeStatus(PrescriptionStatus newStatus)
+    /// <summary>Performs the Dispense operation.</summary>
+    public void Dispense()
     {
-        bool isAllowed = Status switch
-        {
-            PrescriptionStatus.New => newStatus is PrescriptionStatus.Approved
-                or PrescriptionStatus.Cancelled or PrescriptionStatus.Expired,
-            PrescriptionStatus.Approved => newStatus is PrescriptionStatus.Dispensed
-                or PrescriptionStatus.Cancelled or PrescriptionStatus.Expired,
-            _ => false,
-        };
+        EnsureStatus(PrescriptionStatus.Approved);
+        Status = PrescriptionStatus.Dispensed;
+    }
 
-        if (!isAllowed)
+    /// <summary>Performs the Cancel operation.</summary>
+    public void Cancel()
+    {
+        EnsureActive();
+        Status = PrescriptionStatus.Cancelled;
+    }
+
+    /// <summary>Performs the Expire operation.</summary>
+    public void Expire()
+    {
+        EnsureActive();
+        Status = PrescriptionStatus.Expired;
+    }
+
+    private void EnsureStatus(PrescriptionStatus expected)
+    {
+        if (Status != expected)
         {
-            throw new InvalidOperationException(
-                "Неприпустимий перехід між станами рецепта.");
+            throw new InvalidOperationException("Перехід стану заборонено.");
         }
+    }
 
-        Status = newStatus;
+    private void EnsureActive()
+    {
+        if (Status is not PrescriptionStatus.New and not PrescriptionStatus.Approved)
+        {
+            throw new InvalidOperationException("Рецепт уже закрито.");
+        }
     }
 }
