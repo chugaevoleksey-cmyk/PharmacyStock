@@ -33,11 +33,21 @@ public class LegacyProcessorTests
     }
 
     [Fact]
-    public void Process_NoLines_ReturnsMinusOne()
+    public void CalculateNoLinesThrowsArgument()
     {
-        decimal total = LegacyProcessor.Process(3, "Коваль", "k@ex.com", false,
-            new List<PrescriptionLine>(), new DateOnly(2026, 3, 10), "", "New", false,
-            60m, out _);
-        Assert.Equal(-1m, total);
+        Assert.Throws<ArgumentException>(() => LegacyProcessor.Process(
+            3, "Коваль", "k@ex.com", false, new List<PrescriptionLine>(),
+            new DateOnly(2026, 3, 10), "", "New", false, 60m, out _));
+    }
+
+    [Fact]
+    public void CalculateZeroQuantityThrowsRange()
+    {
+        var line = new PharmacyStock.Core.Documents.PrescriptionLine
+        {
+            MedicineCode = "A1", Quantity = 0, UnitPrice = 10m,
+        };
+        Assert.Throws<ArgumentOutOfRangeException>(() =>
+            PharmacyStock.Core.Documents.DocumentGuards.EnsureLineValid(line));
     }
 }

@@ -11,26 +11,15 @@ public static class LegacyProcessor
     {
         newStatus = status;
         decimal total = 0;
-        if (docId <= 0)
-        {
-            Console.WriteLine("Помилка: номер документа");
-            return -1;
-        }
-        if (clientName == null || clientName == "")
-        {
-            Console.WriteLine("Помилка: немає клієнта");
-            return -1;
-        }
-        if (clientEmail == null || !clientEmail.Contains("@"))
-        {
-            Console.WriteLine("Помилка: пошта клієнта");
-            return -1;
-        }
-        if (lines == null || lines.Count == 0)
-        {
-            Console.WriteLine("Помилка: немає позицій");
-            return -1;
-        }
+        Documents.DocumentGuards.EnsureHeaderValid(docId, clientName, clientEmail);
+        ArgumentNullException.ThrowIfNull(lines);
+        Documents.DocumentGuards.EnsureLinesValid(lines.Select(line =>
+            new Documents.PrescriptionLine
+            {
+                MedicineCode = line.MedicineCode,
+                Quantity = line.Quantity,
+                UnitPrice = line.UnitPrice,
+            }).ToArray());
         if (status != "New" && status != "Paid" &&
             status != "Shipped" && status != "Cancelled")
         {
