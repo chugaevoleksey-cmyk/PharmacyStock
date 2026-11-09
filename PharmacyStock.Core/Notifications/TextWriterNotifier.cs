@@ -9,16 +9,16 @@ public sealed class TextWriterNotifier : INotifier
     private readonly TextWriter _output;
 
     /// <summary>Initializes a new instance of the <see cref="TextWriterNotifier"/> class.</summary>
-    /// <param name="output">The output argument.</param>
+    /// <param name="output">Writer owned and disposed by the caller.</param>
     public TextWriterNotifier(TextWriter output)
     {
         ArgumentNullException.ThrowIfNull(output);
         _output = output;
     }
 
-    /// <summary>Performs the Notify operation.</summary>
-    /// <param name="prescriptionId">The prescriptionId argument.</param>
-    /// <param name="total">The total argument.</param>
+    /// <summary>Announces a stored prescription without prescribing a transport.</summary>
+    /// <param name="prescriptionId">Positive prescription identifier.</param>
+    /// <param name="total">Nonnegative quoted total.</param>
     public void Notify(int prescriptionId, decimal total)
     {
         ArgumentOutOfRangeException.ThrowIfNegativeOrZero(prescriptionId);

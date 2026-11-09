@@ -11,10 +11,12 @@ public sealed class PrescriptionService
     private readonly IPricingPolicy _pricing;
     private readonly INotifier _notifier;
 
-    /// <summary>Initializes a new instance of the <see cref="PrescriptionService"/> class.</summary>
-    /// <param name="repository">The repository argument.</param>
-    /// <param name="pricing">The pricing argument.</param>
-    /// <param name="notifier">The notifier argument.</param>
+    /// <summary>
+    /// Initializes a new instance of the <see cref="PrescriptionService"/> class.
+    /// </summary>
+    /// <param name="repository">Storage dependency supplied by the composition root.</param>
+    /// <param name="pricing">Pricing dependency supplied by the composition root.</param>
+    /// <param name="notifier">Notification dependency supplied by the composition root.</param>
     public PrescriptionService(
         IPrescriptionRepository repository, IPricingPolicy pricing, INotifier notifier)
     {
@@ -26,8 +28,8 @@ public sealed class PrescriptionService
         _notifier = notifier;
     }
 
-    /// <summary>Performs the Place operation.</summary>
-    /// <param name="prescription">The prescription argument.</param>
+    /// <summary>Stores a prescription and then notifies through the injected adapter.</summary>
+    /// <param name="prescription">Prescription aggregate.</param>
     public void Place(Prescription prescription)
     {
         ArgumentNullException.ThrowIfNull(prescription);
@@ -36,8 +38,8 @@ public sealed class PrescriptionService
         _notifier.Notify(prescription.Id, total);
     }
 
-    /// <summary>Performs the TotalOf operation.</summary>
-    /// <param name="prescription">The prescription argument.</param>
+    /// <summary>Quotes the total with line pricing and the shared threshold discount.</summary>
+    /// <param name="prescription">Prescription aggregate.</param>
     /// <returns>The result of the operation.</returns>
     public decimal TotalOf(Prescription prescription)
     {

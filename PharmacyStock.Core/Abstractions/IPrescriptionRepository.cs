@@ -5,16 +5,16 @@ namespace PharmacyStock.Core.Abstractions;
 /// <summary>Represents the IPrescriptionRepository type.</summary>
 public interface IPrescriptionRepository
 {
-    /// <summary>Performs the Add operation.</summary>
-    /// <param name="prescription">The prescription argument.</param>
+    /// <summary>Stores a prescription and rejects a duplicate identifier.</summary>
+    /// <param name="prescription">Prescription aggregate.</param>
     void Add(Prescription prescription);
 
-    /// <summary>Performs the GetById operation.</summary>
-    /// <param name="id">The id argument.</param>
+    /// <summary>Finds a stored prescription by its identifier.</summary>
+    /// <param name="id">Positive identifier.</param>
     /// <returns>The result of the operation.</returns>
     Prescription? GetById(int id);
 
-    /// <summary>Performs the GetAll operation.</summary>
+    /// <summary>Returns a read-only snapshot of the stored references.</summary>
     /// <returns>The result of the operation.</returns>
     IReadOnlyList<Prescription> GetAll();
 }

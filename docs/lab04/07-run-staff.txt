@@ -1,0 +1,9 @@
+$ dotnet run --no-build -c Release --project PharmacyStock.App -- staff
+Збережено рецепт № 1. Сума: 350.00
+Сума: 350.00
+Стан: Approved
+Архів: 1; стан: Dispensed
+id;total;status
+1;350.00;Dispensed
+
+Exit code: 0

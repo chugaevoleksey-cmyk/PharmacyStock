@@ -9,9 +9,9 @@ public static class PricingTotals
     private const decimal DiscountThreshold = 1000m;
     private const decimal FixedDiscount = 50m;
 
-    /// <summary>Performs the TotalOf operation.</summary>
-    /// <param name="lines">The lines argument.</param>
-    /// <param name="pricing">The pricing argument.</param>
+    /// <summary>Quotes the total with line pricing and the shared threshold discount.</summary>
+    /// <param name="lines">Medicine lines to price.</param>
+    /// <param name="pricing">Pricing dependency supplied by the composition root.</param>
     /// <returns>The result of the operation.</returns>
     public static decimal TotalOf(IReadOnlyList<PrescriptionLine> lines, IPricingPolicy pricing)
     {

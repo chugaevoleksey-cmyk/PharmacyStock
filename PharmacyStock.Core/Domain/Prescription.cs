@@ -9,9 +9,9 @@ public sealed class Prescription
     private readonly ReadOnlyCollection<PrescriptionLine> _readOnlyLines;
 
     /// <summary>Initializes a new instance of the <see cref="Prescription"/> class.</summary>
-    /// <param name="id">The id argument.</param>
-    /// <param name="patientId">The patientId argument.</param>
-    /// <param name="createdAt">The createdAt argument.</param>
+    /// <param name="id">Positive identifier.</param>
+    /// <param name="patientId">Positive patient identifier.</param>
+    /// <param name="createdAt">Creation date supplied by the caller.</param>
     public Prescription(int id, int patientId, DateOnly createdAt)
     {
         ArgumentOutOfRangeException.ThrowIfNegativeOrZero(id);
@@ -38,8 +38,8 @@ public sealed class Prescription
     /// <summary>Gets the Lines value.</summary>
     public IReadOnlyList<PrescriptionLine> Lines => _readOnlyLines;
 
-    /// <summary>Performs the AddLine operation.</summary>
-    /// <param name="line">The line argument.</param>
+    /// <summary>Adds an immutable line only while the prescription is new.</summary>
+    /// <param name="line">Immutable medicine line.</param>
     public void AddLine(PrescriptionLine line)
     {
         ArgumentNullException.ThrowIfNull(line);
@@ -47,7 +47,7 @@ public sealed class Prescription
         _lines.Add(line);
     }
 
-    /// <summary>Performs the Approve operation.</summary>
+    /// <summary>Approves a nonempty new prescription.</summary>
     public void Approve()
     {
         EnsureStatus(PrescriptionStatus.New);
@@ -59,21 +59,21 @@ public sealed class Prescription
         Status = PrescriptionStatus.Approved;
     }
 
-    /// <summary>Performs the Dispense operation.</summary>
+    /// <summary>Marks an approved prescription as dispensed.</summary>
     public void Dispense()
     {
         EnsureStatus(PrescriptionStatus.Approved);
         Status = PrescriptionStatus.Dispensed;
     }
 
-    /// <summary>Performs the Cancel operation.</summary>
+    /// <summary>Cancels a prescription before it is dispensed.</summary>
     public void Cancel()
     {
         EnsureActive();
         Status = PrescriptionStatus.Cancelled;
     }
 
-    /// <summary>Performs the Expire operation.</summary>
+    /// <summary>Marks an active prescription as expired on an external command.</summary>
     public void Expire()
     {
         EnsureActive();

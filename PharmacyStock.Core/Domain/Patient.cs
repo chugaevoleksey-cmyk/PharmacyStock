@@ -4,10 +4,10 @@ namespace PharmacyStock.Core.Domain;
 public sealed record Patient
 {
     /// <summary>Initializes a new instance of the <see cref="Patient"/> class.</summary>
-    /// <param name="id">The id argument.</param>
-    /// <param name="name">The name argument.</param>
-    /// <param name="email">The email argument.</param>
-    /// <param name="isRegular">The isRegular argument.</param>
+    /// <param name="id">Positive identifier.</param>
+    /// <param name="name">Nonblank display name.</param>
+    /// <param name="email">Nonblank email containing the at sign.</param>
+    /// <param name="isRegular">Whether the patient is marked as regular.</param>
     public Patient(int id, string name, string email, bool isRegular = false)
     {
         ArgumentOutOfRangeException.ThrowIfNegativeOrZero(id);

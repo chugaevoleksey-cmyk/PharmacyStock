@@ -4,10 +4,10 @@ namespace PharmacyStock.Core.Domain;
 public sealed class Medicine
 {
     /// <summary>Initializes a new instance of the <see cref="Medicine"/> class.</summary>
-    /// <param name="code">The code argument.</param>
-    /// <param name="name">The name argument.</param>
-    /// <param name="price">The price argument.</param>
-    /// <param name="stock">The stock argument.</param>
+    /// <param name="code">Nonblank medicine code.</param>
+    /// <param name="name">Nonblank display name.</param>
+    /// <param name="price">Positive catalogue price.</param>
+    /// <param name="stock">Initial nonnegative stock.</param>
     public Medicine(string code, string name, decimal price, int stock)
     {
         ArgumentException.ThrowIfNullOrWhiteSpace(code);
@@ -32,16 +32,16 @@ public sealed class Medicine
     /// <summary>Gets the Stock value.</summary>
     public int Stock { get; private set; }
 
-    /// <summary>Performs the Restock operation.</summary>
-    /// <param name="quantity">The quantity argument.</param>
+    /// <summary>Increases stock without allowing integer overflow.</summary>
+    /// <param name="quantity">Positive number of units.</param>
     public void Restock(int quantity)
     {
         ArgumentOutOfRangeException.ThrowIfNegativeOrZero(quantity);
         Stock = checked(Stock + quantity);
     }
 
-    /// <summary>Performs the DecreaseStock operation.</summary>
-    /// <param name="quantity">The quantity argument.</param>
+    /// <summary>Decreases stock only when enough units remain.</summary>
+    /// <param name="quantity">Positive number of units.</param>
     public void DecreaseStock(int quantity)
     {
         ArgumentOutOfRangeException.ThrowIfNegativeOrZero(quantity);

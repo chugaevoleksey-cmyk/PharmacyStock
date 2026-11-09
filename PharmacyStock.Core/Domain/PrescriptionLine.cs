@@ -4,9 +4,9 @@ namespace PharmacyStock.Core.Domain;
 public sealed record PrescriptionLine
 {
     /// <summary>Initializes a new instance of the <see cref="PrescriptionLine"/> class.</summary>
-    /// <param name="medicineCode">The medicineCode argument.</param>
-    /// <param name="quantity">The quantity argument.</param>
-    /// <param name="unitPrice">The unitPrice argument.</param>
+    /// <param name="medicineCode">Nonblank medicine code.</param>
+    /// <param name="quantity">Positive number of units.</param>
+    /// <param name="unitPrice">Nonnegative price fixed for this line.</param>
     public PrescriptionLine(string medicineCode, int quantity, decimal unitPrice)
     {
         ArgumentException.ThrowIfNullOrWhiteSpace(medicineCode);

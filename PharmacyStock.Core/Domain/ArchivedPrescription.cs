@@ -1,15 +1,19 @@
 namespace PharmacyStock.Core.Domain;
 
-/// <summary>Represents the ArchivedPrescription type.</summary>
+/// <summary>
+/// Exposes a fixed status and line snapshot without inheriting mutation commands.
+/// </summary>
 public sealed class ArchivedPrescription
 {
     private readonly Prescription _prescription;
     private readonly PrescriptionStatus _statusAtArchive;
     private readonly IReadOnlyList<PrescriptionLine> _linesAtArchive;
 
-    /// <summary>Initializes a new instance of the <see cref="ArchivedPrescription"/> class.</summary>
-    /// <param name="prescription">The prescription argument.</param>
-    /// <param name="archivedAt">The archivedAt argument.</param>
+    /// <summary>
+    /// Initializes a new instance of the <see cref="ArchivedPrescription"/> class.
+    /// </summary>
+    /// <param name="prescription">Prescription aggregate.</param>
+    /// <param name="archivedAt">Archive date not earlier than creation.</param>
     public ArchivedPrescription(Prescription prescription, DateOnly archivedAt)
     {
         ArgumentNullException.ThrowIfNull(prescription);

@@ -8,8 +8,8 @@ public sealed class VipPricingPolicy : IPricingPolicy
 {
     private const decimal PriceMultiplier = 0.90m;
 
-    /// <summary>Performs the PriceOf operation.</summary>
-    /// <param name="line">The line argument.</param>
+    /// <summary>Prices one line with this policy and rounds to two decimal places.</summary>
+    /// <param name="line">Immutable medicine line.</param>
     /// <returns>The result of the operation.</returns>
     public decimal PriceOf(PrescriptionLine line)
     {

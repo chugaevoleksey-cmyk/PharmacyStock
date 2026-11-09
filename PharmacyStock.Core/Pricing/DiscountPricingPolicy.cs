@@ -8,8 +8,10 @@ public sealed class DiscountPricingPolicy : IPricingPolicy
 {
     private readonly decimal _rate;
 
-    /// <summary>Initializes a new instance of the <see cref="DiscountPricingPolicy"/> class.</summary>
-    /// <param name="rate">The rate argument.</param>
+    /// <summary>
+    /// Initializes a new instance of the <see cref="DiscountPricingPolicy"/> class.
+    /// </summary>
+    /// <param name="rate">Discount fraction between zero and one half.</param>
     public DiscountPricingPolicy(decimal rate)
     {
         ArgumentOutOfRangeException.ThrowIfLessThan(rate, 0m);
@@ -17,8 +19,8 @@ public sealed class DiscountPricingPolicy : IPricingPolicy
         _rate = rate;
     }
 
-    /// <summary>Performs the PriceOf operation.</summary>
-    /// <param name="line">The line argument.</param>
+    /// <summary>Prices one line with this policy and rounds to two decimal places.</summary>
+    /// <param name="line">Immutable medicine line.</param>
     /// <returns>The result of the operation.</returns>
     public decimal PriceOf(PrescriptionLine line)
     {

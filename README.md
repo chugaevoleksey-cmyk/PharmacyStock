@@ -1,46 +1,54 @@
-# PharmacyStock — лабораторна робота 3
+# PharmacyStock — лабораторна робота 4
 
-Варіант 19. Автор звіту: Чугаєв Олексій Михайлович, група 471.
+Варіант 19. Чугаєв Олексій Михайлович, група 471.
+Гілка: lab04-classes-solid.
 
 ## Запуск
 
-Потрібні .NET SDK із підтримкою net8.0 та .NET Runtime 8.
-У цьому середовищі використано SDK 10.0.401.
+Потрібні SDK із підтримкою net8.0, Runtime 8 та пакети з кешу попередніх робіт.
 
     dotnet restore
     dotnet build -c Release -warnaserror
-    dotnet test
+    dotnet test -c Release
+    dotnet test -c Release --filter FullyQualifiedName~DomainInvariantTests
     dotnet run --project PharmacyStock.App
     dotnet format --verify-no-changes
 
-NuGet.Config використовує локальний кеш. Пакети xUnit 2.5.3, xunit.runner.visualstudio 2.5.3,
-Microsoft.NET.Test.Sdk 17.8.0 та StyleCop.Analyzers 1.2.0-beta.556 потрібні для відновлення.
-Якщо кеш порожній, відновіть пакети командою:
+Загалом проходять 38 тестів: 35 із ЛР3 та рівно 3 нових із ЛР4.
+Якщо кеш NuGet порожній:
 
     dotnet restore --source https://api.nuget.org/v3/index.json
 
+## Демонстрація політик
+
+    dotnet run --project PharmacyStock.App -- regular
+    dotnet run --project PharmacyStock.App -- vip
+    dotnet run --project PharmacyStock.App -- staff
+    dotnet run --project PharmacyStock.App -- standard
+
+Для двох одиниць по 250 очікувані суми: 475.00, 450.00, 350.00, 500.00.
+Без аргументу обирається regular; для невідомого ключа — standard без знижки.
+Загальне правило після підсумку: якщо сума > 1000, віднімається 50.
+Ціни рядків округлюються до 2 знаків за правилом ToEven.
+
 ## Структура
 
-- PharmacyStock.Core/Documents — запит, результат, правила, передумови та розрахунок.
-- PharmacyStock.Core/Reporting — формування тексту й окрема команда друку.
-- PharmacyStock.Core/Domain — збережена модель ЛР1; її переходи станів спрощено без зміни правил.
-- PharmacyStock.App — демонстрація рецепта №19 із сумою 1292.70 та станом Paid.
-- tests/PharmacyStock.Tests — справжні тести xUnit.
-- docs/lab03 — початковий метод, журнали, метрики та результати тестування.
-- tools/MetricsTool — код підрахунку метрик через синтаксичне дерево Roslyn; потребує SDK 10.
+- Core/Domain — Patient, Medicine, PrescriptionLine, Prescription та архівний знімок.
+- Core/Abstractions — вузькі інтерфейси сховища, ціни та сповіщення.
+- Core/Storage — словник у пам’яті без файлів.
+- Core/Pricing — звичайна, знижкова та VIP-політика, підсумок вартості.
+- Core/Services — сценарій збереження з залежностями в конструкторі.
+- Core/Notifications — адаптер до переданого TextWriter, без справжніх листів.
+- Core/Reporting/PrescriptionCsvReport.cs — повертає CSV, нічого не пише на диск.
+- App/Program.cs — композиційний корінь і демонстрація.
+- docs/model.md — модель, інваріанти, стани та навчальні припущення.
+- docs/lab04 — аудит, журнали, результати та вихідний навчальний Legacy-приклад.
 
-## Межі рефакторингу
+Prescription.Lines повертає read-only обгортку, а не прихований List через інтерфейс.
+ArchivedPrescription фіксує стан і окремий список незмінних позицій у момент створення.
+GetAll сховища повертає копію списку посилань; самі агрегати залишаються змінними.
+Модулі Documents і розрахунок ЛР3 залишено для попередніх тестів; App тепер показує ЛР4.
 
-Контрольні суми для коректного входу збережено. Некоректний вхід тепер викликає виняток
-замість повернення -1. ЛР3 використовує стани New, Paid, Dispensed, Cancelled:
-успадкований стан Shipped адаптовано до відпуску ліків як Dispensed.
-Невизначене значення enum, отримане приведенням числа, відхиляється перевіркою.
-ПДВ і знижки ЛР2 не змішуються з новим методом ЛР3: правила ЛР3 взято з її методички.
-
-Record-об’єкти мають init-властивості без довгого позиційного конструктора.
-IReadOnlyList обмежує інтерфейс доступу, але сам по собі не копіює й не заморожує чужий List.
-Під час розрахунку передану колекцію не слід змінювати паралельно.
-Потік TextWriter залишається у власності викликача; принтер його не закриває.
-
-Вихідний метод із високою складністю збережено у Git та docs/lab03/LegacyProcessor.before.cs.txt,
-але видалено з робочої бібліотеки. Гілка ЛР3: lab03-subprograms; початкова мітка: lab2.
+Початковий клас-Бог був лише зразком для аудиту й не запускався.
+Він збережений у Git та docs/lab04/legacy; у робочій бібліотеці Legacy немає.
+Копія проєкту підготовлена окремо від каталогу на робочому столі.
