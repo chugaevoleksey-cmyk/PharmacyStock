@@ -1,17 +1,18 @@
 using System.Globalization;
-using System.Text;
-using PharmacyStock.Core.Legacy;
+using PharmacyStock.Core.Documents;
 
-// Однакова локаль для відтворюваного порівняння до і після.
-CultureInfo.CurrentCulture = CultureInfo.GetCultureInfo("uk-UA");
-Console.OutputEncoding = new UTF8Encoding(false);
-
-var prescription = new Prescription("A-1001", "Іваненко");
-prescription.AddLine("SKU-1", 3, 250m);
-prescription.AddLine("SKU-2", 12, 90m);
-
-Console.WriteLine(prescription.CalculateTotal(false));
-Console.WriteLine(prescription.CalculateTotal(true));
-Console.WriteLine(prescription.IsValid());
-Console.WriteLine(prescription.TryChangeStatus(1));
-Console.Write(prescription.BuildReport());
+TotalRequest request = new()
+{
+    DocumentId = 19,
+    Patient = new PatientInfo { Name = "Іваненко", Email = "i@ex.com", IsRegular = true },
+    Lines = new PrescriptionLine[]
+    {
+        new() { MedicineCode = "A1", Quantity = 12, UnitPrice = 100m },
+        new() { MedicineCode = "B2", Quantity = 1, UnitPrice = 250m },
+    },
+    CreatedAt = new DateOnly(2026, 3, 10),
+    Status = DocumentStatus.New,
+    DeliveryPrice = 60m,
+};
+TotalResult result = DocumentTotalCalculator.Calculate(request);
+Console.WriteLine(result.Total.ToString("F2", CultureInfo.InvariantCulture));

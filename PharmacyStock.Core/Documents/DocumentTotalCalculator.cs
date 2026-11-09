@@ -2,29 +2,17 @@ namespace PharmacyStock.Core.Documents;
 
 public static class DocumentTotalCalculator
 {
-    public static decimal Process(
-        int documentId, string patientName, string patientEmail,
-        bool isRegularPatient, IReadOnlyList<PrescriptionLine> lines,
-        DateOnly createdAt, string? couponCode, DocumentStatus status,
-        bool printToConsole, decimal deliveryPrice, out DocumentStatus newStatus)
+    public static TotalResult Calculate(TotalRequest request)
     {
-        DocumentGuards.EnsureHeaderValid(documentId, patientName, patientEmail);
-        DocumentGuards.EnsureStatusValid(status);
-        ArgumentOutOfRangeException.ThrowIfNegative(deliveryPrice);
-        decimal total = SubtotalOf(lines);
-        total -= ClientDiscountOf(total, isRegularPatient);
+        DocumentGuards.EnsureRequestValid(request);
+        decimal total = SubtotalOf(request.Lines);
+        total -= ClientDiscountOf(total, request.Patient.IsRegular);
         total -= VolumeDiscountOf(total);
-        total -= CouponDiscountOf(total, couponCode);
-        total -= WeekendDiscountOf(total, createdAt);
-        total += DeliveryFeeOf(total, deliveryPrice);
-        total = status == DocumentStatus.Cancelled ? 0m : Math.Round(Math.Max(total, 0m), 2);
-        newStatus = NextStatusOf(status, total);
-        if (printToConsole)
-        {
-            Console.WriteLine($"Рецепт № {documentId}; {patientName}; {total}; {newStatus}");
-        }
-
-        return total;
+        total -= CouponDiscountOf(total, request.CouponCode);
+        total -= WeekendDiscountOf(total, request.CreatedAt);
+        total += DeliveryFeeOf(total, request.DeliveryPrice);
+        total = request.Status == DocumentStatus.Cancelled ? 0m : Math.Round(Math.Max(total, 0m), 2);
+        return new TotalResult { Total = total, Status = NextStatusOf(request.Status, total) };
     }
 
     public static decimal SubtotalOf(IReadOnlyList<PrescriptionLine> lines)

@@ -42,4 +42,13 @@ internal static class DocumentGuards
             throw new ArgumentOutOfRangeException(nameof(status), status, "Невідомий стан.");
         }
     }
+    public static void EnsureRequestValid(TotalRequest request)
+    {
+        ArgumentNullException.ThrowIfNull(request);
+        ArgumentNullException.ThrowIfNull(request.Patient);
+        EnsureHeaderValid(request.DocumentId, request.Patient.Name, request.Patient.Email);
+        EnsureLinesValid(request.Lines);
+        EnsureStatusValid(request.Status);
+        ArgumentOutOfRangeException.ThrowIfNegative(request.DeliveryPrice);
+    }
 }
