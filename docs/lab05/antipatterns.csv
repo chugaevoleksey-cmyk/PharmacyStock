@@ -1,0 +1,5 @@
+﻿Антипатерн,Рядок до,Файл після,Заміна,Наслідок
+Порожній catch,41,PrescriptionService.Load,Без catch; відсутність запису — DomainRuleException,Збій не маскується під null
+catch (Exception) у Cancel,53,PrescriptionService.Cancel,Лише IOException у сховищі; Exception тільки в Main,Помилка програміста не видається за звичайний збій сховища
+throw ex,56,PrescriptionService.Cancel,"LogError(ex, ...), потім throw;",Початковий стек не втрачається
+Parse із catch як потік,67,App/Input/QuantityInput.cs,TryParse та перевірка quantity > 0,Нечисловий ввід не створює винятку
