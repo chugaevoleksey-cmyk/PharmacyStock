@@ -67,6 +67,68 @@ public sealed class PrescriptionService
         _repository.Save(prescription);
     }
 
+    /// <summary>Loads an existing prescription or reports a contextual domain failure.</summary>
+    /// <param name="prescriptionId">Positive identifier.</param>
+    /// <returns>The existing prescription.</returns>
+    public Prescription Load(int prescriptionId)
+    {
+        return RequirePrescription(prescriptionId);
+    }
+
+    /// <summary>Confirms a new prescription after checking the supplied payment.</summary>
+    /// <param name="prescriptionId">Positive identifier.</param>
+    /// <param name="amount">Nonnegative payment.</param>
+    public void Pay(int prescriptionId, decimal amount)
+    {
+        ArgumentOutOfRangeException.ThrowIfLessThan(amount, 0m);
+        Prescription prescription = RequirePrescription(prescriptionId);
+        if (prescription.Status != PrescriptionStatus.New)
+        {
+            throw new DomainRuleException(
+                "prescription.payable",
+                "Стан рецепта не дозволяє оплату.",
+                prescriptionId);
+        }
+
+        if (prescription.Lines.Count == 0)
+        {
+            throw new DomainRuleException(
+                "prescription.lines",
+                "Рецепт не містить позицій.",
+                prescriptionId);
+        }
+
+        if (amount < TotalOf(prescription))
+        {
+            throw new DomainRuleException(
+                "prescription.amount",
+                "Недостатня сума оплати.",
+                prescriptionId);
+        }
+
+        prescription.Approve();
+        _repository.Save(prescription);
+    }
+
+    /// <summary>Cancels an active prescription with a supplied reason.</summary>
+    /// <param name="prescriptionId">Positive identifier.</param>
+    /// <param name="reason">Nonblank cancellation reason.</param>
+    public void Cancel(int prescriptionId, string reason)
+    {
+        ArgumentException.ThrowIfNullOrWhiteSpace(reason);
+        Prescription prescription = RequirePrescription(prescriptionId);
+        if (prescription.Status is not PrescriptionStatus.New and not PrescriptionStatus.Approved)
+        {
+            throw new DomainRuleException(
+                "prescription.cancellable",
+                "Рецепт уже закрито.",
+                prescriptionId);
+        }
+
+        prescription.Cancel();
+        _repository.Save(prescription);
+    }
+
     private Prescription RequirePrescription(int prescriptionId)
     {
         ArgumentOutOfRangeException.ThrowIfNegativeOrZero(prescriptionId);
