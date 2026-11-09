@@ -1,0 +1,5 @@
+﻿Антипатерн,Рядок до,Файл після,Рядок після,Рішення
+Порожній catch,41,PrescriptionService.cs,82,Немає catch; помилка не стає null
+Широкий catch,53,PrescriptionService.cs,135,Конкретний IOException; Exception тільки в Main
+throw ex,56,PrescriptionService.cs,138,"LogError через LoggerMessage, потім throw; зі старим стеком"
+Виняток як потік,67,QuantityInput.cs,17,TryParse для очікуваного нечислового вводу

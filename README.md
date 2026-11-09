@@ -1,54 +1,68 @@
-# PharmacyStock — лабораторна робота 4
+# PharmacyStock — лабораторна робота 5
 
 Варіант 19. Чугаєв Олексій Михайлович, група 471.
-Гілка: lab04-classes-solid.
+Гілка: lab05-error-handling.
 
-## Запуск
+## Вимоги
 
-Потрібні SDK із підтримкою net8.0, Runtime 8 та пакети з кешу попередніх робіт.
+SDK із підтримкою net8.0, .NET Runtime 8 і ASP.NET Core Runtime 8.
+ILogger взято зі встановленого Microsoft.AspNetCore.App через FrameworkReference.
+Ті самі стандартні ILogger і Console-провайдер працюють без завантаження нових пакетів NuGet.
+Пакети тестів xUnit та StyleCop залишено з попередніх робіт.
+
+## Перевірка
 
     dotnet restore
     dotnet build -c Release -warnaserror
     dotnet test -c Release
-    dotnet test -c Release --filter FullyQualifiedName~DomainInvariantTests
-    dotnet run --project PharmacyStock.App
+    dotnet test -c Release --filter FullyQualifiedName~ErrorHandlingTests
     dotnet format --verify-no-changes
 
-Загалом проходять 38 тестів: 35 із ЛР3 та рівно 3 нових із ЛР4.
 Якщо кеш NuGet порожній:
 
     dotnet restore --source https://api.nuget.org/v3/index.json
 
-## Демонстрація політик
+## Демонстрація без ручного введення
 
-    dotnet run --project PharmacyStock.App -- regular
-    dotnet run --project PharmacyStock.App -- vip
-    dotnet run --project PharmacyStock.App -- staff
-    dotnet run --project PharmacyStock.App -- standard
+    dotnet run --project PharmacyStock.App -- --demo
+    dotnet run --project PharmacyStock.App -- --demo-error
 
-Для двох одиниць по 250 очікувані суми: 475.00, 450.00, 350.00, 500.00.
-Без аргументу обирається regular; для невідомого ключа — standard без знижки.
-Загальне правило після підсумку: якщо сума > 1000, віднімається 50.
-Ціни рядків округлюються до 2 знаків за правилом ToEven.
+Перша команда передає «дві», показує помилку, повторює ввід і додає 2 одиниці по 250.
+Сума — 475.00; демонстраційна оплата 485 створює Warning про переплату 10.
+Друга додатково пробує експорт у відсутній каталог, показує Error зі стеком і обробляє
+контрольований IOException. Це навмисний збій, після якого програма продовжує роботу.
+Після закриття аудиту програма перевіряє повторне ексклюзивне відкриття файла.
 
-## Структура
+## Звичайний ввід
 
-- Core/Domain — Patient, Medicine, PrescriptionLine, Prescription та архівний знімок.
-- Core/Abstractions — вузькі інтерфейси сховища, ціни та сповіщення.
-- Core/Storage — словник у пам’яті без файлів.
-- Core/Pricing — звичайна, знижкова та VIP-політика, підсумок вартості.
-- Core/Services — сценарій збереження з залежностями в конструкторі.
-- Core/Notifications — адаптер до переданого TextWriter, без справжніх листів.
-- Core/Reporting/PrescriptionCsvReport.cs — повертає CSV, нічого не пише на диск.
-- App/Program.cs — композиційний корінь і демонстрація.
-- docs/model.md — модель, інваріанти, стани та навчальні припущення.
-- docs/lab04 — аудит, журнали, результати та вихідний навчальний Legacy-приклад.
+    dotnet run --project PharmacyStock.App
 
-Prescription.Lines повертає read-only обгортку, а не прихований List через інтерфейс.
-ArchivedPrescription фіксує стан і окремий список незмінних позицій у момент створення.
-GetAll сховища повертає копію списку посилань; самі агрегати залишаються змінними.
-Модулі Documents і розрахунок ЛР3 залишено для попередніх тестів; App тепер показує ЛР4.
+Введіть код, кількість і ціну окремими рядками. Десятковий роздільник — крапка.
+Після невдалого вводу вводяться всі три поля ще раз. EOF завершує ввід без аварії.
+У прикладі платіж автоматичний із переплатою 10; це демонстрація рівнів журналу,
+а не інтеграція із платіжною системою.
 
-Початковий клас-Бог був лише зразком для аудиту й не запускався.
-Він збережений у Git та docs/lab04/legacy; у робочій бібліотеці Legacy немає.
-Копія проєкту підготовлена окремо від каталогу на робочому столі.
+## Результати та файли
+
+runtime/audit.log містить UTC-час, операцію й номер рецепта.
+runtime/report.txt містить експорт. runtime/ і файли журналів ігноруються Git
+і не входять у ZIP. Збережені текстові виводи команд у docs/lab05 — докази перевірки.
+
+- App/Input — TryParse і Result, сирі рядки залишаються поза Core.
+- Core/Errors — Result<T> та DomainRuleException з Rule, PrescriptionId і InnerException.
+- Core/Services — типізоване додавання, Load, Pay, Cancel; IOException не проковтується.
+- Core/Logging — LoggerMessage.Define, іменовані поля та область PrescriptionId.
+- App/Infrastructure — FileAuditLog і ReportExporter з гарантованим Dispose.
+- App/Program.cs — єдиний широкий catch (Exception), рівні завершення 0/1/2/3.
+- docs/errors.md — 9 ситуацій, по 3 на клас.
+- docs/lab05 — таблиці, початковий анти-приклад, журнали й звіт перевірок.
+
+GetById сховища залишається nullable як запит пошуку. Сервіс Load натомість або
+повертає рецепт, або кидає DomainRuleException з контекстом. Result.Value на помилці
+не повертає null, а відхиляє неправильне використання.
+
+Сховище — у пам’яті. У тесті його замінено адаптером, який кидає IOException,
+щоб перевірити журнал і збереження стека. Не стверджується, що реалізовано JSON-сховище
+чи автоматичні повтори запису. Зміна агрегату й Save не є транзакцією з відкатом.
+Листи не надсилаються. Початкові антипатерни збережено у Git і текстовому знімку,
+але в робочому коді їх немає. Тести ЛР3 і ЛР4 збережено.

@@ -1,0 +1,7 @@
+$ dotnet test --no-restore -c Release --no-build
+Тестовый запуск для C:\Users\chaha\Documents\Codex\2026-11-09\referenced-chatgpt-conversation-this-is-an\work\PharmacyStock_LR5\tests\PharmacyStock.Tests\bin\Release\net8.0\PharmacyStock.Tests.dll (.NETCoreApp,Version=v8.0)
+Общее количество тестовых файлов (1), соответствующих указанному шаблону.
+
+Пройден!   : не пройдено     0, пройдено    61, пропущено     0, всего    61, длительность 50 ms. - PharmacyStock.Tests.dll (net8.0)
+
+Exit code: 0

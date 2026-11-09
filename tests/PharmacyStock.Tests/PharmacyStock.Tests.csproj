@@ -12,4 +12,7 @@
     <PackageReference Include="xunit.runner.visualstudio" Version="2.5.3" />
     <ProjectReference Include="../../PharmacyStock.Core/PharmacyStock.Core.csproj" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="../../PharmacyStock.App/PharmacyStock.App.csproj" />
+  </ItemGroup>
 </Project>

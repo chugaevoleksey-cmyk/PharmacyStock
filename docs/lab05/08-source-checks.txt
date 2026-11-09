@@ -1,0 +1,4 @@
+int.Parse/decimal.Parse у Core: немає збігів
+Console.WriteLine у Core: немає збігів
+throw ex/throw exception: немає збігів
+Широкий catch (Exception): один, у Program.Main

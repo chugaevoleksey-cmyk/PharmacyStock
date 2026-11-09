@@ -6,46 +6,46 @@ namespace PharmacyStock.Core.Logging;
 /// <summary>Represents the AppEvents type.</summary>
 public static class AppEvents
 {
-    private static readonly Func<ILogger, int, IDisposable?> ScopeTemplate =
+    private static readonly Func<ILogger, int, IDisposable?> _scopeTemplate =
         LoggerMessage.DefineScope<int>("Prescription:{PrescriptionId}");
 
-    private static readonly Action<ILogger, string, decimal, Exception?> StartTemplate =
+    private static readonly Action<ILogger, string, decimal, Exception?> _startTemplate =
         LoggerMessage.Define<string, decimal>(
             LogLevel.Debug,
             new EventId(1001, "Start"),
             "Початок {Operation}, сума {Amount}");
 
-    private static readonly Action<ILogger, string, decimal, Exception?> CompleteTemplate =
+    private static readonly Action<ILogger, string, decimal, Exception?> _completeTemplate =
         LoggerMessage.Define<string, decimal>(
             LogLevel.Information,
             new EventId(1002, "Complete"),
             "Завершено {Operation}, сума {Amount}");
 
-    private static readonly Action<ILogger, int, Exception?> LineTemplate =
+    private static readonly Action<ILogger, int, Exception?> _lineTemplate =
         LoggerMessage.Define<int>(
             LogLevel.Information,
             new EventId(1003, "LineAdded"),
             "Додано позицію, кількість {Quantity}");
 
-    private static readonly Action<ILogger, decimal, Exception?> OverpayTemplate =
+    private static readonly Action<ILogger, decimal, Exception?> _overpayTemplate =
         LoggerMessage.Define<decimal>(
             LogLevel.Warning,
             new EventId(1004, "Overpayment"),
             "Переплата {Extra}");
 
-    private static readonly Action<ILogger, string, Exception?> ErrorTemplate =
+    private static readonly Action<ILogger, string, Exception?> _errorTemplate =
         LoggerMessage.Define<string>(
             LogLevel.Error,
             new EventId(1005, "InfrastructureFailure"),
             "Не завершено операцію {Operation}");
 
-    private static readonly Action<ILogger, string, string, int?, Exception?> RuleTemplate =
+    private static readonly Action<ILogger, string, string, int?, Exception?> _ruleTemplate =
         LoggerMessage.Define<string, string, int?>(
             LogLevel.Warning,
             new EventId(1006, "DomainRule"),
             "Правило {Rule}: {Message}; рецепт {PrescriptionId}");
 
-    private static readonly Action<ILogger, Exception?> CriticalTemplate =
+    private static readonly Action<ILogger, Exception?> _criticalTemplate =
         LoggerMessage.Define(
             LogLevel.Critical,
             new EventId(1007, "Unhandled"),
@@ -59,7 +59,7 @@ public static class AppEvents
     {
         ArgumentNullException.ThrowIfNull(log);
         ArgumentOutOfRangeException.ThrowIfNegativeOrZero(prescriptionId);
-        return ScopeTemplate(log, prescriptionId);
+        return _scopeTemplate(log, prescriptionId);
     }
 
     /// <summary>Performs the Started operation.</summary>
@@ -70,7 +70,7 @@ public static class AppEvents
     {
         ArgumentNullException.ThrowIfNull(log);
         ArgumentException.ThrowIfNullOrWhiteSpace(operation);
-        StartTemplate(log, operation, amount, null);
+        _startTemplate(log, operation, amount, null);
     }
 
     /// <summary>Performs the Completed operation.</summary>
@@ -81,7 +81,7 @@ public static class AppEvents
     {
         ArgumentNullException.ThrowIfNull(log);
         ArgumentException.ThrowIfNullOrWhiteSpace(operation);
-        CompleteTemplate(log, operation, amount, null);
+        _completeTemplate(log, operation, amount, null);
     }
 
     /// <summary>Performs the LineAdded operation.</summary>
@@ -90,7 +90,7 @@ public static class AppEvents
     public static void LineAdded(ILogger log, int quantity)
     {
         ArgumentNullException.ThrowIfNull(log);
-        LineTemplate(log, quantity, null);
+        _lineTemplate(log, quantity, null);
     }
 
     /// <summary>Performs the Overpayment operation.</summary>
@@ -99,7 +99,7 @@ public static class AppEvents
     public static void Overpayment(ILogger log, decimal extra)
     {
         ArgumentNullException.ThrowIfNull(log);
-        OverpayTemplate(log, extra, null);
+        _overpayTemplate(log, extra, null);
     }
 
     /// <summary>Performs the Error operation.</summary>
@@ -111,7 +111,7 @@ public static class AppEvents
         ArgumentNullException.ThrowIfNull(log);
         ArgumentNullException.ThrowIfNull(exception);
         ArgumentException.ThrowIfNullOrWhiteSpace(operation);
-        ErrorTemplate(log, operation, exception);
+        _errorTemplate(log, operation, exception);
     }
 
     /// <summary>Performs the DomainRejected operation.</summary>
@@ -121,7 +121,7 @@ public static class AppEvents
     {
         ArgumentNullException.ThrowIfNull(log);
         ArgumentNullException.ThrowIfNull(exception);
-        RuleTemplate(log, exception.Rule, exception.Message, exception.PrescriptionId, null);
+        _ruleTemplate(log, exception.Rule, exception.Message, exception.PrescriptionId, null);
     }
 
     /// <summary>Performs the Critical operation.</summary>
@@ -131,6 +131,6 @@ public static class AppEvents
     {
         ArgumentNullException.ThrowIfNull(log);
         ArgumentNullException.ThrowIfNull(exception);
-        CriticalTemplate(log, exception);
+        _criticalTemplate(log, exception);
     }
 }

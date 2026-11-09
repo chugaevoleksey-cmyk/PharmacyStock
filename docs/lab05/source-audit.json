@@ -1,0 +1,8 @@
+{
+  "core_parse": [],
+  "core_console": [],
+  "wide_catch": [
+    "PharmacyStock.App\\Program.cs:57: catch (Exception exception)"
+  ],
+  "throw_ex": []
+}

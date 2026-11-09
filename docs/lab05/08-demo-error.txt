@@ -1,0 +1,38 @@
+$ dotnet run --no-build -c Release --project PharmacyStock.App -- --demo-error
+Демо: спочатку кількість «дві», потім 2.
+Код препарату:
+Кількість:
+Ціна за одиницю (крапка):
+Помилка вводу: Кількість — ціле число більше 0
+Код препарату:
+Кількість:
+Ціна за одиницю (крапка):
+00:10:45 info: PharmacyStock.Core.Services.PrescriptionService[1003]
+      => Prescription:1
+      Додано позицію, кількість 2
+00:10:45 dbug: PharmacyStock.Core.Services.PrescriptionService[1001]
+      => Prescription:1
+      Початок Pay, сума 485.00
+00:10:45 warn: PharmacyStock.Core.Services.PrescriptionService[1004]
+      => Prescription:1
+      Переплата 10.00
+00:10:45 info: PharmacyStock.Core.Services.PrescriptionService[1002]
+      => Prescription:1
+      Завершено Pay, сума 485.00
+Сума: 475.00
+Стан: Approved
+00:10:45 fail: PharmacyStock.App.Infrastructure.ReportExporter[1005]
+      => Prescription:1
+      Не завершено операцію ExportReport
+      System.IO.DirectoryNotFoundException: Could not find a part of the path 'C:\Users\chaha\Documents\Codex\2026-11-09\referenced-chatgpt-conversation-this-is-an\work\PharmacyStock_LR5\runtime\4a9a28f44c8644c8b8c1d50fe33d70d0\report.txt'.
+         at Microsoft.Win32.SafeHandles.SafeFileHandle.CreateFile(String fullPath, FileMode mode, FileAccess access, FileShare share, FileOptions options)
+         at Microsoft.Win32.SafeHandles.SafeFileHandle.Open(String fullPath, FileMode mode, FileAccess access, FileShare share, FileOptions options, Int64 preallocationSize, Nullable`1 unixCreateMode)
+         at System.IO.Strategies.OSFileStreamStrategy..ctor(String path, FileMode mode, FileAccess access, FileShare share, FileOptions options, Int64 preallocationSize, Nullable`1 unixCreateMode)
+         at System.IO.Strategies.FileStreamHelpers.ChooseStrategyCore(String path, FileMode mode, FileAccess access, FileShare share, FileOptions options, Int64 preallocationSize, Nullable`1 unixCreateMode)
+         at System.IO.StreamWriter.ValidateArgsAndOpenPath(String path, Boolean append, Encoding encoding, Int32 bufferSize)
+         at System.IO.StreamWriter..ctor(String path, Boolean append, Encoding encoding)
+         at PharmacyStock.App.Infrastructure.ReportExporter.ExportReport(String path, Prescription prescription) in C:\Users\chaha\Documents\Codex\2026-11-09\referenced-chatgpt-conversation-this-is-an\work\PharmacyStock_LR5\PharmacyStock.App\Infrastructure\ReportExporter.cs:line 37
+Контрольний збій експорту оброблено; програма продовжує роботу.
+Аудит закрито: файл повторно відкрито ексклюзивно.
+
+Exit code: 0

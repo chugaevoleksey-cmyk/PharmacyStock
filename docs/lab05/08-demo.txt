@@ -1,0 +1,26 @@
+$ dotnet run --no-build -c Release --project PharmacyStock.App -- --demo
+Демо: спочатку кількість «дві», потім 2.
+Код препарату:
+Кількість:
+Ціна за одиницю (крапка):
+Помилка вводу: Кількість — ціле число більше 0
+Код препарату:
+Кількість:
+Ціна за одиницю (крапка):
+00:10:44 info: PharmacyStock.Core.Services.PrescriptionService[1003]
+      => Prescription:1
+      Додано позицію, кількість 2
+00:10:44 dbug: PharmacyStock.Core.Services.PrescriptionService[1001]
+      => Prescription:1
+      Початок Pay, сума 485.00
+00:10:44 warn: PharmacyStock.Core.Services.PrescriptionService[1004]
+      => Prescription:1
+      Переплата 10.00
+00:10:44 info: PharmacyStock.Core.Services.PrescriptionService[1002]
+      => Prescription:1
+      Завершено Pay, сума 485.00
+Сума: 475.00
+Стан: Approved
+Аудит закрито: файл повторно відкрито ексклюзивно.
+
+Exit code: 0
