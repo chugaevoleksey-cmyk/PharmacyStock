@@ -1,0 +1,10 @@
+﻿№,Ситуація,Клас,Місце,Стратегія,Повідомлення
+1,У PrescriptionLineParser введено «дві» замість кількості,користувача,App/Input/PrescriptionLineParser.Parse,Result; пояснення й повтор,Кількість — ціле число більше 0
+2,"Ціна містить кому, літери або від’ємне число",користувача,PrescriptionLineParser.Parse,"Result; повтор, явна культура",Ціна — невід’ємне число з крапкою
+3,Код препарату порожній,користувача,PrescriptionLineParser.Parse,Result; повторний запит,Код препарату порожній
+4,У PrescriptionService передано null замість залежності,програміста,Конструктор PrescriptionService,ArgumentNullException; fail fast,Внутрішня помилка INIT-01
+5,Value читається в невдалого Result,програміста,Result<T>.Value,InvalidOperationException; не приховувати,Внутрішня помилка RESULT-01
+6,Write викликано після Dispose аудиту,програміста,FileAuditLog.Write,ObjectDisposedException; fail fast,Внутрішня помилка AUDIT-01
+7,Каталог аудиту недоступний для запису,середовища,FileAuditLog та верхня межа App,"UnauthorizedAccessException; Error, повідомлення",Немає доступу до файлу аудиту
+8,Файл експорту заблокований іншим процесом,середовища,ReportExporter.ExportReport,"IOException; Error зі стеком, передати нагору",Не вдалося записати звіт; перевірте доступ
+9,Сховище відмовило при Save під час Cancel,середовища,PrescriptionService.Cancel,"IOException; LogError(ex, ...), throw;",Не вдалося зберегти зміну рецепта
