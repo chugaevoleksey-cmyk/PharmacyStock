@@ -1,0 +1,4 @@
+$ git status --short
+?? docs/lab02/07-git-log.txt
+
+Exit code: 0
