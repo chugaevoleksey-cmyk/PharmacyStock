@@ -1,3 +1,4 @@
+using Microsoft.Extensions.Logging.Abstractions;
 using PharmacyStock.Core.Abstractions;
 using PharmacyStock.Core.Domain;
 using PharmacyStock.Core.Pricing;
@@ -43,7 +44,11 @@ public sealed class DomainInvariantTests
     {
         InMemoryPrescriptionRepository repository = new();
         RecordingNotifier notifier = new();
-        PrescriptionService service = new(repository, new DiscountPricingPolicy(0.10m), notifier);
+        PrescriptionService service = new(
+            repository,
+            new DiscountPricingPolicy(0.10m),
+            notifier,
+            NullLogger<PrescriptionService>.Instance);
         Prescription prescription = NewPrescription(2);
         prescription.AddLine(new PrescriptionLine("MED-1", 2, 100m));
         Assert.Equal(180m, service.TotalOf(prescription));
