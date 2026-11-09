@@ -6,12 +6,12 @@ using PharmacyStock.Core.Legacy;
 CultureInfo.CurrentCulture = CultureInfo.GetCultureInfo("uk-UA");
 Console.OutputEncoding = new UTF8Encoding(false);
 
-var z = new zakaz("A-1001", "Іваненко");
-z.Add("SKU-1", 3, 250m);
-z.Add("SKU-2", 12, 90m);
+var prescription = new Prescription("A-1001", "Іваненко");
+prescription.AddLine("SKU-1", 3, 250m);
+prescription.AddLine("SKU-2", 12, 90m);
 
-Console.WriteLine(z.ProcessData(false));
-Console.WriteLine(z.ProcessData(true));
-Console.WriteLine(z.Ck());
-Console.WriteLine(z.Chg(1));
-Console.Write(z.Rep());
+Console.WriteLine(prescription.CalculateTotal(false));
+Console.WriteLine(prescription.CalculateTotal(true));
+Console.WriteLine(prescription.IsValid());
+Console.WriteLine(prescription.TryChangeStatus(1));
+Console.Write(prescription.BuildReport());
