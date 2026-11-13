@@ -1,0 +1,225 @@
+{
+  "moduleLoc": 156,
+  "methods": [
+    {
+      "file": "LegacyDiscountPolicy.cs",
+      "method": "LegacyDiscountPolicy.For",
+      "line": 4,
+      "loc": 9,
+      "cc": 5,
+      "depth": 1,
+      "parameters": 3,
+      "decisions": [
+        {
+          "line": 7,
+          "kind": "IfStatement"
+        },
+        {
+          "line": 8,
+          "kind": "IfStatement"
+        },
+        {
+          "line": 9,
+          "kind": "IfStatement"
+        },
+        {
+          "line": 10,
+          "kind": "IfStatement"
+        }
+      ]
+    },
+    {
+      "file": "LegacyKinds.cs",
+      "method": "LegacyKinds.Client",
+      "line": 6,
+      "loc": 5,
+      "cc": 4,
+      "depth": 0,
+      "parameters": 1,
+      "decisions": [
+        {
+          "line": 8,
+          "kind": "SwitchExpressionArm"
+        },
+        {
+          "line": 8,
+          "kind": "SwitchExpressionArm"
+        },
+        {
+          "line": 9,
+          "kind": "SwitchExpressionArm"
+        }
+      ]
+    },
+    {
+      "file": "LegacyKinds.cs",
+      "method": "LegacyKinds.State",
+      "line": 11,
+      "loc": 6,
+      "cc": 5,
+      "depth": 0,
+      "parameters": 1,
+      "decisions": [
+        {
+          "line": 13,
+          "kind": "SwitchExpressionArm"
+        },
+        {
+          "line": 13,
+          "kind": "SwitchExpressionArm"
+        },
+        {
+          "line": 14,
+          "kind": "SwitchExpressionArm"
+        },
+        {
+          "line": 14,
+          "kind": "SwitchExpressionArm"
+        }
+      ]
+    },
+    {
+      "file": "LegacyPrescriptionProcessor.cs",
+      "method": "LegacyPatient.Describe",
+      "line": 14,
+      "loc": 10,
+      "cc": 3,
+      "depth": 1,
+      "parameters": 0,
+      "decisions": [
+        {
+          "line": 17,
+          "kind": "IfStatement"
+        },
+        {
+          "line": 18,
+          "kind": "IfStatement"
+        }
+      ]
+    },
+    {
+      "file": "LegacyPrescriptionProcessor.cs",
+      "method": "LegacyPrescriptionProcessor.Handle",
+      "line": 38,
+      "loc": 16,
+      "cc": 3,
+      "depth": 1,
+      "parameters": 1,
+      "decisions": [
+        {
+          "line": 41,
+          "kind": "IfStatement"
+        },
+        {
+          "line": 51,
+          "kind": "IfStatement"
+        }
+      ]
+    },
+    {
+      "file": "LegacyPrescriptionProcessor.cs",
+      "method": "LegacyPrescriptionProcessor.Preview",
+      "line": 58,
+      "loc": 7,
+      "cc": 1,
+      "depth": 0,
+      "parameters": 3,
+      "decisions": []
+    },
+    {
+      "file": "LegacyPrescriptionProcessor.cs",
+      "method": "LegacyPrescriptionProcessor.DumpLog",
+      "line": 68,
+      "loc": 6,
+      "cc": 2,
+      "depth": 1,
+      "parameters": 0,
+      "decisions": [
+        {
+          "line": 71,
+          "kind": "ForEachStatement"
+        }
+      ]
+    },
+    {
+      "file": "LegacyPrescriptionProcessor.cs",
+      "method": "LegacyPrescriptionProcessor.Validate",
+      "line": 78,
+      "loc": 8,
+      "cc": 7,
+      "depth": 1,
+      "parameters": 1,
+      "decisions": [
+        {
+          "line": 80,
+          "kind": "IfStatement"
+        },
+        {
+          "line": 81,
+          "kind": "IfStatement"
+        },
+        {
+          "line": 82,
+          "kind": "IfStatement"
+        },
+        {
+          "line": 82,
+          "kind": "LogicalAndExpression"
+        },
+        {
+          "line": 83,
+          "kind": "IfStatement"
+        },
+        {
+          "line": 83,
+          "kind": "LogicalOrExpression"
+        }
+      ]
+    },
+    {
+      "file": "LegacyReportBuilder.cs",
+      "method": "LegacyReportBuilder.Build",
+      "line": 4,
+      "loc": 18,
+      "cc": 2,
+      "depth": 1,
+      "parameters": 4,
+      "decisions": [
+        {
+          "line": 8,
+          "kind": "ForStatement"
+        }
+      ]
+    },
+    {
+      "file": "LegacyShippingPolicy.cs",
+      "method": "LegacyShippingPolicy.For",
+      "line": 4,
+      "loc": 5,
+      "cc": 2,
+      "depth": 1,
+      "parameters": 1,
+      "decisions": [
+        {
+          "line": 6,
+          "kind": "IfStatement"
+        }
+      ]
+    },
+    {
+      "file": "LineTotals.cs",
+      "method": "LineTotals.Subtotal",
+      "line": 4,
+      "loc": 6,
+      "cc": 2,
+      "depth": 1,
+      "parameters": 1,
+      "decisions": [
+        {
+          "line": 7,
+          "kind": "ForEachStatement"
+        }
+      ]
+    }
+  ]
+}
