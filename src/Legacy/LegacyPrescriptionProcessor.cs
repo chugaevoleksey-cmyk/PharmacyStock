@@ -39,25 +39,12 @@ public class LegacyPrescriptionProcessor
         if (clientMail == null || !clientMail.Contains("@")) return "ERR: mail";
         _log.Add("ok " + docId);
 
-        _tmpSum = Subtotal(items);
-        _tmpDiscount = DiscountOf(_tmpSum, clientKind, clientDone);
-        decimal ship = ShippingOf(_tmpSum - _tmpDiscount);
+        _tmpSum = LineTotals.Subtotal(items);
+        _tmpDiscount = LegacyDiscountPolicy.For(_tmpSum, clientKind, clientDone);
+        decimal ship = LegacyShippingPolicy.For(_tmpSum - _tmpDiscount);
         decimal total = _tmpSum - _tmpDiscount + ship;
 
-        string txt = "Документ #" + docId + "\n";
-        txt += "Клієнт: " + clientName + "\n";
-        for (int i = 0; i < items.Count; i++)
-        {
-            txt += items[i].Code + " x" + items[i].Qty + " = " +
-                (items[i].Qty * items[i].Price)
-                    .ToString("0.00") + " " + currency + "\n";
-        }
-        txt += "Знижка: " + _tmpDiscount.ToString("0.00") +
-            " " + currency + "\n";
-        txt += "Доставка: " + ship.ToString("0.00") +
-            " " + currency + "\n";
-        txt += "Разом: " + total.ToString("0.00") +
-            " " + currency + "\n";
+        string txt = LegacyReportBuilder.Build(docId, clientName, items, currency, _tmpDiscount, ship, total);
 
         if (sendMail)
         {
@@ -69,9 +56,9 @@ public class LegacyPrescriptionProcessor
     public decimal Preview(ClientKind clientKind, int clientDone,
         List<LegacyPrescriptionLine> items)
     {
-        decimal sum = Subtotal(items);
-        decimal discount = DiscountOf(sum, clientKind, clientDone);
-        return sum - discount + ShippingOf(sum - discount);
+        decimal sum = LineTotals.Subtotal(items);
+        decimal discount = LegacyDiscountPolicy.For(sum, clientKind, clientDone);
+        return sum - discount + LegacyShippingPolicy.For(sum - discount);
     }
 
     public string DescribeClient(LegacyPatient c)
@@ -92,24 +79,7 @@ public class LegacyPrescriptionProcessor
         return r;
     }
 
-    private static decimal Subtotal(List<LegacyPrescriptionLine> items)
-    {
-        decimal sum = 0m;
-        foreach (var item in items) sum += item.Qty * item.Price;
-        return sum;
-    }
-    private static decimal DiscountOf(decimal sum, ClientKind kind, int done)
-    {
-        decimal discount = 0m;
-        if (kind == ClientKind.Vip) discount = sum * PricingRules.VipRate;
-        else if (kind == ClientKind.Staff) discount = sum * PricingRules.StaffRate;
-        else if (done > PricingRules.LoyalOrders) discount = sum * PricingRules.LoyalRate;
-        if (discount > PricingRules.MaxDiscount) discount = PricingRules.MaxDiscount;
-        return discount;
-    }
-    private static decimal ShippingOf(decimal payable)
-    {
-        if (payable < PricingRules.FreeShipFrom) return PricingRules.ShipCost;
-        return 0m;
-    }
+
+
+
 }
