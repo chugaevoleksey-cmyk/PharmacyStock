@@ -37,13 +37,11 @@ public class LegacyPrescriptionProcessor
 
     public string Handle(PrescriptionRequest request)
     {
-        if (request.Items == null) return "ERR: null";
-        if (request.Items.Count == 0) return "ERR: empty";
-        if (request.State != DocState.New && request.State != DocState.Paid) return "ERR: state";
-        if (request.Patient.Email == null || !request.Patient.Email.Contains("@")) return "ERR: mail";
+        string? error = Validate(request);
+        if (error != null) return error;
         _log.Add("ok " + request.DocId);
 
-        decimal subtotal = LineTotals.Subtotal(request.Items);
+        decimal subtotal = LineTotals.Subtotal(request.Items!);
         decimal discount = LegacyDiscountPolicy.For(subtotal, request.Patient.Kind, request.Patient.DoneCount);
         decimal ship = LegacyShippingPolicy.For(subtotal - discount);
         decimal total = subtotal - discount + ship;
@@ -77,4 +75,12 @@ public class LegacyPrescriptionProcessor
 
 
 
+    private static string? Validate(PrescriptionRequest request)
+    {
+        if (request.Items == null) return "ERR: null";
+        if (request.Items.Count == 0) return "ERR: empty";
+        if (request.State != DocState.New && request.State != DocState.Paid) return "ERR: state";
+        if (request.Patient.Email == null || !request.Patient.Email.Contains("@")) return "ERR: mail";
+        return null;
+    }
 }
