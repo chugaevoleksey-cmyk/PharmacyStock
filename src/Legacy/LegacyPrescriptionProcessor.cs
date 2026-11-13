@@ -7,7 +7,7 @@ public class LegacyPatient
 {
     public int Id;
     public string Name = "";
-    public string Email = "";
+    public string? Email = "";
     public ClientKind Kind = ClientKind.Regular;
     public int DoneCount;
     public DateTime SinceUtc;
@@ -27,28 +27,24 @@ public class LegacyPrescriptionProcessor
     private decimal _tmpDiscount;
     private readonly List<string> _log = new();
 
-    public string Handle(int docId, int clientId,
-        string clientName, string? clientMail,
-        ClientKind clientKind, int clientDone,
-        List<LegacyPrescriptionLine>? items, DocState state,
-        string currency, DateTime createdAt, bool sendMail)
+    public string Handle(PrescriptionRequest request)
     {
-        if (items == null) return "ERR: null";
-        if (items.Count == 0) return "ERR: empty";
-        if (state != DocState.New && state != DocState.Paid) return "ERR: state";
-        if (clientMail == null || !clientMail.Contains("@")) return "ERR: mail";
-        _log.Add("ok " + docId);
+        if (request.Items == null) return "ERR: null";
+        if (request.Items.Count == 0) return "ERR: empty";
+        if (request.State != DocState.New && request.State != DocState.Paid) return "ERR: state";
+        if (request.Patient.Email == null || !request.Patient.Email.Contains("@")) return "ERR: mail";
+        _log.Add("ok " + request.DocId);
 
-        _tmpSum = LineTotals.Subtotal(items);
-        _tmpDiscount = LegacyDiscountPolicy.For(_tmpSum, clientKind, clientDone);
+        _tmpSum = LineTotals.Subtotal(request.Items);
+        _tmpDiscount = LegacyDiscountPolicy.For(_tmpSum, request.Patient.Kind, request.Patient.DoneCount);
         decimal ship = LegacyShippingPolicy.For(_tmpSum - _tmpDiscount);
         decimal total = _tmpSum - _tmpDiscount + ship;
 
-        string txt = LegacyReportBuilder.Build(docId, clientName, items, currency, _tmpDiscount, ship, total);
+        string txt = LegacyReportBuilder.Build(request, _tmpDiscount, ship, total);
 
-        if (sendMail)
+        if (request.SendMail)
         {
-            _log.Add("mail -> " + clientMail);
+            _log.Add("mail -> " + request.Patient.Email);
         }
         return txt;
     }
@@ -66,7 +62,7 @@ public class LegacyPrescriptionProcessor
         string s = c.Name.Trim().ToUpper();
         if (c.Kind == ClientKind.Vip) s += " [VIP]";
         if (c.DoneCount > PricingRules.LoyalOrders) s += " [ЛОЯЛЬНИЙ]";
-        s += " <" + c.Email.ToLower() + ">";
+        s += " <" + c.Email!.ToLower() + ">";
         int years = DateTime.Now.Year - c.SinceUtc.Year;
         s += " стаж " + years;
         return s;
