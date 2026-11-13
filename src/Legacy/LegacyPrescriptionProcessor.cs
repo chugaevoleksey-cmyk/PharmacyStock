@@ -39,31 +39,9 @@ public class LegacyPrescriptionProcessor
         if (clientMail == null || !clientMail.Contains("@")) return "ERR: mail";
         _log.Add("ok " + docId);
 
-        _tmpSum = 0m;
-        for (int i = 0; i < items.Count; i++)
-        {
-            _tmpSum += items[i].Qty * items[i].Price;
-        }
-
-        _tmpDiscount = 0m;
-        if (clientKind == ClientKind.Vip)
-        {
-            _tmpDiscount = _tmpSum * PricingRules.VipRate;
-            if (_tmpDiscount > PricingRules.MaxDiscount) _tmpDiscount = PricingRules.MaxDiscount;
-        }
-        else if (clientKind == ClientKind.Staff)
-        {
-            _tmpDiscount = _tmpSum * PricingRules.StaffRate;
-            if (_tmpDiscount > PricingRules.MaxDiscount) _tmpDiscount = PricingRules.MaxDiscount;
-        }
-        else if (clientDone > PricingRules.LoyalOrders)
-        {
-            _tmpDiscount = _tmpSum * PricingRules.LoyalRate;
-            if (_tmpDiscount > PricingRules.MaxDiscount) _tmpDiscount = PricingRules.MaxDiscount;
-        }
-
-        decimal ship = 0m;
-        if (_tmpSum - _tmpDiscount < PricingRules.FreeShipFrom) ship = PricingRules.ShipCost;
+        _tmpSum = Subtotal(items);
+        _tmpDiscount = DiscountOf(_tmpSum, clientKind, clientDone);
+        decimal ship = ShippingOf(_tmpSum - _tmpDiscount);
         decimal total = _tmpSum - _tmpDiscount + ship;
 
         string txt = "Документ #" + docId + "\n";
@@ -133,5 +111,26 @@ public class LegacyPrescriptionProcessor
         string r = "";
         foreach (var l in _log) r += l + "\n";
         return r;
+    }
+
+    private static decimal Subtotal(List<LegacyPrescriptionLine> items)
+    {
+        decimal sum = 0m;
+        foreach (var item in items) sum += item.Qty * item.Price;
+        return sum;
+    }
+    private static decimal DiscountOf(decimal sum, ClientKind kind, int done)
+    {
+        decimal discount = 0m;
+        if (kind == ClientKind.Vip) discount = sum * PricingRules.VipRate;
+        else if (kind == ClientKind.Staff) discount = sum * PricingRules.StaffRate;
+        else if (done > PricingRules.LoyalOrders) discount = sum * PricingRules.LoyalRate;
+        if (discount > PricingRules.MaxDiscount) discount = PricingRules.MaxDiscount;
+        return discount;
+    }
+    private static decimal ShippingOf(decimal payable)
+    {
+        if (payable < PricingRules.FreeShipFrom) return PricingRules.ShipCost;
+        return 0m;
     }
 }
