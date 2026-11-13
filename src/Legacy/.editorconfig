@@ -1,0 +1,4 @@
+[*.cs]
+csharp_prefer_braces = false:none
+csharp_style_var_for_built_in_types = false:none
+dotnet_diagnostic.IDE0055.severity = none
