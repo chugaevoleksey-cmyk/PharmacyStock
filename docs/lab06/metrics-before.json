@@ -1,0 +1,157 @@
+{
+  "moduleLoc": 149,
+  "methods": [
+    {
+      "file": "LegacyPrescriptionProcessor.cs",
+      "method": "LegacyPrescriptionProcessor.Handle",
+      "line": 30,
+      "loc": 80,
+      "cc": 17,
+      "depth": 4,
+      "parameters": 11,
+      "decisions": [
+        {
+          "line": 36,
+          "kind": "IfStatement"
+        },
+        {
+          "line": 38,
+          "kind": "IfStatement"
+        },
+        {
+          "line": 40,
+          "kind": "IfStatement"
+        },
+        {
+          "line": 40,
+          "kind": "LogicalOrExpression"
+        },
+        {
+          "line": 42,
+          "kind": "IfStatement"
+        },
+        {
+          "line": 42,
+          "kind": "LogicalAndExpression"
+        },
+        {
+          "line": 69,
+          "kind": "ForStatement"
+        },
+        {
+          "line": 75,
+          "kind": "IfStatement"
+        },
+        {
+          "line": 78,
+          "kind": "IfStatement"
+        },
+        {
+          "line": 80,
+          "kind": "IfStatement"
+        },
+        {
+          "line": 83,
+          "kind": "IfStatement"
+        },
+        {
+          "line": 85,
+          "kind": "IfStatement"
+        },
+        {
+          "line": 88,
+          "kind": "IfStatement"
+        },
+        {
+          "line": 92,
+          "kind": "IfStatement"
+        },
+        {
+          "line": 97,
+          "kind": "ForStatement"
+        },
+        {
+          "line": 110,
+          "kind": "IfStatement"
+        }
+      ]
+    },
+    {
+      "file": "LegacyPrescriptionProcessor.cs",
+      "method": "LegacyPrescriptionProcessor.Preview",
+      "line": 117,
+      "loc": 28,
+      "cc": 9,
+      "depth": 2,
+      "parameters": 3,
+      "decisions": [
+        {
+          "line": 121,
+          "kind": "ForEachStatement"
+        },
+        {
+          "line": 126,
+          "kind": "IfStatement"
+        },
+        {
+          "line": 129,
+          "kind": "IfStatement"
+        },
+        {
+          "line": 131,
+          "kind": "IfStatement"
+        },
+        {
+          "line": 134,
+          "kind": "IfStatement"
+        },
+        {
+          "line": 136,
+          "kind": "IfStatement"
+        },
+        {
+          "line": 139,
+          "kind": "IfStatement"
+        },
+        {
+          "line": 142,
+          "kind": "IfStatement"
+        }
+      ]
+    },
+    {
+      "file": "LegacyPrescriptionProcessor.cs",
+      "method": "LegacyPrescriptionProcessor.DescribeClient",
+      "line": 146,
+      "loc": 10,
+      "cc": 3,
+      "depth": 1,
+      "parameters": 1,
+      "decisions": [
+        {
+          "line": 149,
+          "kind": "IfStatement"
+        },
+        {
+          "line": 150,
+          "kind": "IfStatement"
+        }
+      ]
+    },
+    {
+      "file": "LegacyPrescriptionProcessor.cs",
+      "method": "LegacyPrescriptionProcessor.DumpLog",
+      "line": 157,
+      "loc": 6,
+      "cc": 2,
+      "depth": 1,
+      "parameters": 0,
+      "decisions": [
+        {
+          "line": 160,
+          "kind": "ForEachStatement"
+        }
+      ]
+    }
+  ]
+}
