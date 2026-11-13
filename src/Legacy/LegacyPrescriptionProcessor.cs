@@ -33,8 +33,6 @@ public class LegacyPrescriptionLine
 
 public class LegacyPrescriptionProcessor
 {
-    private decimal _tmpSum;
-    private decimal _tmpDiscount;
     private readonly List<string> _log = new();
 
     public string Handle(PrescriptionRequest request)
@@ -45,12 +43,12 @@ public class LegacyPrescriptionProcessor
         if (request.Patient.Email == null || !request.Patient.Email.Contains("@")) return "ERR: mail";
         _log.Add("ok " + request.DocId);
 
-        _tmpSum = LineTotals.Subtotal(request.Items);
-        _tmpDiscount = LegacyDiscountPolicy.For(_tmpSum, request.Patient.Kind, request.Patient.DoneCount);
-        decimal ship = LegacyShippingPolicy.For(_tmpSum - _tmpDiscount);
-        decimal total = _tmpSum - _tmpDiscount + ship;
+        decimal subtotal = LineTotals.Subtotal(request.Items);
+        decimal discount = LegacyDiscountPolicy.For(subtotal, request.Patient.Kind, request.Patient.DoneCount);
+        decimal ship = LegacyShippingPolicy.For(subtotal - discount);
+        decimal total = subtotal - discount + ship;
 
-        string txt = LegacyReportBuilder.Build(request, _tmpDiscount, ship, total);
+        string txt = LegacyReportBuilder.Build(request, discount, ship, total);
 
         if (request.SendMail)
         {
