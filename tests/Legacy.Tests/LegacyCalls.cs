@@ -12,6 +12,6 @@ internal static class LegacyCalls
             items, LegacyKinds.State(state), currency, createdAt, sendMail));
     internal static decimal Preview(LegacyPrescriptionProcessor sut, string kind, int done, List<LegacyPrescriptionLine> items)
         => sut.Preview(LegacyKinds.Client(kind), done, items);
-    internal static string Describe(LegacyPrescriptionProcessor sut, LegacyPatient patient) => sut.DescribeClient(patient);
+    internal static string Describe(LegacyPrescriptionProcessor sut, LegacyPatient patient) => patient.Describe();
     internal static LegacyPatient Patient(string kind) => new() { Name = "  іван  ", Email = "IVAN@MAIL.COM", Kind = LegacyKinds.Client(kind), DoneCount = 12, SinceUtc = new DateTime(2020, 1, 1) };
 }

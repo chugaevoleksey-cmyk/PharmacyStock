@@ -11,6 +11,16 @@ public class LegacyPatient
     public ClientKind Kind = ClientKind.Regular;
     public int DoneCount;
     public DateTime SinceUtc;
+    public string Describe()
+    {
+        string s = Name.Trim().ToUpper();
+        if (Kind == ClientKind.Vip) s += " [VIP]";
+        if (DoneCount > PricingRules.LoyalOrders) s += " [ЛОЯЛЬНИЙ]";
+        s += " <" + Email!.ToLower() + ">";
+        int years = DateTime.Now.Year - SinceUtc.Year;
+        s += " стаж " + years;
+        return s;
+    }
 }
 
 public class LegacyPrescriptionLine
@@ -57,16 +67,7 @@ public class LegacyPrescriptionProcessor
         return sum - discount + LegacyShippingPolicy.For(sum - discount);
     }
 
-    public string DescribeClient(LegacyPatient c)
-    {
-        string s = c.Name.Trim().ToUpper();
-        if (c.Kind == ClientKind.Vip) s += " [VIP]";
-        if (c.DoneCount > PricingRules.LoyalOrders) s += " [ЛОЯЛЬНИЙ]";
-        s += " <" + c.Email!.ToLower() + ">";
-        int years = DateTime.Now.Year - c.SinceUtc.Year;
-        s += " стаж " + years;
-        return s;
-    }
+
 
     public string DumpLog()
     {
