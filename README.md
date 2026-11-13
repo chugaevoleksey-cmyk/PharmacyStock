@@ -1,68 +1,41 @@
-# PharmacyStock — лабораторна робота 5
+# PharmacyStock — лабораторна робота №6, варіант 19
 
-Варіант 19. Чугаєв Олексій Михайлович, група 471.
-Гілка: lab05-error-handling.
+Чугаєв Олексій Михайлович, група 471. Гілка `lab6-refactoring`. Успадкований навчальний модуль ізольовано від сучасного Core у `src/Legacy`.
 
-## Вимоги
+## Запуск
+Розпакуйте архів у **нову порожню папку** і відкрийте корінь із PharmacyStock.sln у VS Code.
+Встановлено .NET SDK 10 та runtime .NET/ASP.NET Core 8; застосунок і тести мають ціль net8.0.
+```
+dotnet build -c Release -warnaserror
+dotnet test -c Release
+dotnet run --project tools/LegacyDemo
+```
+Результат: 30 характеризаційних + 61 попередній тест = 91. Демонстрація дає VIP-звіт 655.00, 4 ERR, межу доставки 1000 та журнал. Фактичної розсилки пошти немає. Старий `PharmacyStock.App` демонструє ЛР5; для ЛР6 запускайте саме `tools/LegacyDemo`.
 
-SDK із підтримкою net8.0, .NET Runtime 8 і ASP.NET Core Runtime 8.
-ILogger взято зі встановленого Microsoft.AspNetCore.App через FrameworkReference.
-Ті самі стандартні ILogger і Console-провайдер працюють без завантаження нових пакетів NuGet.
-Пакети тестів xUnit та StyleCop залишено з попередніх робіт.
+NuGet.Config виключає мережеві джерела і використовує вже заповнений кеш. Якщо пакети на новому комп’ютері відсутні:
+```
+dotnet restore --source https://api.nuget.org/v3/index.json
+```
 
-## Перевірка
+## Докази до і після
+Стан до рефакторингів — мітка `lab6-before`; фінальна мітка — `lab6`. Початковий лістинг: docs/lab06/LegacyPrescriptionProcessor.before.cs.txt. Тест LegacyCharacterizationTests.cs не змінювався після початкового коміту; лише LegacyCalls адаптує нові типи та API.
+```
+git switch --detach lab6-before
+dotnet test tests/Legacy.Tests -c Release
+git switch lab6-refactoring
+dotnet test tests/Legacy.Tests -c Release
+```
+В обох випадках мають пройти ті самі 30 випадків. Перед переходом стан Git має бути чистим. Десять refactor-комітів перевірено окремо; журнал і хеші — docs/lab06/history-verification.json. У всіх також проходять 61 попередній тест.
 
-    dotnet restore
-    dotnet build -c Release -warnaserror
-    dotnet test -c Release
-    dotnet test -c Release --filter FullyQualifiedName~ErrorHandlingTests
-    dotnet format --verify-no-changes
+## Метрики
+```
+dotnet run --project tools/LegacyMetrics -- src/Legacy
+```
+Цей окремий службовий інструмент потребує SDK 10 / net10.0 (як у середовищі виконання), не включений до рішення й використовує Roslyn зі SDK без NuGet. Визначення LOC, CC і вкладеності, точки розгалуження та таблиці — docs/metrics.md, docs/lab06/metrics-before.json і metrics-after.json.
+Handle: 80 → 16 LOC, CC 17 → 3, вкладеність 4 → 1, параметрів 11 → 1. Загальний LOC модуля: 149 → 156. Максимальна CC будь-якого методу після — 7 у Validate, а не 3: перевірки нікуди не зникли.
 
-Якщо кеш NuGet порожній:
+## Обмеження
+Початковий код містить залежність від локалі та року, приймає від’ємні ціни, використовує рядкові ERR і фіксовані тарифи. Це поведінка, яку за умовою не змінюють. Реєстр із оцінкою 2850 грн — docs/tech-debt.md.
+Аналізатори й стиль навмисно не застосовуються до ізольованого початкового legacy-проєкту; компілятор, nullable та TreatWarningsAsErrors лишаються. У сучасних Core/App суворі перевірки збережені. Не видаємо вимкнення аналізатора за відсутність code smells.
 
-    dotnet restore --source https://api.nuget.org/v3/index.json
-
-## Демонстрація без ручного введення
-
-    dotnet run --project PharmacyStock.App -- --demo
-    dotnet run --project PharmacyStock.App -- --demo-error
-
-Перша команда передає «дві», показує помилку, повторює ввід і додає 2 одиниці по 250.
-Сума — 475.00; демонстраційна оплата 485 створює Warning про переплату 10.
-Друга додатково пробує експорт у відсутній каталог, показує Error зі стеком і обробляє
-контрольований IOException. Це навмисний збій, після якого програма продовжує роботу.
-Після закриття аудиту програма перевіряє повторне ексклюзивне відкриття файла.
-
-## Звичайний ввід
-
-    dotnet run --project PharmacyStock.App
-
-Введіть код, кількість і ціну окремими рядками. Десятковий роздільник — крапка.
-Після невдалого вводу вводяться всі три поля ще раз. EOF завершує ввід без аварії.
-У прикладі платіж автоматичний із переплатою 10; це демонстрація рівнів журналу,
-а не інтеграція із платіжною системою.
-
-## Результати та файли
-
-runtime/audit.log містить UTC-час, операцію й номер рецепта.
-runtime/report.txt містить експорт. runtime/ і файли журналів ігноруються Git
-і не входять у ZIP. Збережені текстові виводи команд у docs/lab05 — докази перевірки.
-
-- App/Input — TryParse і Result, сирі рядки залишаються поза Core.
-- Core/Errors — Result<T> та DomainRuleException з Rule, PrescriptionId і InnerException.
-- Core/Services — типізоване додавання, Load, Pay, Cancel; IOException не проковтується.
-- Core/Logging — LoggerMessage.Define, іменовані поля та область PrescriptionId.
-- App/Infrastructure — FileAuditLog і ReportExporter з гарантованим Dispose.
-- App/Program.cs — єдиний широкий catch (Exception), рівні завершення 0/1/2/3.
-- docs/errors.md — 9 ситуацій, по 3 на клас.
-- docs/lab05 — таблиці, початковий анти-приклад, журнали й звіт перевірок.
-
-GetById сховища залишається nullable як запит пошуку. Сервіс Load натомість або
-повертає рецепт, або кидає DomainRuleException з контекстом. Result.Value на помилці
-не повертає null, а відхиляє неправильне використання.
-
-Сховище — у пам’яті. У тесті його замінено адаптером, який кидає IOException,
-щоб перевірити журнал і збереження стека. Не стверджується, що реалізовано JSON-сховище
-чи автоматичні повтори запису. Зміна агрегату й Save не є транзакцією з відкатом.
-Листи не надсилаються. Початкові антипатерни збережено у Git і текстовому знімку,
-але в робочому коді їх немає. Тести ЛР3 і ЛР4 збережено.
+Публічний профіль користувача: https://github.com/chugaevoleksey-cmyk . Це не посилання на конкретний репозиторій. Віддалене сховище ще не налаштоване; архів містить повну локальну історію .git. Після отримання URL можна додати origin і опублікувати гілку та мітки.
