@@ -5,82 +5,39 @@ namespace PharmacyStock.Tests;
 
 public sealed class PrescriptionDiscountPolicyTests
 {
-    [Fact]
-    public void DiscountFor_ZeroAmount_ReturnsZero()
+    [Theory]
+    [InlineData(0, false, 0)]
+    [InlineData(400, true, 20)]
+    [InlineData(999.99, false, 0)]
+    [InlineData(999.99, true, 50)]
+    [InlineData(1000, false, 100)]
+    [InlineData(1000, true, 150)]
+    [InlineData(1000.01, true, 150)]
+    public void DiscountFor_Boundaries_MatchesTable(double amount, bool isRegular, double expected)
     {
         // Arrange
         var policy = new PrescriptionDiscountPolicy();
 
         // Act
-        decimal actual = policy.DiscountFor(0m, false);
+        decimal actual = policy.DiscountFor((decimal)amount, isRegular);
 
         // Assert
-        Assert.Equal(0m, actual);
+        Assert.Equal((decimal)expected, actual);
     }
 
-    [Fact]
-    public void DiscountFor_RegularPatient_ReturnsFivePercent()
+    [Theory]
+    [InlineData(-0.01)]
+    [InlineData(-1000)]
+    public void DiscountFor_NegativeAmount_ThrowsOutOfRange(double amount)
     {
         // Arrange
         var policy = new PrescriptionDiscountPolicy();
 
         // Act
-        decimal actual = policy.DiscountFor(400m, true);
+        var exception = Assert.Throws<ArgumentOutOfRangeException>(
+            () => policy.DiscountFor((decimal)amount, true));
 
         // Assert
-        Assert.Equal(20m, actual);
+        Assert.Equal("amount", exception.ParamName);
     }
-
-    [Fact]
-    public void DiscountFor_BelowThresholdNewPatient_ReturnsZero()
-    {
-        // Arrange
-        var policy = new PrescriptionDiscountPolicy();
-
-        // Act
-        decimal actual = policy.DiscountFor(999.99m, false);
-
-        // Assert
-        Assert.Equal(0m, actual);
-    }
-
-    [Fact]
-    public void DiscountFor_BelowThresholdRegularPatient_ReturnsFifty()
-    {
-        // Arrange
-        var policy = new PrescriptionDiscountPolicy();
-
-        // Act
-        decimal actual = policy.DiscountFor(999.99m, true);
-
-        // Assert
-        Assert.Equal(50m, actual);
-    }
-
-    [Fact]
-    public void DiscountFor_AtThresholdNewPatient_ReturnsHundred()
-    {
-        // Arrange
-        var policy = new PrescriptionDiscountPolicy();
-
-        // Act
-        decimal actual = policy.DiscountFor(1000m, false);
-
-        // Assert
-        Assert.Equal(100m, actual);
-    }
-
-    [Fact]
-    public void DiscountFor_AtThresholdRegularPatient_ReturnsHundredFifty()
-    {
-        // Arrange
-        var policy = new PrescriptionDiscountPolicy();
-
-        // Act
-        decimal actual = policy.DiscountFor(1000m, true);
-
-        // Assert
-        Assert.Equal(150m, actual);
-    }
-
 }
