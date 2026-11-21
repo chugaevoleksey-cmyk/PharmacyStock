@@ -1,0 +1,42 @@
+name: CI
+on:
+  push:
+    branches: [main, 'feature/**', ci-demo]
+  pull_request:
+    branches: [main]
+permissions:
+  contents: read
+jobs:
+  quality:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Setup .NET 8
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: 8.0.427
+      - name: Restore
+        run: dotnet restore
+      - name: Format
+        run: dotnet format --verify-no-changes --no-restore
+      - name: Build Release warnings as errors
+        run: dotnet build -c Release --no-restore -warnaserror
+      - name: Tests and coverage threshold 70
+        run: >
+          dotnet test -c Release --no-build --no-restore
+          /p:CollectCoverage=true /p:CoverletOutputFormat=cobertura
+          '/p:Include=[PharmacyStock.Core]*'
+          /p:Threshold=70 /p:ThresholdType=line /p:ThresholdStat=total
+      - name: Coverage summary
+        shell: pwsh
+        run: ./tools/coverage.ps1
+      - name: Upload coverage
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: coverage
+          path: |
+            **/coverage.cobertura.xml
+            coverage/index.html
