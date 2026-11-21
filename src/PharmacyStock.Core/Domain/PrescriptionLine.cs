@@ -7,6 +7,7 @@ public sealed record PrescriptionLine
     /// <param name="medicineCode">Nonblank medicine code.</param>
     /// <param name="quantity">Positive number of units.</param>
     /// <param name="unitPrice">Nonnegative price fixed for this line.</param>
+    // TODO TD-03 (28.11.2026): узгодити ці захисні перевірки з перевіреним запитом.
     public PrescriptionLine(string medicineCode, int quantity, decimal unitPrice)
     {
         ArgumentException.ThrowIfNullOrWhiteSpace(medicineCode);

@@ -15,6 +15,7 @@ public sealed class FileAppLog : IAppLog
     /// <param name="path">Шлях, заданий композиційним коренем.</param>
     public FileAppLog(string path) => _path = path;
     /// <inheritdoc/>
+    // TODO TD-02 (28.11.2026): резервний канал, якщо файл журналу недоступний.
     public void Write(string level, string scenario, string message)
     {
         string timestamp = DateTimeOffset.Now.ToString("O", CultureInfo.InvariantCulture);
