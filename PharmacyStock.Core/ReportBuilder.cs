@@ -5,6 +5,9 @@ namespace PharmacyStock.Core;
 /// <summary>Builds a simple report from supplied rows.</summary>
 public sealed class ReportBuilder
 {
+    /// <summary>Gets the report title.</summary>
+    public string Title { get; init; } = "Звіт";
+
     /// <summary>Demonstrates a deliberately rejected compiler warning.</summary>
     /// <param name="count">Number of items.</param>
     /// <returns>The unchanged count as invariant text.</returns>
@@ -13,9 +16,6 @@ public sealed class ReportBuilder
         string note;
         return count.ToString(System.Globalization.CultureInfo.InvariantCulture);
     }
-
-    /// <summary>Gets the report title.</summary>
-    public string Title { get; init; } = "Звіт";
 
     /// <summary>Builds the report with invariant title casing.</summary>
     /// <param name="rows">Rows to append without changing their text.</param>
