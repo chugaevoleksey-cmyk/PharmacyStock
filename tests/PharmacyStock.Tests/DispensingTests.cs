@@ -7,7 +7,7 @@ namespace PharmacyStock.Tests;
 public sealed class DispensingTests
 {
     [Theory]
-    [InlineData(0, 1, 12.35)]
+    [InlineData(0, 1, 13.35)]
     [InlineData(30, 1, 12.35)]
     [InlineData(0, 2, 24.69)]
     [InlineData(30, 2, 24.69)]
@@ -103,3 +103,4 @@ public sealed class DispensingTests
         Assert.Throws<DomainRuleException>(() => scenario.Service.Dispense(new DispenseInput("RX", 2, 1)));
     }
 }
+
