@@ -83,3 +83,7 @@ dotnet_diagnostic.CA1000.severity = none
 [tests/PharmacyStock.Tests/*Tests.cs]
 # LR7 requires Method_Situation_Result names for xUnit methods.
 dotnet_diagnostic.CA1707.severity = none
+
+[*.cs]
+# Відсутність явної культури виводу є помилкою складання.
+dotnet_diagnostic.CA1305.severity = warning
