@@ -132,7 +132,7 @@ public sealed class ErrorHandlingTests
         Service(repository, logger: logger).Pay(1, 200m);
         Assert.Contains(logger.Entries, e => e.Level == LogLevel.Debug);
         Assert.Contains(logger.Entries, e => e.Level == LogLevel.Information);
-        LogEntry warning = Assert.Single(logger.Entries.Where(e => e.Level == LogLevel.Warning));
+        LogEntry warning = Assert.Single(logger.Entries, e => e.Level == LogLevel.Warning);
         Assert.Equal(10m, warning.Values["Extra"]);
         Assert.Equal(1, warning.Scope["PrescriptionId"]);
         Assert.Equal("Переплата {Extra}", warning.Values["{OriginalFormat}"]);
@@ -146,7 +146,7 @@ public sealed class ErrorHandlingTests
         IOException error = Assert.Throws<IOException>(() =>
             Service(repository, logger: logger).Cancel(1, "Навчальний сценарій"));
         Assert.Contains(nameof(FailingRepository.ThrowStorageFailure), error.StackTrace);
-        LogEntry entry = Assert.Single(logger.Entries.Where(e => e.Level == LogLevel.Error));
+        LogEntry entry = Assert.Single(logger.Entries, e => e.Level == LogLevel.Error);
         Assert.Same(error, entry.Exception);
         Assert.Equal(1, entry.Scope["PrescriptionId"]);
         Assert.Equal("Cancel", entry.Values["Operation"]);
