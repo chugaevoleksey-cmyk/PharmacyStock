@@ -1,0 +1,55 @@
+using PharmacyStock.Core.Pricing;
+using Xunit;
+
+namespace PharmacyStock.Tests;
+
+public sealed class PrescriptionDiscountPolicyTests
+{
+    [Theory]
+    [InlineData(0, false, 0)]
+    [InlineData(400, true, 20)]
+    [InlineData(999.99, false, 0)]
+    [InlineData(999.99, true, 50)]
+    [InlineData(1000, false, 100)]
+    [InlineData(1000, true, 150)]
+    [InlineData(1000.01, true, 150)]
+    public void DiscountFor_Boundaries_MatchesTable(double amount, bool isRegular, double expected)
+    {
+        // Arrange
+        var policy = new PrescriptionDiscountPolicy();
+
+        // Act
+        decimal actual = policy.DiscountFor((decimal)amount, isRegular);
+
+        // Assert
+        Assert.Equal((decimal)expected, actual);
+    }
+
+    [Theory]
+    [InlineData(-0.01)]
+    [InlineData(-1000)]
+    public void DiscountFor_NegativeAmount_ThrowsOutOfRange(double amount)
+    {
+        // Arrange
+        var policy = new PrescriptionDiscountPolicy();
+
+        // Act
+        var exception = Assert.Throws<ArgumentOutOfRangeException>(
+            () => policy.DiscountFor((decimal)amount, true));
+
+        // Assert
+        Assert.Equal("amount", exception.ParamName);
+    }
+    [Fact]
+    public void DiscountFor_HugePrescription_IsCappedAt150()
+    {
+        // Arrange
+        var policy = new PrescriptionDiscountPolicy();
+
+        // Act
+        decimal actual = policy.DiscountFor(5000m, true);
+
+        // Assert
+        Assert.Equal(150m, actual);
+    }
+}

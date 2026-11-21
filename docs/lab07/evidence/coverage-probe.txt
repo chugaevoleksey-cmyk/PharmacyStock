@@ -1,0 +1,16 @@
+$ dotnet test tests/PharmacyStock.Tests -c Release --collect:XPlat Code Coverage --settings coverage.runsettings --results-directory C:\Users\chaha\Documents\Codex\2026-11-09\referenced-chatgpt-conversation-this-is-an\work\lr7-evidence\probe-coverage
+
+  Determining projects to restore...
+  All projects are up-to-date for restore.
+  PharmacyStock.Core -> C:\Users\chaha\Documents\Codex\2026-11-09\referenced-chatgpt-conversation-this-is-an\work\PharmacyStock_LR7\PharmacyStock.Core\bin\Release\net8.0\PharmacyStock.Core.dll
+  PharmacyStock.App -> C:\Users\chaha\Documents\Codex\2026-11-09\referenced-chatgpt-conversation-this-is-an\work\PharmacyStock_LR7\PharmacyStock.App\bin\Release\net8.0\PharmacyStock.App.dll
+  PharmacyStock.Tests -> C:\Users\chaha\Documents\Codex\2026-11-09\referenced-chatgpt-conversation-this-is-an\work\PharmacyStock_LR7\tests\PharmacyStock.Tests\bin\Release\net8.0\PharmacyStock.Tests.dll
+Test run for C:\Users\chaha\Documents\Codex\2026-11-09\referenced-chatgpt-conversation-this-is-an\work\PharmacyStock_LR7\tests\PharmacyStock.Tests\bin\Release\net8.0\PharmacyStock.Tests.dll (.NETCoreApp,Version=v8.0)
+A total of 1 test files matched the specified pattern.
+
+Passed!  - Failed:     0, Passed:    61, Skipped:     0, Total:    61, Duration: 74 ms - PharmacyStock.Tests.dll (net8.0)
+
+Attachments:
+  C:\Users\chaha\Documents\Codex\2026-11-09\referenced-chatgpt-conversation-this-is-an\work\lr7-evidence\probe-coverage\ff1f2ddd-22b6-4b4f-b77f-3804ffdaf2d6\coverage.cobertura.xml
+
+Exit code: 0

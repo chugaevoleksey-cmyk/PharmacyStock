@@ -1,0 +1,91 @@
+{
+  "before": [
+    {
+      "file": "Storage/InMemoryPrescriptionRepository.cs",
+      "line": 44,
+      "coverage": "50% (1/2)"
+    },
+    {
+      "file": "Services/PrescriptionService.cs",
+      "line": 124,
+      "coverage": "50% (2/4)"
+    },
+    {
+      "file": "Services/PrescriptionService.cs",
+      "line": 146,
+      "coverage": "50% (1/2)"
+    },
+    {
+      "file": "Services/PrescriptionService.cs",
+      "line": 152,
+      "coverage": "50% (1/2)"
+    },
+    {
+      "file": "Reporting/PrescriptionCsvReport.cs",
+      "line": 29,
+      "coverage": "0% (0/2)"
+    },
+    {
+      "file": "Errors/Result.cs",
+      "line": 27,
+      "coverage": "75% (3/4)"
+    },
+    {
+      "file": "Domain/Medicine.cs",
+      "line": 48,
+      "coverage": "0% (0/2)"
+    },
+    {
+      "file": "Domain/Patient.cs",
+      "line": 16,
+      "coverage": "0% (0/2)"
+    },
+    {
+      "file": "Domain/Prescription.cs",
+      "line": 54,
+      "coverage": "50% (1/2)"
+    },
+    {
+      "file": "Domain/Prescription.cs",
+      "line": 93,
+      "coverage": "50% (2/4)"
+    }
+  ],
+  "after": [
+    {
+      "file": "Storage/InMemoryPrescriptionRepository.cs",
+      "line": 44,
+      "coverage": "50% (1/2)"
+    },
+    {
+      "file": "Services/PrescriptionService.cs",
+      "line": 124,
+      "coverage": "50% (2/4)"
+    },
+    {
+      "file": "Services/PrescriptionService.cs",
+      "line": 146,
+      "coverage": "50% (1/2)"
+    },
+    {
+      "file": "Errors/Result.cs",
+      "line": 27,
+      "coverage": "75% (3/4)"
+    },
+    {
+      "file": "Domain/Patient.cs",
+      "line": 16,
+      "coverage": "50% (1/2)"
+    },
+    {
+      "file": "Domain/Prescription.cs",
+      "line": 54,
+      "coverage": "50% (1/2)"
+    },
+    {
+      "file": "Domain/Prescription.cs",
+      "line": 93,
+      "coverage": "50% (2/4)"
+    }
+  ]
+}

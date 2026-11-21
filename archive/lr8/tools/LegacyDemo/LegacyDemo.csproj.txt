@@ -1,0 +1,4 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup><OutputType>Exe</OutputType><EnableNETAnalyzers>false</EnableNETAnalyzers><EnforceCodeStyleInBuild>false</EnforceCodeStyleInBuild></PropertyGroup>
+  <ItemGroup><ProjectReference Include="../../src/Legacy/PharmacyStock.Legacy.csproj" /></ItemGroup>
+</Project>

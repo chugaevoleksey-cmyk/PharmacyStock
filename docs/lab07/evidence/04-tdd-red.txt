@@ -1,0 +1,23 @@
+$ dotnet test tests/PharmacyStock.Tests -c Release --filter FullyQualifiedName~DiscountFor_HugePrescription --nologo
+
+  Determining projects to restore...
+  All projects are up-to-date for restore.
+  PharmacyStock.Core -> C:\Users\chaha\Documents\Codex\2026-11-09\referenced-chatgpt-conversation-this-is-an\work\PharmacyStock_LR7\PharmacyStock.Core\bin\Release\net8.0\PharmacyStock.Core.dll
+  PharmacyStock.App -> C:\Users\chaha\Documents\Codex\2026-11-09\referenced-chatgpt-conversation-this-is-an\work\PharmacyStock_LR7\PharmacyStock.App\bin\Release\net8.0\PharmacyStock.App.dll
+  PharmacyStock.Tests -> C:\Users\chaha\Documents\Codex\2026-11-09\referenced-chatgpt-conversation-this-is-an\work\PharmacyStock_LR7\tests\PharmacyStock.Tests\bin\Release\net8.0\PharmacyStock.Tests.dll
+Test run for C:\Users\chaha\Documents\Codex\2026-11-09\referenced-chatgpt-conversation-this-is-an\work\PharmacyStock_LR7\tests\PharmacyStock.Tests\bin\Release\net8.0\PharmacyStock.Tests.dll (.NETCoreApp,Version=v8.0)
+A total of 1 test files matched the specified pattern.
+  Failed PharmacyStock.Tests.PrescriptionDiscountPolicyTests.DiscountFor_HugePrescription_IsCappedAt150 [4 ms]
+  Error Message:
+   Assert.Equal() Failure: Values differ
+Expected: 150
+Actual:   750,00
+  Stack Trace:
+     at PharmacyStock.Tests.PrescriptionDiscountPolicyTests.DiscountFor_HugePrescription_IsCappedAt150() in C:\Users\chaha\Documents\Codex\2026-11-09\referenced-chatgpt-conversation-this-is-an\work\PharmacyStock_LR7\tests\PharmacyStock.Tests\PrescriptionDiscountPolicyTests.cs:line 53
+   at System.RuntimeMethodHandle.InvokeMethod(Object target, Void** arguments, Signature sig, Boolean isConstructor)
+   at System.Reflection.MethodBaseInvoker.InvokeWithNoArgs(Object obj, BindingFlags invokeAttr)
+
+Failed!  - Failed:     1, Passed:     0, Skipped:     0, Total:     1, Duration: 4 ms - PharmacyStock.Tests.dll (net8.0)
+[xUnit.net 00:00:00.18]     PharmacyStock.Tests.PrescriptionDiscountPolicyTests.DiscountFor_HugePrescription_IsCappedAt150 [FAIL]
+
+Exit code: 1
