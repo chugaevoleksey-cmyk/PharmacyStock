@@ -1,18 +1,11 @@
 <Project Sdk="Microsoft.NET.Sdk">
-  <PropertyGroup>
-    <TargetFramework>net8.0</TargetFramework>
-    <ImplicitUsings>enable</ImplicitUsings>
-    <Nullable>enable</Nullable>
-    <IsTestProject>true</IsTestProject>
-    <IsPackable>false</IsPackable>
-  </PropertyGroup>
-  <ItemGroup>
-    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.8.0" />
-    <PackageReference Include="xunit" Version="2.5.3" />
-    <PackageReference Include="xunit.runner.visualstudio" Version="2.5.3" />
-    <ProjectReference Include="../../PharmacyStock.Core/PharmacyStock.Core.csproj" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="../../PharmacyStock.App/PharmacyStock.App.csproj" />
-  </ItemGroup>
+ <PropertyGroup><IsTestProject>true</IsTestProject><IsPackable>false</IsPackable></PropertyGroup>
+ <ItemGroup>
+  <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.8.0" />
+  <PackageReference Include="xunit" Version="2.9.3" />
+  <PackageReference Include="xunit.runner.visualstudio" Version="2.5.3" />
+  <PackageReference Include="coverlet.msbuild" Version="6.0.2" PrivateAssets="all" />
+  <ProjectReference Include="../../src/PharmacyStock.Core/PharmacyStock.Core.csproj" />
+  <ProjectReference Include="../../src/PharmacyStock.Infrastructure/PharmacyStock.Infrastructure.csproj" />
+ </ItemGroup>
 </Project>

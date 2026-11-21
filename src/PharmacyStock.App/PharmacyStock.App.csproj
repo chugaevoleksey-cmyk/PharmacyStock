@@ -1,0 +1,5 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup><OutputType>Exe</OutputType></PropertyGroup>
+  <ItemGroup><ProjectReference Include="../PharmacyStock.Core/PharmacyStock.Core.csproj" /></ItemGroup>
+  <ItemGroup><ProjectReference Include="../PharmacyStock.Infrastructure/PharmacyStock.Infrastructure.csproj" /></ItemGroup>
+</Project>

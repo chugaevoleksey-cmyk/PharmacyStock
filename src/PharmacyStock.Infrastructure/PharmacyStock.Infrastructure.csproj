@@ -1,0 +1,5 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup><GenerateDocumentationFile>true</GenerateDocumentationFile></PropertyGroup>
+  <ItemGroup><ProjectReference Include="../PharmacyStock.Core/PharmacyStock.Core.csproj" /></ItemGroup>
+  
+</Project>

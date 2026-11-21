@@ -79,3 +79,10 @@ dotnet_naming_style.pascal_case.capitalization = pascal_case
 [PharmacyStock.Core/Errors/Result.cs]
 # Фабрики Result<T>.Ok/Fail є явним контрактом ЛР5; правило вимкнено лише для цього типу.
 dotnet_diagnostic.CA1000.severity = none
+
+[src/PharmacyStock.Core/**/*.cs]
+dotnet_diagnostic.CS1591.severity = error
+
+[tests/**/*.cs]
+# SR3 requires Method_Situation_Result test names.
+dotnet_diagnostic.CA1707.severity = none
