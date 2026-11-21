@@ -1,6 +1,6 @@
 namespace PharmacyStock.Core.Domain;
 
-/// <summary>Represents the PrescriptionLine type.</summary>
+/// <summary>Незмінна позиція рецепта з ціною, зафіксованою при створенні.</summary>
 public sealed record PrescriptionLine
 {
     /// <summary>Initializes a new instance of the <see cref="PrescriptionLine"/> class.</summary>
@@ -18,15 +18,15 @@ public sealed record PrescriptionLine
         UnitPrice = unitPrice;
     }
 
-    /// <summary>Gets the MedicineCode value.</summary>
+    /// <summary>Ключ препарату каталогу.</summary>
     public string MedicineCode { get; }
 
-    /// <summary>Gets the Quantity value.</summary>
+    /// <summary>Додатна кількість дозволених одиниць.</summary>
     public int Quantity { get; }
 
-    /// <summary>Gets the UnitPrice value.</summary>
+    /// <summary>Ціна одиниці на момент створення рецепта.</summary>
     public decimal UnitPrice { get; }
 
-    /// <summary>Gets the Amount value.</summary>
+    /// <summary>Неокруглена сума позиції; правило відпуску округлює підсумок.</summary>
     public decimal Amount => Quantity * UnitPrice;
 }

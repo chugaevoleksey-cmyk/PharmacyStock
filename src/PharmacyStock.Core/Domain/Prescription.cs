@@ -4,7 +4,7 @@ using PharmacyStock.Core.Errors;
 
 namespace PharmacyStock.Core.Domain;
 
-/// <summary>Represents the Prescription type.</summary>
+/// <summary>Рецепт зі станом і закритою колекцією незмінних позицій.</summary>
 public sealed class Prescription
 {
     private readonly List<PrescriptionLine> _lines = new();
@@ -25,19 +25,19 @@ public sealed class Prescription
         _readOnlyLines = _lines.AsReadOnly();
     }
 
-    /// <summary>Gets the Id value.</summary>
+    /// <summary>Умовний номер документа, унікальний у сховищі.</summary>
     public int Id { get; }
 
-    /// <summary>Gets the PatientId value.</summary>
+    /// <summary>Умовний номер пацієнта без персональних даних.</summary>
     public int PatientId { get; }
 
-    /// <summary>Gets the CreatedAt value.</summary>
+    /// <summary>Початкова дата для перевірки строку рецепта.</summary>
     public DateOnly CreatedAt { get; }
 
-    /// <summary>Gets the Status value.</summary>
+    /// <summary>Поточний стан, змінюваний лише дозволеними командами.</summary>
     public PrescriptionStatus Status { get; private set; }
 
-    /// <summary>Gets the Lines value.</summary>
+    /// <summary>Позиції лише для читання; додавання дозволено у стані New.</summary>
     public IReadOnlyList<PrescriptionLine> Lines => _readOnlyLines;
 
     /// <summary>Adds an immutable line only while the prescription is new.</summary>
