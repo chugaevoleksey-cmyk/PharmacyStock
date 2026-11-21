@@ -14,6 +14,9 @@ public sealed class PrescriptionDiscountPolicy : IPrescriptionDiscountPolicy
     /// <summary>The minimum amount qualifying for the large-prescription rate.</summary>
     public const decimal BigPrescriptionFrom = 1000m;
 
+    /// <summary>The maximum promotional discount.</summary>
+    public const decimal MaxDiscount = 150m;
+
     /// <summary>Calculates a discount independently from individual-line pricing policies.</summary>
     /// <param name="amount">Nonnegative prescription amount before the promotion.</param>
     /// <param name="isRegular">Whether the patient qualifies for the regular-patient rate.</param>
@@ -36,6 +39,12 @@ public sealed class PrescriptionDiscountPolicy : IPrescriptionDiscountPolicy
             rate += BigPrescriptionRate;
         }
 
-        return decimal.Round(amount * rate, 2);
+        decimal discount = decimal.Round(amount * rate, 2);
+        if (discount > MaxDiscount)
+        {
+            discount = MaxDiscount;
+        }
+
+        return discount;
     }
 }
