@@ -5,6 +5,8 @@ namespace PharmacyStock.Core.Application;
 /// <summary>Виконує сценарії зміни без залежності від консолі та формату файла.</summary>
 public sealed partial class StockService
 {
+    private const int MoneyDecimals = 2;
+
     private readonly IStockRepository _repository;
     private readonly IClock _clock;
     private readonly IDispensingPolicy _policy;
@@ -16,6 +18,10 @@ public sealed partial class StockService
     /// <param name="log">Журнал контрольованих подій.</param>
     public StockService(IStockRepository repository, IClock clock, IDispensingPolicy policy, IAppLog log)
     {
+        ArgumentNullException.ThrowIfNull(repository);
+        ArgumentNullException.ThrowIfNull(clock);
+        ArgumentNullException.ThrowIfNull(policy);
+        ArgumentNullException.ThrowIfNull(log);
         _repository = repository;
         _clock = clock;
         _policy = policy;
@@ -57,7 +63,7 @@ public sealed partial class StockService
         }
         Medicine medicine = RequireMedicine(input.Code);
         Prescription? prescription = _repository.Prescriptions.SingleOrDefault(x => x.Id == input.PrescriptionId);
-        decimal amount = Math.Round(medicine.Price * input.Quantity, 2, MidpointRounding.AwayFromZero);
+        decimal amount = Math.Round(medicine.Price * input.Quantity, MoneyDecimals, MidpointRounding.AwayFromZero);
         Logged("UC-01", () =>
         {
             _policy.Check(medicine, input, prescription, _clock.Today);

@@ -35,7 +35,7 @@ public sealed partial class JsonStockRepository
         }
     }
     private static bool InvalidMedicine(Medicine medicine) => string.IsNullOrWhiteSpace(medicine.Code)
-        || string.IsNullOrWhiteSpace(medicine.Name) || medicine.Price <= 0 || medicine.Rules is null;
+        || string.IsNullOrWhiteSpace(medicine.Name) || medicine.Price <= 0 || medicine.Price > InputValidation.MaximumPrice || medicine.Rules is null;
 
     private static void ValidateBatches(StockBatch[] batches, HashSet<string> codes)
     {

@@ -22,6 +22,8 @@ public static class InputValidation
 {
     /// <summary>Найбільше одиниць в одному навчальному запиті.</summary>
     public const int MaximumQuantity = 1000;
+    /// <summary>Верхня межа навчальної ціни; запобігає переповненню при множенні.</summary>
+    public const decimal MaximumPrice = 1000000m;
     /// <summary>Найбільший горизонт звіту в днях.</summary>
     public const int MaximumHorizon = 90;
     /// <summary>Перевіряє код і кількість до виконання сценарію.</summary>

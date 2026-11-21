@@ -8,10 +8,11 @@ internal static class Program
     public static void Main(string[] args)
     {
         Directory.CreateDirectory("runtime");
-        string path = "runtime/stock.json";
-        if (!File.Exists(path))
+        bool demo = args.Contains("--demo", StringComparer.Ordinal);
+        string path = demo ? "runtime/demo-stock.json" : "runtime/stock.json";
+        if (demo || !File.Exists(path))
         {
-            File.Copy(Path.Combine(AppContext.BaseDirectory, "data/seed.json"), path);
+            File.Copy(Path.Combine(AppContext.BaseDirectory, "data/seed.json"), path, true);
         }
         var repository = new JsonStockRepository(path);
         var log = new FileAppLog("runtime/app.log");
