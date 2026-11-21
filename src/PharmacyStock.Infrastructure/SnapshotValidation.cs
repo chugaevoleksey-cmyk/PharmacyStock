@@ -20,11 +20,11 @@ public sealed partial class JsonStockRepository
         var codes = new HashSet<string>(StringComparer.Ordinal);
         foreach (Medicine medicine in medicines)
         {
-            if (medicine is null || !codes.Add(medicine.Code) || string.IsNullOrWhiteSpace(medicine.Name))
+            if (medicine is null || !codes.Add(medicine.Code))
             {
                 throw new InvalidDataException("Некоректний каталог.");
             }
-            if (string.IsNullOrWhiteSpace(medicine.Code) || medicine.Price <= 0 || medicine.Rules is null)
+            if (InvalidMedicine(medicine))
             {
                 throw new InvalidDataException("Некоректні код ціна або правила.");
             }
@@ -34,6 +34,9 @@ public sealed partial class JsonStockRepository
             }
         }
     }
+    private static bool InvalidMedicine(Medicine medicine) => string.IsNullOrWhiteSpace(medicine.Code)
+        || string.IsNullOrWhiteSpace(medicine.Name) || medicine.Price <= 0 || medicine.Rules is null;
+
     private static void ValidateBatches(StockBatch[] batches, HashSet<string> codes)
     {
         var ids = new HashSet<int>();
@@ -61,9 +64,15 @@ public sealed partial class JsonStockRepository
             ValidateLines(data, codes);
         }
     }
+    private static bool InvalidDocument(PrescriptionData data) => !Enum.IsDefined(data.Status)
+        || data.Lines is null || data.Lines.Length > 1;
+
+    private static bool InvalidLine(PrescriptionLine line, HashSet<string> codes) => line is null
+        || !codes.Contains(line.MedicineCode) || !InputValidation.Line(line.MedicineCode, line.Quantity).IsValid;
+
     private static void ValidateLines(PrescriptionData data, HashSet<string> codes)
     {
-        if (!Enum.IsDefined(data.Status) || data.Lines is null || data.Lines.Length > 1)
+        if (InvalidDocument(data))
         {
             throw new InvalidDataException("Некоректний стан або більше однієї позиції.");
         }
@@ -73,7 +82,7 @@ public sealed partial class JsonStockRepository
         }
         foreach (PrescriptionLine line in data.Lines)
         {
-            if (line is null || !codes.Contains(line.MedicineCode) || !InputValidation.Line(line.MedicineCode, line.Quantity).IsValid)
+            if (InvalidLine(line, codes))
             {
                 throw new InvalidDataException("Некоректна позиція рецепта.");
             }
