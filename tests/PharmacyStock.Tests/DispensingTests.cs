@@ -12,6 +12,7 @@ public sealed class DispensingTests
     [InlineData(0, 2, 24.69)]
     [InlineData(30, 2, 24.69)]
     [InlineData(0, 10, 123.45)]
+    [InlineData(30, 10, 123.45)]
     public void Dispense_ValidBoundary_ChargesAndCloses(int age, int units, decimal expected)
     {
         var scenario = new Scenario();
