@@ -87,3 +87,13 @@ dotnet_diagnostic.CA1707.severity = none
 [*.cs]
 # Відсутність явної культури виводу є помилкою складання.
 dotnet_diagnostic.CA1305.severity = warning
+
+[*.cs]
+# F-03: LF забезпечує однаковий diff на Windows і Linux.
+end_of_line = lf
+# S-02: дужки для одиночного оператора є обов'язковими.
+csharp_prefer_braces = true:error
+dotnet_diagnostic.IDE0011.severity = error
+# C-07: публічний API Core документується; тестові допоміжні типи поза цим правилом.
+[PharmacyStock.Core/**/*.cs]
+dotnet_diagnostic.CS1591.severity = error
