@@ -488,3 +488,5 @@ data/*.local.json
 # Runtime audit files and exports are local to the running application.
 runtime/
 *.audit
+
+coverage/
