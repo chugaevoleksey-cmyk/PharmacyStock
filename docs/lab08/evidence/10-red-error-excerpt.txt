@@ -1,0 +1,3 @@
+/home/runner/work/PharmacyStock/PharmacyStock/PharmacyStock.Core/ReportBuilder.cs(16,16): error CS0168: The variable 'note' is declared but never used [/home/runner/work/PharmacyStock/PharmacyStock/PharmacyStock.Core/PharmacyStock.Core.csproj]
+/home/runner/work/PharmacyStock/PharmacyStock/PharmacyStock.Core/ReportBuilder.cs(16,16): error CS0168: The variable 'note' is declared but never used [/home/runner/work/PharmacyStock/PharmacyStock/PharmacyStock.Core/PharmacyStock.Core.csproj]
+Process completed with exit code 1.
