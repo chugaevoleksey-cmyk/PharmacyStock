@@ -2,6 +2,7 @@ using System.Globalization;
 using Microsoft.Extensions.Logging;
 using PharmacyStock.App.Infrastructure;
 using PharmacyStock.App.Input;
+using PharmacyStock.Core;
 using PharmacyStock.Core.Abstractions;
 using PharmacyStock.Core.Domain;
 using PharmacyStock.Core.Errors;
@@ -21,6 +22,7 @@ public static class Program
     /// <returns>The result of the operation.</returns>
     public static int Main(string[] args)
     {
+        Console.WriteLine($"PharmacyStock v{VersionInfo.Current()}");
         using ILoggerFactory factory = LoggerFactory.Create(builder =>
         {
             builder.AddSimpleConsole(options =>
