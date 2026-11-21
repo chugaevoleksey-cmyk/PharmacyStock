@@ -1,0 +1,45 @@
+name: CI
+
+on:
+  push:
+    branches: [main, 'feature/**']
+  pull_request:
+    branches: [main]
+
+permissions:
+  contents: read
+
+jobs:
+  quality:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Setup .NET 8
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: 8.0.427
+      - name: Restore and audit
+        run: dotnet restore
+      - name: Verify formatting
+        run: dotnet format --verify-no-changes --no-restore
+      - name: Build Release
+        run: dotnet build -c Release --no-restore
+      - name: Tests and coverage gate
+        run: >
+          dotnet test -c Release --no-restore
+          /p:CollectCoverage=true /p:CoverletOutputFormat=cobertura
+          /p:Threshold=60 /p:ThresholdType=line /p:ThresholdStat=total
+          '/p:Include=[PharmacyStock.Core]*'
+      - name: Dependency audit details
+        run: |
+          dotnet list package --vulnerable --include-transitive
+          dotnet list package --outdated
+      - name: Upload coverage
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: coverage
+          path: '**/coverage.cobertura.xml'
+          if-no-files-found: warn
