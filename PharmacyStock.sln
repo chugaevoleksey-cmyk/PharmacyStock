@@ -1,0 +1,50 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.0.31903.59
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{53B737D0-DC86-45CB-92F6-02D218C8C5A5}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PharmacyStock.App", "src\PharmacyStock.App\PharmacyStock.App.csproj", "{12AC9E46-6E54-4EE5-A5CB-C5E37A6BB647}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PharmacyStock.Core", "src\PharmacyStock.Core\PharmacyStock.Core.csproj", "{100E3111-4904-42CF-AD13-6C1C11F008BB}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PharmacyStock.Infrastructure", "src\PharmacyStock.Infrastructure\PharmacyStock.Infrastructure.csproj", "{7CF75173-DF27-44B2-A80E-DEA4F53D273E}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{7CA4D6CB-7924-477D-9FD7-EAE24D098A22}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PharmacyStock.Tests", "tests\PharmacyStock.Tests\PharmacyStock.Tests.csproj", "{2BB4BA1E-1FC5-463B-9ECB-7E0482A276EE}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{12AC9E46-6E54-4EE5-A5CB-C5E37A6BB647}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{12AC9E46-6E54-4EE5-A5CB-C5E37A6BB647}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{12AC9E46-6E54-4EE5-A5CB-C5E37A6BB647}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{12AC9E46-6E54-4EE5-A5CB-C5E37A6BB647}.Release|Any CPU.Build.0 = Release|Any CPU
+		{100E3111-4904-42CF-AD13-6C1C11F008BB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{100E3111-4904-42CF-AD13-6C1C11F008BB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{100E3111-4904-42CF-AD13-6C1C11F008BB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{100E3111-4904-42CF-AD13-6C1C11F008BB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7CF75173-DF27-44B2-A80E-DEA4F53D273E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7CF75173-DF27-44B2-A80E-DEA4F53D273E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7CF75173-DF27-44B2-A80E-DEA4F53D273E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7CF75173-DF27-44B2-A80E-DEA4F53D273E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2BB4BA1E-1FC5-463B-9ECB-7E0482A276EE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2BB4BA1E-1FC5-463B-9ECB-7E0482A276EE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2BB4BA1E-1FC5-463B-9ECB-7E0482A276EE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2BB4BA1E-1FC5-463B-9ECB-7E0482A276EE}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{12AC9E46-6E54-4EE5-A5CB-C5E37A6BB647} = {53B737D0-DC86-45CB-92F6-02D218C8C5A5}
+		{100E3111-4904-42CF-AD13-6C1C11F008BB} = {53B737D0-DC86-45CB-92F6-02D218C8C5A5}
+		{7CF75173-DF27-44B2-A80E-DEA4F53D273E} = {53B737D0-DC86-45CB-92F6-02D218C8C5A5}
+		{2BB4BA1E-1FC5-463B-9ECB-7E0482A276EE} = {7CA4D6CB-7924-477D-9FD7-EAE24D098A22}
+	EndGlobalSection
+EndGlobal
