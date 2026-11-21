@@ -488,3 +488,6 @@ data/*.local.json
 # Runtime audit files and exports are local to the running application.
 runtime/
 *.audit
+
+# Generated coverage and metric-tool build products
+coverage/
