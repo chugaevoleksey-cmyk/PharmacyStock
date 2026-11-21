@@ -1,0 +1,33 @@
+$ dotnet test tests/PharmacyStock.Tests -c Release --filter FullyQualifiedName~PrescriptionDiscountPolicyTests --nologo
+
+  Determining projects to restore...
+  All projects are up-to-date for restore.
+  PharmacyStock.Core -> C:\Users\chaha\Documents\Codex\2026-11-09\referenced-chatgpt-conversation-this-is-an\work\PharmacyStock_LR7\PharmacyStock.Core\bin\Release\net8.0\PharmacyStock.Core.dll
+  PharmacyStock.App -> C:\Users\chaha\Documents\Codex\2026-11-09\referenced-chatgpt-conversation-this-is-an\work\PharmacyStock_LR7\PharmacyStock.App\bin\Release\net8.0\PharmacyStock.App.dll
+  PharmacyStock.Tests -> C:\Users\chaha\Documents\Codex\2026-11-09\referenced-chatgpt-conversation-this-is-an\work\PharmacyStock_LR7\tests\PharmacyStock.Tests\bin\Release\net8.0\PharmacyStock.Tests.dll
+Test run for C:\Users\chaha\Documents\Codex\2026-11-09\referenced-chatgpt-conversation-this-is-an\work\PharmacyStock_LR7\tests\PharmacyStock.Tests\bin\Release\net8.0\PharmacyStock.Tests.dll (.NETCoreApp,Version=v8.0)
+A total of 1 test files matched the specified pattern.
+  Failed PharmacyStock.Tests.PrescriptionDiscountPolicyTests.DiscountFor_AtThresholdRegularPatient_ReturnsHundredFifty [5 ms]
+  Error Message:
+   Assert.Equal() Failure: Values differ
+Expected: 150
+Actual:   50,00
+  Stack Trace:
+     at PharmacyStock.Tests.PrescriptionDiscountPolicyTests.DiscountFor_AtThresholdRegularPatient_ReturnsHundredFifty() in C:\Users\chaha\Documents\Codex\2026-11-09\referenced-chatgpt-conversation-this-is-an\work\PharmacyStock_LR7\tests\PharmacyStock.Tests\PrescriptionDiscountPolicyTests.cs:line 83
+   at System.RuntimeMethodHandle.InvokeMethod(Object target, Void** arguments, Signature sig, Boolean isConstructor)
+   at System.Reflection.MethodBaseInvoker.InvokeWithNoArgs(Object obj, BindingFlags invokeAttr)
+  Failed PharmacyStock.Tests.PrescriptionDiscountPolicyTests.DiscountFor_AtThresholdNewPatient_ReturnsHundred [< 1 ms]
+  Error Message:
+   Assert.Equal() Failure: Values differ
+Expected: 100
+Actual:   0
+  Stack Trace:
+     at PharmacyStock.Tests.PrescriptionDiscountPolicyTests.DiscountFor_AtThresholdNewPatient_ReturnsHundred() in C:\Users\chaha\Documents\Codex\2026-11-09\referenced-chatgpt-conversation-this-is-an\work\PharmacyStock_LR7\tests\PharmacyStock.Tests\PrescriptionDiscountPolicyTests.cs:line 70
+   at System.RuntimeMethodHandle.InvokeMethod(Object target, Void** arguments, Signature sig, Boolean isConstructor)
+   at System.Reflection.MethodBaseInvoker.InvokeWithNoArgs(Object obj, BindingFlags invokeAttr)
+
+Failed!  - Failed:     2, Passed:     4, Skipped:     0, Total:     6, Duration: 8 ms - PharmacyStock.Tests.dll (net8.0)
+[xUnit.net 00:00:00.18]     PharmacyStock.Tests.PrescriptionDiscountPolicyTests.DiscountFor_AtThresholdRegularPatient_ReturnsHundredFifty [FAIL]
+[xUnit.net 00:00:00.18]     PharmacyStock.Tests.PrescriptionDiscountPolicyTests.DiscountFor_AtThresholdNewPatient_ReturnsHundred [FAIL]
+
+Exit code: 1

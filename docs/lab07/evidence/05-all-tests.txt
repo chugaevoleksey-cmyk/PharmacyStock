@@ -1,0 +1,19 @@
+$ dotnet test -c Release --nologo
+
+  Determining projects to restore...
+  All projects are up-to-date for restore.
+  PharmacyStock.Legacy -> C:\Users\chaha\Documents\Codex\2026-11-09\referenced-chatgpt-conversation-this-is-an\work\PharmacyStock_LR7\src\Legacy\bin\Release\net8.0\PharmacyStock.Legacy.dll
+  PharmacyStock.Core -> C:\Users\chaha\Documents\Codex\2026-11-09\referenced-chatgpt-conversation-this-is-an\work\PharmacyStock_LR7\PharmacyStock.Core\bin\Release\net8.0\PharmacyStock.Core.dll
+  PharmacyStock.Legacy.Tests -> C:\Users\chaha\Documents\Codex\2026-11-09\referenced-chatgpt-conversation-this-is-an\work\PharmacyStock_LR7\tests\Legacy.Tests\bin\Release\net8.0\PharmacyStock.Legacy.Tests.dll
+Test run for C:\Users\chaha\Documents\Codex\2026-11-09\referenced-chatgpt-conversation-this-is-an\work\PharmacyStock_LR7\tests\Legacy.Tests\bin\Release\net8.0\PharmacyStock.Legacy.Tests.dll (.NETCoreApp,Version=v8.0)
+  PharmacyStock.App -> C:\Users\chaha\Documents\Codex\2026-11-09\referenced-chatgpt-conversation-this-is-an\work\PharmacyStock_LR7\PharmacyStock.App\bin\Release\net8.0\PharmacyStock.App.dll
+A total of 1 test files matched the specified pattern.
+  PharmacyStock.Tests -> C:\Users\chaha\Documents\Codex\2026-11-09\referenced-chatgpt-conversation-this-is-an\work\PharmacyStock_LR7\tests\PharmacyStock.Tests\bin\Release\net8.0\PharmacyStock.Tests.dll
+Test run for C:\Users\chaha\Documents\Codex\2026-11-09\referenced-chatgpt-conversation-this-is-an\work\PharmacyStock_LR7\tests\PharmacyStock.Tests\bin\Release\net8.0\PharmacyStock.Tests.dll (.NETCoreApp,Version=v8.0)
+A total of 1 test files matched the specified pattern.
+
+Passed!  - Failed:     0, Passed:    30, Skipped:     0, Total:    30, Duration: 59 ms - PharmacyStock.Legacy.Tests.dll (net8.0)
+
+Passed!  - Failed:     0, Passed:    74, Skipped:     0, Total:    74, Duration: 78 ms - PharmacyStock.Tests.dll (net8.0)
+
+Exit code: 0

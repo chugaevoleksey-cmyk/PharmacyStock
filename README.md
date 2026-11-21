@@ -1,48 +1,47 @@
-# PharmacyStock — лабораторна робота №6, варіант 19
+# PharmacyStock — ЛР7, варіант 19
+Чугаєв Олексій Михайлович, група 471. Гілка `lab07-tests`.
 
-Чугаєв Олексій Михайлович, група 471. Гілка `lab6-refactoring`. Успадкований навчальний модуль ізольовано від сучасного Core у `src/Legacy`.
-
-## Запуск
-Розпакуйте архів у **нову порожню папку** і відкрийте корінь із PharmacyStock.sln у VS Code.
-Встановлено .NET SDK 10 та runtime .NET/ASP.NET Core 8; застосунок і тести мають ціль net8.0.
+## Відкрити та перевірити
+Розпакуйте у нову порожню папку й відкрийте у VS Code папку з PharmacyStock.sln.
 ```
 dotnet build -c Release -warnaserror
 dotnet test -c Release
-dotnet run --project tools/LegacyDemo
+dotnet test tests/PharmacyStock.Tests -c Release --filter "FullyQualifiedName~PrescriptionDiscountPolicyTests|FullyQualifiedName~PrescriptionServiceDoubleTests|FullyQualifiedName~UncoveredBranchTests"
 ```
-Результат: 30 характеризаційних + 61 попередній тест = 91. Демонстрація дає VIP-звіт 655.00, 4 ERR, межу доставки 1000 та журнал. Фактичної розсилки пошти немає. Старий `PharmacyStock.App` демонструє ЛР5; для ЛР6 запускайте саме `tools/LegacyDemo`.
-
-NuGet.Config виключає мережеві джерела і використовує вже заповнений кеш. Якщо пакети на новому комп’ютері відсутні:
+Повне рішення: 80 тестів основного проєкту + 30 Legacy = 110, без пропущених. Лише нові тести ЛР7 — 19. Пакети xUnit 2.5.3, Test SDK 17.8.0 та Coverlet 6.0.0. Проєкти застосунку й тестів net8.0; встановлено SDK 10 і .NET/ASP.NET Core runtime 8.
+Якщо на новому ПК немає кешу пакетів:
 ```
 dotnet restore --source https://api.nuget.org/v3/index.json
 ```
 
-## Докази до і після
-Стан до рефакторингів — мітка `lab6-before`; фінальна мітка — `lab6`. Початковий лістинг: docs/lab06/LegacyPrescriptionProcessor.before.cs.txt. Тест LegacyCharacterizationTests.cs не змінювався після початкового коміту; лише LegacyCalls адаптує нові типи та API.
-```
-git switch --detach lab6-before
-dotnet test tests/Legacy.Tests -c Release
-git switch lab6-refactoring
-dotnet test tests/Legacy.Tests -c Release
-```
-В обох випадках мають пройти ті самі 30 випадків. Перед переходом стан Git має бути чистим. Десять refactor-комітів перевірено окремо; журнал і хеші — docs/lab06/history-verification.json. У всіх також проходять 61 попередній тест.
+## Що змінено
+Нова `PrescriptionDiscountPolicy` розраховує промо-знижку на повну суму рецепта: постійний пацієнт 5%, сума від 1000 дає ще 10%, стеля 150 грн. Це окреме правило, а не непомітна заміна цін позицій або тарифів Legacy. Звичайний запуск PharmacyStock.App зберігає поведінку ЛР5; основний результат ЛР7 демонструється тестами.
+Сервіс з ЛР5 уже отримує репозиторій, ціноутворення, повідомлення й ILogger через конструктор. Для дублерів його конструктор змінювати не знадобилося. `Pay` зберігає рецепт через Save, тому лічильник перевірено саме в Pay, а не в Place (Place виконує Add і Notify). Невідомий ID дає існуючий DomainRuleException, а не KeyNotFoundException зі зразка ShopOrders.
 
-## Метрики
+## Цикл TDD
+Мітки `lab7-red`, `lab7-green`, `lab7-refactor` відповідають рівно трьом послідовним комітам. Червоний змінює лише файл тестів; зелений і рефакторинг — лише файл політики. У першій фазі 5000 × 15% = 750 замість потрібних 150, тест падає. Цей стан навмисний.
+Відтворення (починайте з чистого git status):
 ```
-dotnet run --project tools/LegacyMetrics -- src/Legacy
+git switch --detach lab7-red
+dotnet test tests/PharmacyStock.Tests -c Release --filter FullyQualifiedName~DiscountFor_HugePrescription
+git switch lab07-tests
 ```
-Цей окремий службовий інструмент потребує SDK 10 / net10.0 (як у середовищі виконання), не включений до рішення й використовує Roslyn зі SDK без NuGet. Визначення LOC, CC і вкладеності, точки розгалуження та таблиці — docs/metrics.md, docs/lab06/metrics-before.json і metrics-after.json.
-Handle: 80 → 16 LOC, CC 17 → 3, вкладеність 4 → 1, параметрів 11 → 1. Загальний LOC модуля: 149 → 156. Максимальна CC будь-якого методу після — 7 у Validate, а не 3: перевірки нікуди не зникли.
+Після демонстрації обов’язково поверніться до lab07-tests. Повні журнали та перевірка змінених файлів — docs/lab07/evidence.
 
-## Обмеження
-Початковий код містить залежність від локалі та року, приймає від’ємні ціни, використовує рядкові ERR і фіксовані тарифи. Це поведінка, яку за умовою не змінюють. Реєстр із оцінкою 2850 грн — docs/tech-debt.md.
-Аналізатори й стиль навмисно не застосовуються до ізольованого початкового legacy-проєкту; компілятор, nullable та TreatWarningsAsErrors лишаються. У сучасних Core/App суворі перевірки збережені. Не видаємо вимкнення аналізатора за відсутність code smells.
+## Покриття всього Core
+```
+dotnet test tests/PharmacyStock.Tests -c Release --collect:"XPlat Code Coverage" --settings coverage.runsettings
+```
+До додаткових тестів: 371/504 рядків = 73,61%, 75/90 гілок = 83,33%.
+Після: 427/504 = 84,72%, 81/90 = 90%. Усього додано 6 тестів, основний — Pay_EmptyPrescription_RejectsWithoutSaving. Вимірюється вся збірка Core, старі класи не виключено.
+Відкрийте coverage/index.html: власний HTML-переглядач зі справжнього XML Coverlet показує підсумок та виконані/невиконані рядки. ReportGenerator не встановлювався. Сирі XML з двох вимірювань збережено в docs/lab07/evidence, усі 7 частково непокритих точок (9 напрямків) пояснено в docs/lab07/coverage.md. Папки coverage/ і TestResults/ ігноруються Git.
 
-Репозиторій, наданий користувачем: https://github.com/chugaevoleksey-cmyk/PharmacyStock . Гілка ЛР6 підготовлена локально; завантаження гілки та міток на GitHub у цій сесії не виконувалося. Архів містить повну локальну історію .git.
-Для публікації з кореня розпакованого проєкту (після входу у свій GitHub):
+## Репозиторій
+https://github.com/chugaevoleksey-cmyk/PharmacyStock
+Архів містить повну .git з історією ЛР1–ЛР7. На GitHub нова гілка в цій сесії не публікувалася. Для завантаження зі свого облікового запису:
 ```
 git remote add origin https://github.com/chugaevoleksey-cmyk/PharmacyStock.git
-git push -u origin lab6-refactoring
-git push origin lab6-before lab6
+git push -u origin lab07-tests
+git push origin lab7 lab7-red lab7-green lab7-refactor lab7-coverage-before
 ```
-Ці команди додають нову гілку й мітки без force push. Якщо origin вже існує, спочатку перевірте `git remote -v`; повторно додавати його не потрібно.
+Якщо origin вже додано, перевірте його через git remote -v та пропустіть remote add. Force push не потрібен.

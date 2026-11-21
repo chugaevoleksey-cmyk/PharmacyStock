@@ -1,0 +1,11 @@
+{
+  "red": [
+    "tests/PharmacyStock.Tests/PrescriptionDiscountPolicyTests.cs"
+  ],
+  "green": [
+    "PharmacyStock.Core/Pricing/PrescriptionDiscountPolicy.cs"
+  ],
+  "refactor": [
+    "PharmacyStock.Core/Pricing/PrescriptionDiscountPolicy.cs"
+  ]
+}
