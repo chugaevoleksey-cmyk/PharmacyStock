@@ -29,15 +29,15 @@ public sealed partial class StockService
         Validation validation = InputValidation.Line(input.Code, input.Quantity);
         if (!validation.IsValid)
         {
-            return validation;
+            return Rejected("UC-02", validation.Error!);
         }
         if (input.BatchId <= 0 || _repository.Batches.Any(x => x.Id == input.BatchId))
         {
-            return new Validation("Номер партії має бути додатним і новим.");
+            return Rejected("UC-02", "Номер партії має бути додатним і новим.");
         }
         if (!_repository.Medicines.Any(x => x.Code == input.Code) || input.ExpiresOn < _clock.Today)
         {
-            return new Validation("Невідомий препарат або прострочене надходження.");
+            return Rejected("UC-02", "Невідомий препарат або прострочене надходження.");
         }
         Logged("UC-02", () => _repository.AddBatch(
             new StockBatch(input.BatchId, input.Code, input.Quantity, input.ExpiresOn)));
@@ -93,6 +93,12 @@ public sealed partial class StockService
     }
     private Medicine RequireMedicine(string code) => _repository.Medicines.SingleOrDefault(x => x.Code == code)
         ?? throw new DomainRuleException("Невідомий код препарату.");
+    private Validation Rejected(string scenario, string message)
+    {
+        _log.Write("Warning", scenario, "Некоректні вхідні дані");
+        return new Validation(message);
+    }
+
     private void Logged(string scenario, Action action)
     {
         _log.Write("Information", scenario, "Початок");

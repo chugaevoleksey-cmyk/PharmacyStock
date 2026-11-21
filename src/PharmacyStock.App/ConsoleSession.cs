@@ -62,7 +62,7 @@ internal sealed partial class ConsoleSession
         }
         catch (Exception exception) when (IsUserFacing(exception))
         {
-            _log.Write(exception is DomainRuleException ? "Warning" : "Error", "Console", exception.GetType().Name);
+            _log.Write(exception is DomainRuleException or ArgumentException or FormatException ? "Warning" : "Error", "Console", exception.GetType().Name);
             output.WriteLine("Операцію відхилено: " + SafeMessage(exception));
         }
     }

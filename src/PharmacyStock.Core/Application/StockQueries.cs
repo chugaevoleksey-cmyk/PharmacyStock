@@ -13,16 +13,16 @@ public sealed partial class StockService
         Validation validation = InputValidation.Line(input.Code, input.Quantity);
         if (!validation.IsValid)
         {
-            return validation;
+            return Rejected("UC-03", validation.Error!);
         }
         if (id <= 0 || patientId <= 0 || _repository.Prescriptions.Any(x => x.Id == id))
         {
-            return new Validation("Номери рецепта та пацієнта мають бути додатними; рецепт — новим.");
+            return Rejected("UC-03", "Номери рецепта та пацієнта мають бути додатними; рецепт — новим.");
         }
         Medicine? medicine = _repository.Medicines.SingleOrDefault(x => x.Code == input.Code);
         if (medicine is null)
         {
-            return new Validation("Невідомий код препарату.");
+            return Rejected("UC-03", "Невідомий код препарату.");
         }
         var prescription = new Prescription(id, patientId, _clock.Today);
         prescription.AddLine(new PrescriptionLine(input.Code, input.Quantity, medicine.Price));
