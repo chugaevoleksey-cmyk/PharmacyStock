@@ -1,0 +1,52 @@
+[
+  {
+    "File": "C:\\Users\\chaha\\Documents\\Codex\\2026-11-09\\referenced-chatgpt-conversation-this-is-an\\work\\PharmacyStock_SR1\\PharmacyStock.Core\\Pricing\\PrescriptionDiscountPolicy.cs",
+    "Name": "DiscountFor",
+    "Parameters": 2,
+    "Complexity": 1,
+    "BodyLines": 5,
+    "MethodLines": 6,
+    "Depth": 0,
+    "Returns": 1,
+    "ConsoleCalls": 0,
+    "Branches": []
+  },
+  {
+    "File": "C:\\Users\\chaha\\Documents\\Codex\\2026-11-09\\referenced-chatgpt-conversation-this-is-an\\work\\PharmacyStock_SR1\\PharmacyStock.Core\\Pricing\\PrescriptionDiscountPolicy.cs",
+    "Name": "EnsureAmountIsValid",
+    "Parameters": 1,
+    "Complexity": 2,
+    "BodyLines": 6,
+    "MethodLines": 7,
+    "Depth": 1,
+    "Returns": 0,
+    "ConsoleCalls": 0,
+    "Branches": [
+      {
+        "Kind": "if",
+        "Line": 33
+      }
+    ]
+  },
+  {
+    "File": "C:\\Users\\chaha\\Documents\\Codex\\2026-11-09\\referenced-chatgpt-conversation-this-is-an\\work\\PharmacyStock_SR1\\PharmacyStock.Core\\Pricing\\PrescriptionDiscountPolicy.cs",
+    "Name": "RateFor",
+    "Parameters": 2,
+    "Complexity": 3,
+    "BodyLines": 8,
+    "MethodLines": 9,
+    "Depth": 1,
+    "Returns": 1,
+    "ConsoleCalls": 0,
+    "Branches": [
+      {
+        "Kind": "?:",
+        "Line": 41
+      },
+      {
+        "Kind": "if",
+        "Line": 42
+      }
+    ]
+  }
+]

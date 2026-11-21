@@ -1,0 +1,19 @@
+$ dotnet build -c Release --no-restore
+
+  PharmacyStock.Legacy -> C:\Users\chaha\Documents\Codex\2026-11-09\referenced-chatgpt-conversation-this-is-an\work\PharmacyStock_SR1\src\Legacy\bin\Release\net8.0\PharmacyStock.Legacy.dll
+  LegacyDemo -> C:\Users\chaha\Documents\Codex\2026-11-09\referenced-chatgpt-conversation-this-is-an\work\PharmacyStock_SR1\tools\LegacyDemo\bin\Release\net8.0\LegacyDemo.dll
+C:\Users\chaha\Documents\Codex\2026-11-09\referenced-chatgpt-conversation-this-is-an\work\PharmacyStock_SR1\PharmacyStock.Core\StandardProbe.cs(7,20): error CA1051: Do not declare visible instance fields (https://learn.microsoft.com/dotnet/fundamentals/code-analysis/quality-rules/ca1051) [C:\Users\chaha\Documents\Codex\2026-11-09\referenced-chatgpt-conversation-this-is-an\work\PharmacyStock_SR1\PharmacyStock.Core\PharmacyStock.Core.csproj]
+C:\Users\chaha\Documents\Codex\2026-11-09\referenced-chatgpt-conversation-this-is-an\work\PharmacyStock_SR1\PharmacyStock.Core\StandardProbe.cs(7,20): error SA1401: Field should be private (https://github.com/DotNetAnalyzers/StyleCopAnalyzers/blob/master/documentation/SA1401.md) [C:\Users\chaha\Documents\Codex\2026-11-09\referenced-chatgpt-conversation-this-is-an\work\PharmacyStock_SR1\PharmacyStock.Core\PharmacyStock.Core.csproj]
+  PharmacyStock.Legacy.Tests -> C:\Users\chaha\Documents\Codex\2026-11-09\referenced-chatgpt-conversation-this-is-an\work\PharmacyStock_SR1\tests\Legacy.Tests\bin\Release\net8.0\PharmacyStock.Legacy.Tests.dll
+
+Build FAILED.
+
+C:\Users\chaha\Documents\Codex\2026-11-09\referenced-chatgpt-conversation-this-is-an\work\PharmacyStock_SR1\PharmacyStock.Core\StandardProbe.cs(7,20): error CA1051: Do not declare visible instance fields (https://learn.microsoft.com/dotnet/fundamentals/code-analysis/quality-rules/ca1051) [C:\Users\chaha\Documents\Codex\2026-11-09\referenced-chatgpt-conversation-this-is-an\work\PharmacyStock_SR1\PharmacyStock.Core\PharmacyStock.Core.csproj]
+C:\Users\chaha\Documents\Codex\2026-11-09\referenced-chatgpt-conversation-this-is-an\work\PharmacyStock_SR1\PharmacyStock.Core\StandardProbe.cs(7,20): error SA1401: Field should be private (https://github.com/DotNetAnalyzers/StyleCopAnalyzers/blob/master/documentation/SA1401.md) [C:\Users\chaha\Documents\Codex\2026-11-09\referenced-chatgpt-conversation-this-is-an\work\PharmacyStock_SR1\PharmacyStock.Core\PharmacyStock.Core.csproj]
+    0 Warning(s)
+    2 Error(s)
+
+Time Elapsed 00:00:02.42
+
+Exit code: 1
+Wall seconds: 2.575

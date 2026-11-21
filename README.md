@@ -66,3 +66,8 @@ CI на push до main і feature/** та на PR до main перевіряє �
 Спільний PrescriptionLineTextParser обмежує код 20 символами, кількість 1–1000, ціну невід'ємним decimal із крапкою без роздільників тисяч; перевіряє переповнення суми. Консольний адаптер використовує ті самі правила. Ключі API застосунку не потрібні; .env*, appsettings.Local.json та *.secrets.json ігноруються.
 
 Реальні запуски й журнали ЛР8: [docs/lab08](docs/lab08/README.md). Pull request: https://github.com/chugaevoleksey-cmyk/PharmacyStock/pull/1.
+
+
+## Самостійна робота 1
+
+[Стандарт 1.0.0](CODING_STANDARD.md) — 70 перевірних правил PharmacyStock, словник, межі складності та майбутні контракти термінів придатності й дробових доз. [Матеріали стандарту](docs/standard): чекліст, ADR, порівняння, машинні правила й журнали доказів.
