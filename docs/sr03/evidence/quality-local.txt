@@ -1,0 +1,43 @@
+$ pwsh -NoProfile -File tools/verify.ps1
+  Determining projects to restore...
+  All projects are up-to-date for restore.
+  PharmacyStock.Core -> C:\Users\chaha\Documents\Codex\2026-11-09\referenced-chatgpt-conversation-this-is-an\work\PharmacyStock_SR3\src\PharmacyStock.Core\bin\Release\net8.0\PharmacyStock.Core.dll
+  PharmacyStock.Infrastructure -> C:\Users\chaha\Documents\Codex\2026-11-09\referenced-chatgpt-conversation-this-is-an\work\PharmacyStock_SR3\src\PharmacyStock.Infrastructure\bin\Release\net8.0\PharmacyStock.Infrastructure.dll
+  PharmacyStock.Tests -> C:\Users\chaha\Documents\Codex\2026-11-09\referenced-chatgpt-conversation-this-is-an\work\PharmacyStock_SR3\tests\PharmacyStock.Tests\bin\Release\net8.0\PharmacyStock.Tests.dll
+  PharmacyStock.App -> C:\Users\chaha\Documents\Codex\2026-11-09\referenced-chatgpt-conversation-this-is-an\work\PharmacyStock_SR3\src\PharmacyStock.App\bin\Release\net8.0\PharmacyStock.App.dll
+
+Build succeeded.
+    0 Warning(s)
+    0 Error(s)
+
+Time Elapsed 00:00:00.73
+  [coverlet] _mapping file name: 'CoverletSourceRootsMapping_PharmacyStock.Tests'
+Test run for C:\Users\chaha\Documents\Codex\2026-11-09\referenced-chatgpt-conversation-this-is-an\work\PharmacyStock_SR3\tests\PharmacyStock.Tests\bin\Release\net8.0\PharmacyStock.Tests.dll (.NETCoreApp,Version=v8.0)
+VSTest version 17.11.1 (x64)
+
+Starting test execution, please wait...
+A total of 1 test files matched the specified pattern.
+
+Passed!  - Failed:     0, Passed:    58, Skipped:     0, Total:    58, Duration: 86 ms - PharmacyStock.Tests.dll (net8.0)
+  [coverlet] 
+  Calculating coverage result...
+   Generating report 'C:\Users\chaha\Documents\Codex\2026-11-09\referenced-chatgpt-conversation-this-is-an\work\PharmacyStock_SR3\tests\PharmacyStock.Tests\coverage.cobertura.xml'
+
++--------------------+--------+--------+--------+
+| Module             | Line   | Branch | Method |
++--------------------+--------+--------+--------+
+| PharmacyStock.Core | 92.82% | 91.3%  | 87.03% |
++--------------------+--------+--------+--------+
+
++---------+--------+--------+--------+
+|         | Line   | Branch | Method |
++---------+--------+--------+--------+
+| Total   | 92.82% | 91.3%  | 87.03% |
++---------+--------+--------+--------+
+| Average | 92.82% | 91.3%  | 87.03% |
++---------+--------+--------+--------+
+
+Coverage: line=92.82 branch=91.3
+
+Exit code: 0
+Seconds: 12.768

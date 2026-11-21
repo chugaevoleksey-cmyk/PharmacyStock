@@ -1,0 +1,53 @@
+$ dotnet test -c Release --no-restore
+  PharmacyStock.Core -> C:\Users\chaha\Documents\Codex\2026-11-09\referenced-chatgpt-conversation-this-is-an\work\PharmacyStock_SR3\src\PharmacyStock.Core\bin\Release\net8.0\PharmacyStock.Core.dll
+  PharmacyStock.Infrastructure -> C:\Users\chaha\Documents\Codex\2026-11-09\referenced-chatgpt-conversation-this-is-an\work\PharmacyStock_SR3\src\PharmacyStock.Infrastructure\bin\Release\net8.0\PharmacyStock.Infrastructure.dll
+  PharmacyStock.Tests -> C:\Users\chaha\Documents\Codex\2026-11-09\referenced-chatgpt-conversation-this-is-an\work\PharmacyStock_SR3\tests\PharmacyStock.Tests\bin\Release\net8.0\PharmacyStock.Tests.dll
+Test run for C:\Users\chaha\Documents\Codex\2026-11-09\referenced-chatgpt-conversation-this-is-an\work\PharmacyStock_SR3\tests\PharmacyStock.Tests\bin\Release\net8.0\PharmacyStock.Tests.dll (.NETCoreApp,Version=v8.0)
+VSTest version 17.11.1 (x64)
+
+Starting test execution, please wait...
+A total of 1 test files matched the specified pattern.
+  Failed PharmacyStock.Tests.DispensingTests.Dispense_ValidBoundary_ChargesAndCloses(age: 30, units: 2, expected: 24,69) [< 1 ms]
+  Error Message:
+   PharmacyStock.Core.Errors.DomainRuleException : Рецепт поза строком дії 0..30 днів.
+  Stack Trace:
+     at PharmacyStock.Core.Application.DispensingPolicy.CheckPrescription(Prescription prescription, DispenseInput input, DateOnly today) in C:\Users\chaha\Documents\Codex\2026-11-09\referenced-chatgpt-conversation-this-is-an\work\PharmacyStock_SR3\src\PharmacyStock.Core\Application\DispensingPolicy.cs:line 46
+   at PharmacyStock.Core.Application.DispensingPolicy.Check(Medicine medicine, DispenseInput input, Prescription prescription, DateOnly today) in C:\Users\chaha\Documents\Codex\2026-11-09\referenced-chatgpt-conversation-this-is-an\work\PharmacyStock_SR3\src\PharmacyStock.Core\Application\DispensingPolicy.cs:line 35
+   at PharmacyStock.Core.Application.StockService.<>c__DisplayClass11_0.<Dispense>b__1() in C:\Users\chaha\Documents\Codex\2026-11-09\referenced-chatgpt-conversation-this-is-an\work\PharmacyStock_SR3\src\PharmacyStock.Core\Application\StockService.cs:line 69
+   at PharmacyStock.Core.Application.StockService.Logged(String scenario, Action action) in C:\Users\chaha\Documents\Codex\2026-11-09\referenced-chatgpt-conversation-this-is-an\work\PharmacyStock_SR3\src\PharmacyStock.Core\Application\StockService.cs:line 113
+   at PharmacyStock.Core.Application.StockService.Dispense(DispenseInput input) in C:\Users\chaha\Documents\Codex\2026-11-09\referenced-chatgpt-conversation-this-is-an\work\PharmacyStock_SR3\src\PharmacyStock.Core\Application\StockService.cs:line 67
+   at PharmacyStock.Tests.DispensingTests.Dispense_ValidBoundary_ChargesAndCloses(Int32 age, Int32 units, Decimal expected) in C:\Users\chaha\Documents\Codex\2026-11-09\referenced-chatgpt-conversation-this-is-an\work\PharmacyStock_SR3\tests\PharmacyStock.Tests\DispensingTests.cs:line 22
+   at InvokeStub_DispensingTests.Dispense_ValidBoundary_ChargesAndCloses(Object, Span`1)
+   at System.Reflection.MethodBaseInvoker.InvokeWithFewArgs(Object obj, BindingFlags invokeAttr, Binder binder, Object[] parameters, CultureInfo culture)
+  Failed PharmacyStock.Tests.DispensingTests.Dispense_ValidBoundary_ChargesAndCloses(age: 30, units: 1, expected: 12,35) [< 1 ms]
+  Error Message:
+   PharmacyStock.Core.Errors.DomainRuleException : Рецепт поза строком дії 0..30 днів.
+  Stack Trace:
+     at PharmacyStock.Core.Application.DispensingPolicy.CheckPrescription(Prescription prescription, DispenseInput input, DateOnly today) in C:\Users\chaha\Documents\Codex\2026-11-09\referenced-chatgpt-conversation-this-is-an\work\PharmacyStock_SR3\src\PharmacyStock.Core\Application\DispensingPolicy.cs:line 46
+   at PharmacyStock.Core.Application.DispensingPolicy.Check(Medicine medicine, DispenseInput input, Prescription prescription, DateOnly today) in C:\Users\chaha\Documents\Codex\2026-11-09\referenced-chatgpt-conversation-this-is-an\work\PharmacyStock_SR3\src\PharmacyStock.Core\Application\DispensingPolicy.cs:line 35
+   at PharmacyStock.Core.Application.StockService.<>c__DisplayClass11_0.<Dispense>b__1() in C:\Users\chaha\Documents\Codex\2026-11-09\referenced-chatgpt-conversation-this-is-an\work\PharmacyStock_SR3\src\PharmacyStock.Core\Application\StockService.cs:line 69
+   at PharmacyStock.Core.Application.StockService.Logged(String scenario, Action action) in C:\Users\chaha\Documents\Codex\2026-11-09\referenced-chatgpt-conversation-this-is-an\work\PharmacyStock_SR3\src\PharmacyStock.Core\Application\StockService.cs:line 113
+   at PharmacyStock.Core.Application.StockService.Dispense(DispenseInput input) in C:\Users\chaha\Documents\Codex\2026-11-09\referenced-chatgpt-conversation-this-is-an\work\PharmacyStock_SR3\src\PharmacyStock.Core\Application\StockService.cs:line 67
+   at PharmacyStock.Tests.DispensingTests.Dispense_ValidBoundary_ChargesAndCloses(Int32 age, Int32 units, Decimal expected) in C:\Users\chaha\Documents\Codex\2026-11-09\referenced-chatgpt-conversation-this-is-an\work\PharmacyStock_SR3\tests\PharmacyStock.Tests\DispensingTests.cs:line 22
+   at InvokeStub_DispensingTests.Dispense_ValidBoundary_ChargesAndCloses(Object, Span`1)
+   at System.Reflection.MethodBaseInvoker.InvokeWithFewArgs(Object obj, BindingFlags invokeAttr, Binder binder, Object[] parameters, CultureInfo culture)
+  Failed PharmacyStock.Tests.DispensingTests.Dispense_ValidBoundary_ChargesAndCloses(age: 30, units: 10, expected: 123,45) [< 1 ms]
+  Error Message:
+   PharmacyStock.Core.Errors.DomainRuleException : Рецепт поза строком дії 0..30 днів.
+  Stack Trace:
+     at PharmacyStock.Core.Application.DispensingPolicy.CheckPrescription(Prescription prescription, DispenseInput input, DateOnly today) in C:\Users\chaha\Documents\Codex\2026-11-09\referenced-chatgpt-conversation-this-is-an\work\PharmacyStock_SR3\src\PharmacyStock.Core\Application\DispensingPolicy.cs:line 46
+   at PharmacyStock.Core.Application.DispensingPolicy.Check(Medicine medicine, DispenseInput input, Prescription prescription, DateOnly today) in C:\Users\chaha\Documents\Codex\2026-11-09\referenced-chatgpt-conversation-this-is-an\work\PharmacyStock_SR3\src\PharmacyStock.Core\Application\DispensingPolicy.cs:line 35
+   at PharmacyStock.Core.Application.StockService.<>c__DisplayClass11_0.<Dispense>b__1() in C:\Users\chaha\Documents\Codex\2026-11-09\referenced-chatgpt-conversation-this-is-an\work\PharmacyStock_SR3\src\PharmacyStock.Core\Application\StockService.cs:line 69
+   at PharmacyStock.Core.Application.StockService.Logged(String scenario, Action action) in C:\Users\chaha\Documents\Codex\2026-11-09\referenced-chatgpt-conversation-this-is-an\work\PharmacyStock_SR3\src\PharmacyStock.Core\Application\StockService.cs:line 113
+   at PharmacyStock.Core.Application.StockService.Dispense(DispenseInput input) in C:\Users\chaha\Documents\Codex\2026-11-09\referenced-chatgpt-conversation-this-is-an\work\PharmacyStock_SR3\src\PharmacyStock.Core\Application\StockService.cs:line 67
+   at PharmacyStock.Tests.DispensingTests.Dispense_ValidBoundary_ChargesAndCloses(Int32 age, Int32 units, Decimal expected) in C:\Users\chaha\Documents\Codex\2026-11-09\referenced-chatgpt-conversation-this-is-an\work\PharmacyStock_SR3\tests\PharmacyStock.Tests\DispensingTests.cs:line 22
+   at InvokeStub_DispensingTests.Dispense_ValidBoundary_ChargesAndCloses(Object, Span`1)
+   at System.Reflection.MethodBaseInvoker.InvokeWithFewArgs(Object obj, BindingFlags invokeAttr, Binder binder, Object[] parameters, CultureInfo culture)
+
+Failed!  - Failed:     3, Passed:    55, Skipped:     0, Total:    58, Duration: 88 ms - PharmacyStock.Tests.dll (net8.0)
+[xUnit.net 00:00:00.25]     PharmacyStock.Tests.DispensingTests.Dispense_ValidBoundary_ChargesAndCloses(age: 30, units: 2, expected: 24,69) [FAIL]
+[xUnit.net 00:00:00.25]     PharmacyStock.Tests.DispensingTests.Dispense_ValidBoundary_ChargesAndCloses(age: 30, units: 1, expected: 12,35) [FAIL]
+[xUnit.net 00:00:00.25]     PharmacyStock.Tests.DispensingTests.Dispense_ValidBoundary_ChargesAndCloses(age: 30, units: 10, expected: 123,45) [FAIL]
+
+Exit code: 1
+Seconds: 2.741

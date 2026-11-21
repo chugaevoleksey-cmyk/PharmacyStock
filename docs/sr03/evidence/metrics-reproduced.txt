@@ -1,0 +1,4 @@
+$ pwsh -NoProfile -File tools/metrics.ps1
+
+Exit code: 0
+Seconds: 4.263
