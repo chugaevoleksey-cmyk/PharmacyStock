@@ -1,0 +1,546 @@
+{
+  "Medicines": [
+    {
+      "Code": "M001",
+      "Name": "Навчальний препарат 01",
+      "Price": 11.25,
+      "Rules": {
+        "RequiresPrescription": false,
+        "MaximumUnits": 10
+      }
+    },
+    {
+      "Code": "M002",
+      "Name": "Навчальний препарат 02",
+      "Price": 12.5,
+      "Rules": {
+        "RequiresPrescription": true,
+        "MaximumUnits": 10
+      }
+    },
+    {
+      "Code": "M003",
+      "Name": "Навчальний препарат 03",
+      "Price": 13.75,
+      "Rules": {
+        "RequiresPrescription": false,
+        "MaximumUnits": 10
+      }
+    },
+    {
+      "Code": "M004",
+      "Name": "Навчальний препарат 04",
+      "Price": 15.0,
+      "Rules": {
+        "RequiresPrescription": true,
+        "MaximumUnits": 10
+      }
+    },
+    {
+      "Code": "M005",
+      "Name": "Навчальний препарат 05",
+      "Price": 16.25,
+      "Rules": {
+        "RequiresPrescription": false,
+        "MaximumUnits": 10
+      }
+    },
+    {
+      "Code": "M006",
+      "Name": "Навчальний препарат 06",
+      "Price": 17.5,
+      "Rules": {
+        "RequiresPrescription": true,
+        "MaximumUnits": 10
+      }
+    },
+    {
+      "Code": "M007",
+      "Name": "Навчальний препарат 07",
+      "Price": 18.75,
+      "Rules": {
+        "RequiresPrescription": false,
+        "MaximumUnits": 10
+      }
+    },
+    {
+      "Code": "M008",
+      "Name": "Навчальний препарат 08",
+      "Price": 20.0,
+      "Rules": {
+        "RequiresPrescription": true,
+        "MaximumUnits": 10
+      }
+    },
+    {
+      "Code": "M009",
+      "Name": "Навчальний препарат 09",
+      "Price": 21.25,
+      "Rules": {
+        "RequiresPrescription": false,
+        "MaximumUnits": 10
+      }
+    },
+    {
+      "Code": "M010",
+      "Name": "Навчальний препарат 10",
+      "Price": 22.5,
+      "Rules": {
+        "RequiresPrescription": true,
+        "MaximumUnits": 10
+      }
+    },
+    {
+      "Code": "M011",
+      "Name": "Навчальний препарат 11",
+      "Price": 23.75,
+      "Rules": {
+        "RequiresPrescription": false,
+        "MaximumUnits": 10
+      }
+    },
+    {
+      "Code": "M012",
+      "Name": "Навчальний препарат 12",
+      "Price": 25.0,
+      "Rules": {
+        "RequiresPrescription": true,
+        "MaximumUnits": 10
+      }
+    },
+    {
+      "Code": "M013",
+      "Name": "Навчальний препарат 13",
+      "Price": 26.25,
+      "Rules": {
+        "RequiresPrescription": false,
+        "MaximumUnits": 10
+      }
+    },
+    {
+      "Code": "M014",
+      "Name": "Навчальний препарат 14",
+      "Price": 27.5,
+      "Rules": {
+        "RequiresPrescription": true,
+        "MaximumUnits": 10
+      }
+    },
+    {
+      "Code": "M015",
+      "Name": "Навчальний препарат 15",
+      "Price": 28.75,
+      "Rules": {
+        "RequiresPrescription": false,
+        "MaximumUnits": 10
+      }
+    },
+    {
+      "Code": "M016",
+      "Name": "Навчальний препарат 16",
+      "Price": 30.0,
+      "Rules": {
+        "RequiresPrescription": true,
+        "MaximumUnits": 10
+      }
+    },
+    {
+      "Code": "M017",
+      "Name": "Навчальний препарат 17",
+      "Price": 31.25,
+      "Rules": {
+        "RequiresPrescription": false,
+        "MaximumUnits": 10
+      }
+    },
+    {
+      "Code": "M018",
+      "Name": "Навчальний препарат 18",
+      "Price": 32.5,
+      "Rules": {
+        "RequiresPrescription": true,
+        "MaximumUnits": 10
+      }
+    },
+    {
+      "Code": "M019",
+      "Name": "Навчальний препарат 19",
+      "Price": 33.75,
+      "Rules": {
+        "RequiresPrescription": false,
+        "MaximumUnits": 10
+      }
+    },
+    {
+      "Code": "M020",
+      "Name": "Навчальний препарат 20",
+      "Price": 35.0,
+      "Rules": {
+        "RequiresPrescription": true,
+        "MaximumUnits": 10
+      }
+    },
+    {
+      "Code": "M021",
+      "Name": "Навчальний препарат 21",
+      "Price": 36.25,
+      "Rules": {
+        "RequiresPrescription": false,
+        "MaximumUnits": 10
+      }
+    },
+    {
+      "Code": "M022",
+      "Name": "Навчальний препарат 22",
+      "Price": 37.5,
+      "Rules": {
+        "RequiresPrescription": true,
+        "MaximumUnits": 10
+      }
+    },
+    {
+      "Code": "M023",
+      "Name": "Навчальний препарат 23",
+      "Price": 38.75,
+      "Rules": {
+        "RequiresPrescription": false,
+        "MaximumUnits": 10
+      }
+    },
+    {
+      "Code": "M024",
+      "Name": "Навчальний препарат 24",
+      "Price": 40.0,
+      "Rules": {
+        "RequiresPrescription": true,
+        "MaximumUnits": 10
+      }
+    },
+    {
+      "Code": "M025",
+      "Name": "Навчальний препарат 25",
+      "Price": 41.25,
+      "Rules": {
+        "RequiresPrescription": false,
+        "MaximumUnits": 10
+      }
+    },
+    {
+      "Code": "M026",
+      "Name": "Навчальний препарат 26",
+      "Price": 42.5,
+      "Rules": {
+        "RequiresPrescription": true,
+        "MaximumUnits": 10
+      }
+    },
+    {
+      "Code": "M027",
+      "Name": "Навчальний препарат 27",
+      "Price": 43.75,
+      "Rules": {
+        "RequiresPrescription": false,
+        "MaximumUnits": 10
+      }
+    },
+    {
+      "Code": "M028",
+      "Name": "Навчальний препарат 28",
+      "Price": 45.0,
+      "Rules": {
+        "RequiresPrescription": true,
+        "MaximumUnits": 10
+      }
+    },
+    {
+      "Code": "M029",
+      "Name": "Навчальний препарат 29",
+      "Price": 46.25,
+      "Rules": {
+        "RequiresPrescription": false,
+        "MaximumUnits": 10
+      }
+    },
+    {
+      "Code": "M030",
+      "Name": "Навчальний препарат 30",
+      "Price": 47.5,
+      "Rules": {
+        "RequiresPrescription": true,
+        "MaximumUnits": 10
+      }
+    },
+    {
+      "Code": "M031",
+      "Name": "Навчальний препарат 31",
+      "Price": 48.75,
+      "Rules": {
+        "RequiresPrescription": false,
+        "MaximumUnits": 10
+      }
+    },
+    {
+      "Code": "M032",
+      "Name": "Навчальний препарат 32",
+      "Price": 50.0,
+      "Rules": {
+        "RequiresPrescription": true,
+        "MaximumUnits": 10
+      }
+    },
+    {
+      "Code": "M033",
+      "Name": "Навчальний препарат 33",
+      "Price": 51.25,
+      "Rules": {
+        "RequiresPrescription": false,
+        "MaximumUnits": 10
+      }
+    },
+    {
+      "Code": "M034",
+      "Name": "Навчальний препарат 34",
+      "Price": 52.5,
+      "Rules": {
+        "RequiresPrescription": true,
+        "MaximumUnits": 10
+      }
+    },
+    {
+      "Code": "M035",
+      "Name": "Навчальний препарат 35",
+      "Price": 53.75,
+      "Rules": {
+        "RequiresPrescription": false,
+        "MaximumUnits": 10
+      }
+    },
+    {
+      "Code": "M036",
+      "Name": "Навчальний препарат 36",
+      "Price": 55.0,
+      "Rules": {
+        "RequiresPrescription": true,
+        "MaximumUnits": 10
+      }
+    },
+    {
+      "Code": "M037",
+      "Name": "Навчальний препарат 37",
+      "Price": 56.25,
+      "Rules": {
+        "RequiresPrescription": false,
+        "MaximumUnits": 10
+      }
+    },
+    {
+      "Code": "M038",
+      "Name": "Навчальний препарат 38",
+      "Price": 57.5,
+      "Rules": {
+        "RequiresPrescription": true,
+        "MaximumUnits": 10
+      }
+    },
+    {
+      "Code": "M039",
+      "Name": "Навчальний препарат 39",
+      "Price": 58.75,
+      "Rules": {
+        "RequiresPrescription": false,
+        "MaximumUnits": 10
+      }
+    },
+    {
+      "Code": "M040",
+      "Name": "Навчальний препарат 40",
+      "Price": 60.0,
+      "Rules": {
+        "RequiresPrescription": true,
+        "MaximumUnits": 10
+      }
+    },
+    {
+      "Code": "M041",
+      "Name": "Навчальний препарат 41",
+      "Price": 61.25,
+      "Rules": {
+        "RequiresPrescription": false,
+        "MaximumUnits": 10
+      }
+    },
+    {
+      "Code": "M042",
+      "Name": "Навчальний препарат 42",
+      "Price": 62.5,
+      "Rules": {
+        "RequiresPrescription": true,
+        "MaximumUnits": 10
+      }
+    },
+    {
+      "Code": "M043",
+      "Name": "Навчальний препарат 43",
+      "Price": 63.75,
+      "Rules": {
+        "RequiresPrescription": false,
+        "MaximumUnits": 10
+      }
+    },
+    {
+      "Code": "M044",
+      "Name": "Навчальний препарат 44",
+      "Price": 65.0,
+      "Rules": {
+        "RequiresPrescription": true,
+        "MaximumUnits": 10
+      }
+    },
+    {
+      "Code": "M045",
+      "Name": "Навчальний препарат 45",
+      "Price": 66.25,
+      "Rules": {
+        "RequiresPrescription": false,
+        "MaximumUnits": 10
+      }
+    },
+    {
+      "Code": "M046",
+      "Name": "Навчальний препарат 46",
+      "Price": 67.5,
+      "Rules": {
+        "RequiresPrescription": true,
+        "MaximumUnits": 10
+      }
+    },
+    {
+      "Code": "M047",
+      "Name": "Навчальний препарат 47",
+      "Price": 68.75,
+      "Rules": {
+        "RequiresPrescription": false,
+        "MaximumUnits": 10
+      }
+    },
+    {
+      "Code": "M048",
+      "Name": "Навчальний препарат 48",
+      "Price": 70.0,
+      "Rules": {
+        "RequiresPrescription": true,
+        "MaximumUnits": 10
+      }
+    },
+    {
+      "Code": "M049",
+      "Name": "Навчальний препарат 49",
+      "Price": 71.25,
+      "Rules": {
+        "RequiresPrescription": false,
+        "MaximumUnits": 10
+      }
+    },
+    {
+      "Code": "M050",
+      "Name": "Навчальний препарат 50",
+      "Price": 72.5,
+      "Rules": {
+        "RequiresPrescription": true,
+        "MaximumUnits": 10
+      }
+    },
+    {
+      "Code": "M051",
+      "Name": "Навчальний препарат 51",
+      "Price": 73.75,
+      "Rules": {
+        "RequiresPrescription": false,
+        "MaximumUnits": 10
+      }
+    },
+    {
+      "Code": "M052",
+      "Name": "Навчальний препарат 52",
+      "Price": 75.0,
+      "Rules": {
+        "RequiresPrescription": true,
+        "MaximumUnits": 10
+      }
+    },
+    {
+      "Code": "M053",
+      "Name": "Навчальний препарат 53",
+      "Price": 76.25,
+      "Rules": {
+        "RequiresPrescription": false,
+        "MaximumUnits": 10
+      }
+    },
+    {
+      "Code": "M054",
+      "Name": "Навчальний препарат 54",
+      "Price": 77.5,
+      "Rules": {
+        "RequiresPrescription": true,
+        "MaximumUnits": 10
+      }
+    },
+    {
+      "Code": "M055",
+      "Name": "Навчальний препарат 55",
+      "Price": 78.75,
+      "Rules": {
+        "RequiresPrescription": false,
+        "MaximumUnits": 10
+      }
+    },
+    {
+      "Code": "M056",
+      "Name": "Навчальний препарат 56",
+      "Price": 80.0,
+      "Rules": {
+        "RequiresPrescription": true,
+        "MaximumUnits": 10
+      }
+    },
+    {
+      "Code": "M057",
+      "Name": "Навчальний препарат 57",
+      "Price": 81.25,
+      "Rules": {
+        "RequiresPrescription": false,
+        "MaximumUnits": 10
+      }
+    },
+    {
+      "Code": "M058",
+      "Name": "Навчальний препарат 58",
+      "Price": 82.5,
+      "Rules": {
+        "RequiresPrescription": true,
+        "MaximumUnits": 10
+      }
+    },
+    {
+      "Code": "M059",
+      "Name": "Навчальний препарат 59",
+      "Price": 83.75,
+      "Rules": {
+        "RequiresPrescription": false,
+        "MaximumUnits": 10
+      }
+    },
+    {
+      "Code": "M060",
+      "Name": "Навчальний препарат 60",
+      "Price": 85.0,
+      "Rules": {
+        "RequiresPrescription": true,
+        "MaximumUnits": 10
+      }
+    }
+  ],
+  "Batches": [],
+  "Prescriptions": []
+}
