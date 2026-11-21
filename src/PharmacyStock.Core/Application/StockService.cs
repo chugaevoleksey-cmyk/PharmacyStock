@@ -3,7 +3,7 @@ using PharmacyStock.Core.Domain;
 using PharmacyStock.Core.Errors;
 namespace PharmacyStock.Core.Application;
 /// <summary>Виконує сценарії зміни без залежності від консолі та формату файла.</summary>
-public sealed class StockService
+public sealed partial class StockService
 {
     private readonly IStockRepository _repository;
     private readonly IClock _clock;
