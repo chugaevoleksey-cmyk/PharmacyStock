@@ -1,4 +1,6 @@
-# PharmacyStock — ЛР7, варіант 19
+# PharmacyStock
+
+![CI](https://github.com/chugaevoleksey-cmyk/PharmacyStock/actions/workflows/ci.yml/badge.svg?branch=main) — ЛР7, варіант 19
 Чугаєв Олексій Михайлович, група 471. Гілка `lab07-tests`.
 
 ## Відкрити та перевірити
@@ -45,3 +47,22 @@ git push -u origin lab07-tests
 git push origin lab7 lab7-red lab7-green lab7-refactor lab7-coverage-before
 ```
 Якщо origin вже додано, перевірте його через git remote -v та пропустіть remote add. Force push не потрібен.
+
+
+## Лабораторна 8
+
+Версія 0.8.0. SDK 8.0.427 задає global.json; NuGet.Config використовує nuget.org замість локального кешу.
+
+```powershell
+dotnet restore
+dotnet format --verify-no-changes --no-restore
+dotnet build -c Release --no-restore
+dotnet test -c Release --no-restore /p:CollectCoverage=true /p:CoverletOutputFormat=cobertura /p:Threshold=60 /p:ThresholdType=line /p:ThresholdStat=total '/p:Include=[PharmacyStock.Core]*'
+dotnet run --project PharmacyStock.App -c Release --no-build -- --demo
+```
+
+CI на push до main і feature/** та на PR до main перевіряє формат перед компіляцією, щоб швидко відхиляти порушення стилю. Складання трактує всі попередження як помилки; усі тести мають пройти, покриття рядків усієї PharmacyStock.Core — не менше 60%. Coverlet застосовано до основного тестового проєкту, 30 Legacy-тестів також запускаються; старі класи Core не виключено з покриття. XML зберігається артефактом coverage навіть у невдалому запуску. Аудит NuGet усіх залежностей активний при restore; діагностики NU1901–NU1904 зупиняють складання.
+
+Спільний PrescriptionLineTextParser обмежує код 20 символами, кількість 1–1000, ціну невід'ємним decimal із крапкою без роздільників тисяч; перевіряє переповнення суми. Консольний адаптер використовує ті самі правила. Ключі API застосунку не потрібні; .env*, appsettings.Local.json та *.secrets.json ігноруються.
+
+Реальні запуски й журнали ЛР8: [docs/lab08](docs/lab08/README.md). Pull request: https://github.com/chugaevoleksey-cmyk/PharmacyStock/pull/1.

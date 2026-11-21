@@ -490,3 +490,8 @@ runtime/
 *.audit
 
 coverage/
+
+.idea/
+appsettings.Local.json
+**/*.secrets.json
+.env*

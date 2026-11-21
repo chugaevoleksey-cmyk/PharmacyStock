@@ -1,0 +1,17 @@
+$ dotnet build -c Debug --no-restore
+
+  PharmacyStock.Legacy -> C:\Users\chaha\Documents\Codex\2026-11-09\referenced-chatgpt-conversation-this-is-an\work\PharmacyStock_LR8\src\Legacy\bin\Debug\net8.0\PharmacyStock.Legacy.dll
+  LegacyDemo -> C:\Users\chaha\Documents\Codex\2026-11-09\referenced-chatgpt-conversation-this-is-an\work\PharmacyStock_LR8\tools\LegacyDemo\bin\Debug\net8.0\LegacyDemo.dll
+  PharmacyStock.Legacy.Tests -> C:\Users\chaha\Documents\Codex\2026-11-09\referenced-chatgpt-conversation-this-is-an\work\PharmacyStock_LR8\tests\Legacy.Tests\bin\Debug\net8.0\PharmacyStock.Legacy.Tests.dll
+  PharmacyStock.Core -> C:\Users\chaha\Documents\Codex\2026-11-09\referenced-chatgpt-conversation-this-is-an\work\PharmacyStock_LR8\PharmacyStock.Core\bin\Debug\net8.0\PharmacyStock.Core.dll
+  PharmacyStock.App -> C:\Users\chaha\Documents\Codex\2026-11-09\referenced-chatgpt-conversation-this-is-an\work\PharmacyStock_LR8\PharmacyStock.App\bin\Debug\net8.0\PharmacyStock.App.dll
+  PharmacyStock.Tests -> C:\Users\chaha\Documents\Codex\2026-11-09\referenced-chatgpt-conversation-this-is-an\work\PharmacyStock_LR8\tests\PharmacyStock.Tests\bin\Debug\net8.0\PharmacyStock.Tests.dll
+
+Build succeeded.
+    0 Warning(s)
+    0 Error(s)
+
+Time Elapsed 00:00:01.14
+
+Exit code: 0
+Wall seconds: 1.298

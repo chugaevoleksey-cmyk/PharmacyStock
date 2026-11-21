@@ -1,0 +1,19 @@
+$ dotnet build -c Release --no-restore
+
+  PharmacyStock.Legacy -> C:\Users\chaha\Documents\Codex\2026-11-09\referenced-chatgpt-conversation-this-is-an\work\PharmacyStock_LR8\src\Legacy\bin\Release\net8.0\PharmacyStock.Legacy.dll
+  LegacyDemo -> C:\Users\chaha\Documents\Codex\2026-11-09\referenced-chatgpt-conversation-this-is-an\work\PharmacyStock_LR8\tools\LegacyDemo\bin\Release\net8.0\LegacyDemo.dll
+  PharmacyStock.Legacy.Tests -> C:\Users\chaha\Documents\Codex\2026-11-09\referenced-chatgpt-conversation-this-is-an\work\PharmacyStock_LR8\tests\Legacy.Tests\bin\Release\net8.0\PharmacyStock.Legacy.Tests.dll
+  PharmacyStock.Core -> C:\Users\chaha\Documents\Codex\2026-11-09\referenced-chatgpt-conversation-this-is-an\work\PharmacyStock_LR8\PharmacyStock.Core\bin\Release\net8.0\PharmacyStock.Core.dll
+  PharmacyStock.App -> C:\Users\chaha\Documents\Codex\2026-11-09\referenced-chatgpt-conversation-this-is-an\work\PharmacyStock_LR8\PharmacyStock.App\bin\Release\net8.0\PharmacyStock.App.dll
+C:\Users\chaha\Documents\Codex\2026-11-09\referenced-chatgpt-conversation-this-is-an\work\PharmacyStock_LR8\tests\PharmacyStock.Tests\BuildAndInputTests.cs(78,39): error CA1861: Prefer 'static readonly' fields over constant array arguments if the called method is called repeatedly and is not mutating the passed array (https://learn.microsoft.com/dotnet/fundamentals/code-analysis/quality-rules/ca1861) [C:\Users\chaha\Documents\Codex\2026-11-09\referenced-chatgpt-conversation-this-is-an\work\PharmacyStock_LR8\tests\PharmacyStock.Tests\PharmacyStock.Tests.csproj]
+
+Build FAILED.
+
+C:\Users\chaha\Documents\Codex\2026-11-09\referenced-chatgpt-conversation-this-is-an\work\PharmacyStock_LR8\tests\PharmacyStock.Tests\BuildAndInputTests.cs(78,39): error CA1861: Prefer 'static readonly' fields over constant array arguments if the called method is called repeatedly and is not mutating the passed array (https://learn.microsoft.com/dotnet/fundamentals/code-analysis/quality-rules/ca1861) [C:\Users\chaha\Documents\Codex\2026-11-09\referenced-chatgpt-conversation-this-is-an\work\PharmacyStock_LR8\tests\PharmacyStock.Tests\PharmacyStock.Tests.csproj]
+    0 Warning(s)
+    1 Error(s)
+
+Time Elapsed 00:00:01.05
+
+Exit code: 1
+Wall seconds: 1.221
