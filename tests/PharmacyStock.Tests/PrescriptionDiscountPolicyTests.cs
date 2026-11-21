@@ -40,4 +40,16 @@ public sealed class PrescriptionDiscountPolicyTests
         // Assert
         Assert.Equal("amount", exception.ParamName);
     }
+    [Fact]
+    public void DiscountFor_HugePrescription_IsCappedAt150()
+    {
+        // Arrange
+        var policy = new PrescriptionDiscountPolicy();
+
+        // Act
+        decimal actual = policy.DiscountFor(5000m, true);
+
+        // Assert
+        Assert.Equal(150m, actual);
+    }
 }
